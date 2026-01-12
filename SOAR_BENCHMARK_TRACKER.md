@@ -44,6 +44,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | BLiMP-FR | `blimp_fr` | FR | Grammaticality |
 | SyntaxGym | `syntaxgym` | EN | Grammaticality |
 | COMPS | `comps` | EN | Compositionality |
+| IndicMMLU-Pro | `indicmmlu_pro` | BN, GU, HI, KN, MR, PA, TA, TE, UR | World Knowledge |
 
 ---
 
@@ -114,7 +115,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 |-----------|-----------|----------|----------------|--------|
 | FilBench | TL (Tagalog) | World Knowledge | TBD | ⬜ Not started |
 | MultiLoKg | Multi | World Knowledge | TBD | ⬜ Not started |
-| IndicMMLU-Pro | HI | World Knowledge | TBD | ⬜ Not started |
+| IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
 | ITT-Bench | HI, IT | World Knowledge | TBD | ⬜ Not started |
 | CLUE | ZH | Various | TBD | ⬜ Not started |
 | DUMB | NL | Various | TBD | ⬜ Not started |
@@ -168,6 +169,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | BLiMP-FR | ✅ Added | Group: `blimp_fr` with 7 tasks. French grammaticality |
 | 2026-01-12 | SyntaxGym | ✅ Added | Group: `syntaxgym` with 3 tasks. English syntactic evaluation |
 | 2026-01-12 | COMPS | ✅ Added | Group: `comps` with 3 tasks. English compositional semantics |
+| 2026-01-12 | IndicMMLU-Pro | ✅ Added | Group: `indicmmlu_pro` with 9 tasks. Indic MMLU-Pro (10-way MC) |
 
 ### Benchmarks Added This Session
 
@@ -232,5 +234,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - Tasks: `comps_base` (49K items), `comps_wugs`, `comps_wugs_dist`
     - English compositional semantics - property knowledge
     - Dataset: `kanishka/comps`
+    - No special dependencies ✓
+
+11. **IndicMMLU-Pro** (`indicmmlu_pro` group) - 9 tasks
+    - Tasks: `indicmmlu_pro_{hi,bn,gu,kn,mr,pa,ta,te,ur}`
+    - 10-way multiple choice MMLU-Pro for Indic languages
+    - ~12K test examples per language
+    - Dataset: `LinguaLift/IndicMMLU-Pro`
     - No special dependencies ✓
 

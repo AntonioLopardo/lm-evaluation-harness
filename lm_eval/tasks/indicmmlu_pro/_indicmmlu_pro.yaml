@@ -1,0 +1,20 @@
+group: indicmmlu_pro
+task:
+  - indicmmlu_pro_hi
+  - indicmmlu_pro_bn
+  - indicmmlu_pro_gu
+  - indicmmlu_pro_kn
+  - indicmmlu_pro_mr
+  - indicmmlu_pro_pa
+  - indicmmlu_pro_ta
+  - indicmmlu_pro_te
+  - indicmmlu_pro_ur
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+  - metric: acc_norm
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

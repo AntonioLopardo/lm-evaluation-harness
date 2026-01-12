@@ -1,0 +1,3 @@
+include: _indicmmlu_pro_template.yaml
+task: indicmmlu_pro_ur
+dataset_name: urdu
