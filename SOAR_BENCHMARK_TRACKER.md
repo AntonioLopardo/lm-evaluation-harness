@@ -73,6 +73,13 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | `seacrowd_wrete` | SEACrowd/wrete | 100 | Word Relation Textual Entailment |
 | `seacrowd_indolem_sentiment` | SEACrowd/indolem_sentiment | 1,011 | Indonesian Sentiment (binary) |
 
+### BaBIEs (Italian Grammaticality)
+
+**BaBIEs** (Baby Benchmark for Italian linguistic Evaluations) is not yet available on HuggingFace.
+- Paper: https://aclanthology.org/2024.clicit-1.20.pdf
+- Tests linguistic competence using adapted children's language tests
+- For Italian grammaticality, use **`multiblimp_ita`** (already in harness)
+
 ---
 
 ## ❌ To Be Added
@@ -100,7 +107,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 |-----------|-----------|----------|----------------|--------|
 | BLiMP-FR | FR | Grammaticality | [HuggingFace](https://huggingface.co/datasets/elliepreed/BLiMP-fr) | ✅ Added (7 tasks) |
 | Syntax Gym | EN | Grammaticality | [HuggingFace](https://huggingface.co/datasets/cpllab/syntaxgym) | ✅ Added (3 tasks) |
-| Babies | IT | Grammaticality | TBD | ⬜ Not started |
+| BaBIEs | IT | Grammaticality | [Paper](https://aclanthology.org/2024.clicit-1.20.pdf) | ⚠️ Not on HF (use `multiblimp_ita`) |
 | LINDSEA | ID | Grammaticality | [HuggingFace](https://huggingface.co/datasets/juletxara/lindsea-blimp) | ✅ Added (4 tasks) |
 | CLIMP | ZH | Grammaticality | TBD | ⬜ Not started |
 | XCOMPS | FR, TR, NL, ZH, DE, VI, ES | Compositionality | [HuggingFace](https://huggingface.co/datasets/fpadovani/xcomps-dataset) | ✅ Added (7 tasks) |
@@ -140,7 +147,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Hausa | HA | AfriXNLI, AfriMMLU, Belebele | - |
 | Hindi | HI | MultiBLiMP, XStoryCloze, XNLI, INCLUDE, Belebele | IndicGLUE, IndicMMLU-Pro, ITT-Bench |
 | English | EN | GLUE, SuperGLUE, BLiMP, PIQA, HellaSWag, MMLU, etc. | Syntax Gym, COMPS, EWoK, Analogy |
-| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele | Babies, ITALIC, ITT-Bench |
+| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC | BaBIEs (not on HF), ITT-Bench |
 | Indonesian | ID | COPAL-ID, mHellaSwag, XStoryCloze, XCOPA, INCLUDE, Belebele, IndoNLI, SEACrowd, SEA-HELM | LINDSEA |
 | Turkish | TR | TurBLiMP, XCOPA, INCLUDE, Belebele | XCOMPS |
 | Dutch | NL | BLiMP-NL, mHellaSwag, INCLUDE, Belebele | DUMB, COPA-NL, XCOMPS |
