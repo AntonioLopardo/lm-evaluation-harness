@@ -1,0 +1,7 @@
+task: xcomps_es
+tag:
+  - xcomps
+  - compositionality
+  - spanish
+include: _xcomps_template
+test_split: comps_es

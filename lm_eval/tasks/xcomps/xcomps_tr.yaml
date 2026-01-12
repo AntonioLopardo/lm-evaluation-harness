@@ -1,0 +1,7 @@
+task: xcomps_tr
+tag:
+  - xcomps
+  - compositionality
+  - turkish
+include: _xcomps_template
+test_split: comps_tr

@@ -1,0 +1,4 @@
+include: _indicglue_copa_template.yaml
+task: indicglue_copa_hi
+dataset_name: copa.hi
+doc_to_text: !function utils.copa_doc_to_text_hi

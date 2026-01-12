@@ -1,0 +1,7 @@
+task: xcomps_nl
+tag:
+  - xcomps
+  - compositionality
+  - dutch
+include: _xcomps_template
+test_split: comps_nl

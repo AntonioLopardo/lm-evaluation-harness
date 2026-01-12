@@ -1,0 +1,15 @@
+group: xcomps
+task:
+  - xcomps_fr
+  - xcomps_nl
+  - xcomps_tr
+  - xcomps_zh
+  - xcomps_de
+  - xcomps_vi
+  - xcomps_es
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

@@ -1,0 +1,7 @@
+task: xcomps_zh
+tag:
+  - xcomps
+  - compositionality
+  - chinese
+include: _xcomps_template
+test_split: comps_zh

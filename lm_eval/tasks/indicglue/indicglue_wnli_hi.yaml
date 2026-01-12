@@ -1,0 +1,5 @@
+include: _indicglue_wnli_template.yaml
+task: indicglue_wnli_hi
+dataset_name: wnli.hi
+doc_to_text: !function utils.wnli_doc_to_text_hi
+doc_to_choice: !function utils.wnli_doc_to_choice_hi

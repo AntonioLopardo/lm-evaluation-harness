@@ -1,0 +1,7 @@
+task: xcomps_fr
+tag:
+  - xcomps
+  - compositionality
+  - french
+include: _xcomps_template
+test_split: comps_fr

@@ -37,6 +37,8 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | IndoNLI | `indonli` | ID | NLI |
 | SEACrowd | `seacrowd` | ID | Various (NLI, Sentiment) |
 | SEA-HELM | `seahelm` | ID, TH, VI, TL, TA | NLI, Causal, Sentiment |
+| XCOMPS | `xcomps` | FR, NL, TR, ZH, DE, VI, ES | Compositionality |
+| IndicGLUE | `indicglue` | HI, GU, MR | NLI (WNLI), COPA |
 
 ---
 
@@ -77,7 +79,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 |-----------|-----------|----------|----------------|--------|
 | BATAYA | TL (Tagalog) | NLI | TBD | ⬜ Not started |
 | COLE/FLUE | FR | NLI | TBD | ⬜ Not started |
-| IndicGLUE | HI | NLI | TBD | ⬜ Not started |
+| IndicGLUE | HI, GU, MR | NLI + COPA | [HuggingFace](https://huggingface.co/datasets/ai4bharat/indic_glue) | ✅ Added (6 tasks) |
 | winoX | Multi | Coreference | TBD | ⬜ Not started |
 
 ### Priority 3 - Grammaticality / Linguistic
@@ -89,7 +91,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Babies | IT | Grammaticality | TBD | ⬜ Not started |
 | LINDSEA | ID | Grammaticality | TBD | ⬜ Not started |
 | CLIMP | ZH | Grammaticality | TBD | ⬜ Not started |
-| XCOMPS | FR, TR, NL, ZH | Compositionality | TBD | ⬜ Not started |
+| XCOMPS | FR, TR, NL, ZH, DE, VI, ES | Compositionality | [HuggingFace](https://huggingface.co/datasets/fpadovani/xcomps-dataset) | ✅ Added (7 tasks) |
 | COMPS | EN | Compositionality | TBD | ⬜ Not started |
 
 ### Priority 4 - Commonsense Reasoning
@@ -154,6 +156,8 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | IndoNLI | ✅ Added | Task: `indonli`, Dataset: `karuniaperjuangan/indonli_benchmark`, 2,201 test examples |
 | 2026-01-12 | SEACrowd | ✅ Added | Group: `seacrowd` with 3 tasks. **Requires `datasets<3.0.0`** (see notes above) |
 | 2026-01-12 | SEA-HELM | ✅ Added | Group: `seahelm` with 13 tasks across 5 languages. No special dependencies |
+| 2026-01-12 | XCOMPS | ✅ Added | Group: `xcomps` with 7 tasks (FR, NL, TR, ZH, DE, VI, ES). Compositionality benchmark |
+| 2026-01-12 | IndicGLUE | ✅ Added | Group: `indicglue` with 6 tasks (WNLI + COPA for HI, GU, MR) |
 
 ### Benchmarks Added This Session
 
@@ -174,5 +178,19 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
    - Causal Reasoning: `seahelm_causal_{id,th,vi,tl}` (500 test each)
    - Sentiment: `seahelm_sentiment_{id,th,vi,tl}` (400 test each)
    - Languages: Indonesian, Thai, Vietnamese, Tagalog, Tamil
+   - No special dependencies ✓
+
+4. **XCOMPS** (`xcomps` group) - 7 tasks
+   - Tasks: `xcomps_{fr,nl,tr,zh,de,vi,es}`
+   - Cross-lingual compositionality benchmark
+   - Dataset: `fpadovani/xcomps-dataset`
+   - Acceptable vs. unacceptable sentence pairs
+   - No special dependencies ✓
+
+5. **IndicGLUE** (`indicglue` group) - 6 tasks
+   - COPA: `indicglue_copa_{hi,gu,mr}` (commonsense reasoning)
+   - WNLI: `indicglue_wnli_{hi,gu,mr}` (natural language inference)
+   - Languages: Hindi, Gujarati, Marathi
+   - Dataset: `ai4bharat/indic_glue`
    - No special dependencies ✓
 

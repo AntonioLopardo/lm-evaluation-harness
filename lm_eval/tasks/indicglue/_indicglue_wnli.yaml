@@ -1,0 +1,11 @@
+group: indicglue_wnli
+task:
+  - indicglue_wnli_hi
+  - indicglue_wnli_gu
+  - indicglue_wnli_mr
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

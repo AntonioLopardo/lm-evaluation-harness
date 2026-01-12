@@ -1,0 +1,7 @@
+task: xcomps_vi
+tag:
+  - xcomps
+  - compositionality
+  - vietnamese
+include: _xcomps_template
+test_split: comps_vi

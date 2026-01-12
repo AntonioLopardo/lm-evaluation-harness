@@ -1,0 +1,11 @@
+group: indicglue_copa
+task:
+  - indicglue_copa_hi
+  - indicglue_copa_gu
+  - indicglue_copa_mr
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0
