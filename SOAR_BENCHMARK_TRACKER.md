@@ -49,6 +49,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | BATAYAN | `batayan` | TL (Filipino) | NLI, Causal, Sentiment |
 | CLUE | `clue` | ZH | NLI, Coreference |
 | ITALIC | `italic` | IT | Language, Culture |
+| Analogy | `analogy` | EN | Word Analogies |
 
 ---
 
@@ -109,7 +110,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
 | EWoK | EN | Commonsense | TBD | ⬜ Not started |
-| Analogy | EN | Commonsense | TBD | ⬜ Not started |
+| Analogy | EN | Commonsense | [HuggingFace](https://huggingface.co/datasets/almogtavor/google-analogy-dataset) | ✅ Added |
 | ITALIC | IT | Commonsense | [HuggingFace](https://huggingface.co/datasets/Crisp-Unimib/ITALIC) | ✅ Added |
 | COPA-NL | NL | Commonsense | TBD | ⬜ Not started |
 
@@ -178,6 +179,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | BATAYAN | ✅ Added | Group: `batayan` with 3 tasks. Filipino NLI, Causal, Sentiment |
 | 2026-01-12 | CLUE | ✅ Added | Group: `clue` with 3 tasks. Chinese NLI + Coreference |
 | 2026-01-12 | ITALIC | ✅ Added | Task: `italic`. Italian language + culture (10K examples) |
+| 2026-01-12 | Analogy | ✅ Added | Task: `analogy`. Google word analogy (19K examples) |
 
 ### Benchmarks Added This Session
 
@@ -275,5 +277,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - Italian language and culture benchmark (10K examples)
     - Categories: language capability, culture & commonsense
     - Dataset: `Crisp-Unimib/ITALIC`
+    - No special dependencies ✓
+
+16. **Analogy** (`analogy`) - 1 task
+    - Google word analogy benchmark (19K examples)
+    - Categories: semantic (capitals, currency, family) & syntactic (tense, plural)
+    - Dataset: `almogtavor/google-analogy-dataset`
+    - Generative task (exact match)
     - No special dependencies ✓
 
