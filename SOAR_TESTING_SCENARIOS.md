@@ -4,7 +4,7 @@ This document outlines testing scenarios for reproducing baseline results from t
 
 ---
 
-## Complete Benchmark Summary (20 Benchmarks)
+## Complete Benchmark Summary (21 Benchmarks)
 
 | # | Benchmark | Task Group | Languages | Category | Expected Baseline |
 |---|-----------|------------|-----------|----------|-------------------|
@@ -26,10 +26,11 @@ This document outlines testing scenarios for reproducing baseline results from t
 | 16 | ITA-Bench | `ita_bench` | IT | Various | compare to EN |
 | 17 | MultiLoKo | `multiloko` | 31 langs | Local Knowledge | varies |
 | 18 | IndoNLI | `indonli` | ID | NLI | IndoBERT: 73% |
-| 19 | LINDSEA | `lindsea` | ID | Grammaticality | IndoBERT: 65% |
-| 20 | Analogy | `analogy` | EN | Word Relations | GPT-2: 30-40% |
+| 19 | SEACrowd | `seacrowd` | ID | Various | varies |
+| 20 | LINDSEA | `lindsea` | ID | Grammaticality | IndoBERT: 65% |
+| 21 | Analogy | `analogy` | EN | Word Relations | GPT-2: 30-40% |
 
-**SEACrowd** (`seacrowd`) requires `datasets<3.0.0` - listed separately in section 18.
+⚠️ **SEACrowd** requires `datasets<3.0.0` due to HuggingFace loading script deprecation.
 
 ---
 
