@@ -51,6 +51,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | ITALIC | `italic` | IT | Language, Culture |
 | Analogy | `analogy` | EN | Word Analogies |
 | DUMB | `dumb` | NL | Grammaticality, NLI, Sentiment |
+| EWoK | `ewok` | EN | Commonsense (World Knowledge) |
 
 ---
 
@@ -117,7 +118,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
-| EWoK | EN | Commonsense | TBD | ⬜ Not started |
+| EWoK | EN | Commonsense | [HuggingFace](https://huggingface.co/datasets/ewok-core/ewok-core-1.0) | ✅ Added |
 | Analogy | EN | Commonsense | [HuggingFace](https://huggingface.co/datasets/almogtavor/google-analogy-dataset) | ✅ Added |
 | ITALIC | IT | Commonsense | [HuggingFace](https://huggingface.co/datasets/Crisp-Unimib/ITALIC) | ✅ Added |
 | COPA-NL | NL | Commonsense | TBD | ⬜ Not started |
@@ -146,7 +147,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | French | FR | MultiBLiMP, mHellaSwag, XNLI, INCLUDE, Belebele | COLE/FLUE, QFrBLiMP, XCOMPS |
 | Hausa | HA | AfriXNLI, AfriMMLU, Belebele | - |
 | Hindi | HI | MultiBLiMP, XStoryCloze, XNLI, INCLUDE, Belebele | IndicGLUE, IndicMMLU-Pro, ITT-Bench |
-| English | EN | GLUE, SuperGLUE, BLiMP, PIQA, HellaSWag, MMLU, etc. | Syntax Gym, COMPS, EWoK, Analogy |
+| English | EN | GLUE, SuperGLUE, BLiMP, PIQA, HellaSWag, MMLU, Syntax Gym, COMPS, EWoK, Analogy | - |
 | Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC | BaBIEs (not on HF), ITT-Bench |
 | Indonesian | ID | COPAL-ID, mHellaSwag, XStoryCloze, XCOPA, INCLUDE, Belebele, IndoNLI, SEACrowd, SEA-HELM | LINDSEA |
 | Turkish | TR | TurBLiMP, XCOPA, INCLUDE, Belebele | XCOMPS |
