@@ -4,6 +4,35 @@ This document outlines testing scenarios for reproducing baseline results from t
 
 ---
 
+## Complete Benchmark Summary (20 Benchmarks)
+
+| # | Benchmark | Task Group | Languages | Category | Expected Baseline |
+|---|-----------|------------|-----------|----------|-------------------|
+| 1 | CLiMP | `climp` | ZH | Grammaticality | Chinese BERT: 82% |
+| 2 | BLiMP-FR | `blimp_fr` | FR | Grammaticality | CamemBERT: 70-85% |
+| 3 | COMPS | `comps` | EN | Compositionality | GPT-2: 65% |
+| 4 | XCOMPS | `xcomps` | 7 langs | Compositionality | varies by lang |
+| 5 | Syntax Gym | `syntaxgym` | EN | Grammaticality | GPT-2: 60-70% |
+| 6 | IndicGLUE | `indicglue` | HI, GU, MR | NLI/COPA | IndicBERT: 55% |
+| 7 | IndicMMLU-Pro | `indicmmlu_pro` | 9 Indic | World Knowledge | 25-40% |
+| 8 | WinoX | `winox` | DE, FR, RU | Coreference | XLM-R: 52-55% |
+| 9 | FLUE | `flue` | FR | NLI | CamemBERT: 81% |
+| 10 | DUMB | `dumb` | NL | Various | RobBERT: 78-94% |
+| 11 | SEA-HELM | `seahelm` | 5 SEA langs | Various | varies |
+| 12 | BATAYAN | `batayan` | TL | NLI/Sentiment | varies |
+| 13 | CLUE | `clue` | ZH | Various | varies |
+| 14 | EWoK | `ewok` | EN | World Knowledge | GPT-4: 82% |
+| 15 | ITALIC | `italic` | IT | Culture/Lang | varies |
+| 16 | ITA-Bench | `ita_bench` | IT | Various | compare to EN |
+| 17 | MultiLoKo | `multiloko` | 31 langs | Local Knowledge | varies |
+| 18 | IndoNLI | `indonli` | ID | NLI | IndoBERT: 73% |
+| 19 | LINDSEA | `lindsea` | ID | Grammaticality | IndoBERT: 65% |
+| 20 | Analogy | `analogy` | EN | Word Relations | GPT-2: 30-40% |
+
+**SEACrowd** (`seacrowd`) requires `datasets<3.0.0` - listed separately in section 18.
+
+---
+
 ## Quick Reference: Recommended Models by Language
 
 | Language | Encoder Models | Decoder/Generative Models |
@@ -500,17 +529,167 @@ lm_eval --model hf \
 
 ---
 
+## 17. IndoNLI (Indonesian NLI)
+
+### Source Paper
+- **Title**: IndoNLI: A Natural Language Inference Dataset for Indonesian
+- **Link**: https://aclanthology.org/2021.emnlp-main.821/
+
+### Baseline Results from Paper
+| Model | Accuracy |
+|-------|----------|
+| IndoBERT | ~73% |
+| mBERT | ~70% |
+| XLM-R | ~74% |
+
+### Recommended Test
+```bash
+# Using IndoBERT
+lm_eval --model hf \
+  --model_args pretrained=indolem/indobert-base-uncased \
+  --tasks indonli \
+  --batch_size 16
+
+# Using XLM-RoBERTa
+lm_eval --model hf \
+  --model_args pretrained=xlm-roberta-base \
+  --tasks indonli \
+  --batch_size 16
+```
+
+### Expected Results
+- **IndoBERT**: ~72-74%
+- **XLM-R**: ~73-75%
+- 3-way classification (entailment, neutral, contradiction)
+
+---
+
+## 18. SEACrowd (Indonesian Tasks)
+
+### Source Paper
+- **Title**: SEACrowd: A Multilingual Multimodal Data Hub for Southeast Asian Languages
+- **Link**: https://aclanthology.org/2024.emnlp-main.296/
+
+### ⚠️ Dependency Note
+```bash
+# Requires datasets < 3.0.0
+pip install 'datasets>=2.0.0,<3.0.0'
+```
+
+### Recommended Test
+```bash
+# Using IndoBERT
+lm_eval --model hf \
+  --model_args pretrained=indolem/indobert-base-uncased \
+  --tasks seacrowd \
+  --batch_size 16
+
+# Individual tasks
+lm_eval --model hf \
+  --model_args pretrained=indolem/indobert-base-uncased \
+  --tasks seacrowd_indonli,seacrowd_wrete,seacrowd_indolem_sentiment \
+  --batch_size 16
+```
+
+### Expected Results
+- **IndoNLI**: ~70-75% (3-way NLI)
+- **WRETE**: ~55-65% (word relation entailment)
+- **Sentiment**: ~75-85% (binary sentiment)
+
+---
+
+## 19. LINDSEA (Indonesian Grammaticality)
+
+### Source Paper
+- **Title**: LINDSEA: Linguistic Diagnostics for Southeast Asian Languages
+- **Link**: https://aclanthology.org/2024.lrec-main.213/
+
+### Baseline Results from Paper
+| Model | Average Accuracy |
+|-------|------------------|
+| IndoBERT | ~65% |
+| mBERT | ~60% |
+| XLM-R | ~68% |
+
+### Recommended Test
+```bash
+# Using IndoBERT
+lm_eval --model hf \
+  --model_args pretrained=indolem/indobert-base-uncased \
+  --tasks lindsea \
+  --batch_size 16
+
+# Using XLM-RoBERTa
+lm_eval --model hf \
+  --model_args pretrained=xlm-roberta-base \
+  --tasks lindsea \
+  --batch_size 16
+```
+
+### Expected Results
+- **IndoBERT**: ~63-67%
+- **XLM-R**: ~66-70%
+- Tests argument structure, NPIs, filler-gap, morphology
+
+---
+
+## 20. Analogy (English Word Analogies)
+
+### Source Paper
+- **Title**: Efficient Estimation of Word Representations in Vector Space
+- **Link**: https://arxiv.org/abs/1301.3781
+
+### Baseline Results (historical)
+| Model | Accuracy |
+|-------|----------|
+| Word2Vec | ~74% (semantic), ~64% (syntactic) |
+| GloVe | ~75% (overall) |
+| GPT-2 | ~30-40% (as generation task) |
+
+### Recommended Test
+```bash
+# Using GPT-2
+lm_eval --model hf \
+  --model_args pretrained=gpt2 \
+  --tasks analogy \
+  --batch_size 16
+
+# Using LLaMA (better at analogies)
+lm_eval --model hf \
+  --model_args pretrained=meta-llama/Llama-3.1-8B \
+  --tasks analogy \
+  --batch_size 4
+```
+
+### Expected Results
+- **GPT-2**: ~30-40% (limited by generation format)
+- **Larger LLMs**: ~50-70%
+- Note: Classic word2vec analogy evaluation differs from LM evaluation
+
+---
+
 ## Quick Smoke Tests
 
 For quick validation that tasks load correctly, use the dummy model:
 
 ```bash
 # Test all SOAR benchmarks with dummy model (no GPU needed)
-for task in climp blimp_fr comps xcomps syntaxgym indicglue indicmmlu_pro winox flue dumb seahelm batayan clue ewok italic ita_bench multiloko; do
+TASKS=(
+  climp blimp_fr comps xcomps syntaxgym    # Grammaticality/Compositionality
+  indicglue indicmmlu_pro                   # Indic
+  winox flue dumb                           # European
+  seahelm batayan                           # Southeast Asian
+  clue ewok italic ita_bench multiloko     # World Knowledge
+  indonli lindsea analogy                   # Additional
+)
+
+for task in "${TASKS[@]}"; do
   echo "Testing $task..."
   lm_eval --model dummy --tasks $task --limit 5 2>/dev/null && echo "✓ $task OK" || echo "✗ $task FAILED"
 done
 ```
+
+**Note**: SEACrowd tasks require `datasets<3.0.0` - test separately if needed.
 
 ---
 
@@ -529,27 +708,33 @@ mkdir -p $OUTPUT_DIR
 
 # Grammaticality benchmarks
 lm_eval --model hf --model_args pretrained=$MODEL \
-  --tasks climp,blimp_fr,syntaxgym \
+  --tasks climp,blimp_fr,syntaxgym,lindsea \
   --batch_size $BATCH_SIZE --limit $LIMIT \
   --output_path $OUTPUT_DIR/grammaticality.json
 
 # Compositionality benchmarks
 lm_eval --model hf --model_args pretrained=$MODEL \
-  --tasks comps,xcomps \
+  --tasks comps,xcomps,analogy \
   --batch_size $BATCH_SIZE --limit $LIMIT \
   --output_path $OUTPUT_DIR/compositionality.json
 
 # NLI benchmarks
 lm_eval --model hf --model_args pretrained=$MODEL \
-  --tasks flue_xnli,indicglue,seahelm_nli,batayan_nli \
+  --tasks flue_xnli,indicglue,seahelm_nli,batayan_nli,indonli \
   --batch_size $BATCH_SIZE --limit $LIMIT \
   --output_path $OUTPUT_DIR/nli.json
 
 # World Knowledge
 lm_eval --model hf --model_args pretrained=$MODEL \
-  --tasks ewok,indicmmlu_pro,italic,ita_bench,multiloko \
+  --tasks ewok,indicmmlu_pro,italic,ita_bench,multiloko,clue \
   --batch_size $BATCH_SIZE --limit $LIMIT \
   --output_path $OUTPUT_DIR/knowledge.json
+
+# Coreference/Winograd
+lm_eval --model hf --model_args pretrained=$MODEL \
+  --tasks winox,dumb \
+  --batch_size $BATCH_SIZE --limit $LIMIT \
+  --output_path $OUTPUT_DIR/coreference.json
 
 echo "Results saved to $OUTPUT_DIR"
 ```
