@@ -1,0 +1,11 @@
+group: comps
+task:
+  - comps_base
+  - comps_wugs
+  - comps_wugs_dist
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

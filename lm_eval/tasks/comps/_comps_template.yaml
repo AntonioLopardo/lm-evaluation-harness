@@ -1,0 +1,15 @@
+dataset_path: kanishka/comps
+output_type: multiple_choice
+test_split: train
+doc_to_text: ""
+doc_to_target: 0
+doc_to_choice: "{{[prefix_acceptable + ' ' + property_phrase, prefix_unacceptable + ' ' + property_phrase]}}"
+num_fewshot: 0
+should_decontaminate: true
+doc_to_decontamination_query: "{{prefix_acceptable + ' ' + property_phrase}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

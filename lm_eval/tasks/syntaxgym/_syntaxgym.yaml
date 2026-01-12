@@ -1,0 +1,11 @@
+group: syntaxgym
+task:
+  - syntaxgym_all
+  - syntaxgym_center_embed
+  - syntaxgym_center_embed_mod
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

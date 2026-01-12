@@ -1,0 +1,3 @@
+include: _syntaxgym_template.yaml
+task: syntaxgym_all
+dataset_name: all-2020

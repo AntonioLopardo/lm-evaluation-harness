@@ -1,0 +1,3 @@
+include: _comps_template.yaml
+task: comps_wugs_dist
+dataset_name: wugs_dist

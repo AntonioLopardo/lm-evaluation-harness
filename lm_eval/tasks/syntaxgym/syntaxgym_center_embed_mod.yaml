@@ -1,0 +1,3 @@
+include: _syntaxgym_template.yaml
+task: syntaxgym_center_embed_mod
+dataset_name: center_embed_mod

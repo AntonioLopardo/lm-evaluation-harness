@@ -42,6 +42,8 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | WinoX | `winox` | DE, FR, RU | Coreference |
 | FLUE | `flue` | FR | NLI |
 | BLiMP-FR | `blimp_fr` | FR | Grammaticality |
+| SyntaxGym | `syntaxgym` | EN | Grammaticality |
+| COMPS | `comps` | EN | Compositionality |
 
 ---
 
@@ -90,12 +92,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
 | BLiMP-FR | FR | Grammaticality | [HuggingFace](https://huggingface.co/datasets/elliepreed/BLiMP-fr) | ✅ Added (7 tasks) |
-| Syntax Gym | EN | Grammaticality | TBD | ⬜ Not started |
+| Syntax Gym | EN | Grammaticality | [HuggingFace](https://huggingface.co/datasets/cpllab/syntaxgym) | ✅ Added (3 tasks) |
 | Babies | IT | Grammaticality | TBD | ⬜ Not started |
 | LINDSEA | ID | Grammaticality | TBD | ⬜ Not started |
 | CLIMP | ZH | Grammaticality | TBD | ⬜ Not started |
 | XCOMPS | FR, TR, NL, ZH, DE, VI, ES | Compositionality | [HuggingFace](https://huggingface.co/datasets/fpadovani/xcomps-dataset) | ✅ Added (7 tasks) |
-| COMPS | EN | Compositionality | TBD | ⬜ Not started |
+| COMPS | EN | Compositionality | [HuggingFace](https://huggingface.co/datasets/kanishka/comps) | ✅ Added (3 tasks) |
 
 ### Priority 4 - Commonsense Reasoning
 
@@ -164,6 +166,8 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | WinoX | ✅ Added | Group: `winox` with 3 tasks (DE, FR, RU). Cross-lingual coreference |
 | 2026-01-12 | FLUE | ✅ Added | Task: `flue_xnli`. French NLI (requires trust_remote_code) |
 | 2026-01-12 | BLiMP-FR | ✅ Added | Group: `blimp_fr` with 7 tasks. French grammaticality |
+| 2026-01-12 | SyntaxGym | ✅ Added | Group: `syntaxgym` with 3 tasks. English syntactic evaluation |
+| 2026-01-12 | COMPS | ✅ Added | Group: `comps` with 3 tasks. English compositional semantics |
 
 ### Benchmarks Added This Session
 
@@ -217,4 +221,16 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
    - French grammaticality using minimal pairs
    - Dataset: `elliepreed/BLiMP-fr`
    - No special dependencies ✓
+
+9. **SyntaxGym** (`syntaxgym` group) - 3 tasks
+   - Tasks: `syntaxgym_all` (799 items), `syntaxgym_center_embed`, `syntaxgym_center_embed_mod`
+   - English syntactic evaluation using minimal pairs
+   - Dataset: `cpllab/syntaxgym`
+   - No special dependencies ✓
+
+10. **COMPS** (`comps` group) - 3 tasks
+    - Tasks: `comps_base` (49K items), `comps_wugs`, `comps_wugs_dist`
+    - English compositional semantics - property knowledge
+    - Dataset: `kanishka/comps`
+    - No special dependencies ✓
 
