@@ -1,0 +1,8 @@
+task: seahelm_causal_vi
+tag:
+  - seahelm
+  - seahelm_causal
+  - causal_reasoning
+  - vietnamese
+include: _seahelm_causal_template
+dataset_name: vi

@@ -1,0 +1,8 @@
+task: seahelm_nli_th
+tag:
+  - seahelm
+  - seahelm_nli
+  - nli
+  - thai
+include: _seahelm_nli_template
+dataset_name: th

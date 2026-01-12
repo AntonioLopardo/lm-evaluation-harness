@@ -1,0 +1,26 @@
+task: seacrowd_wrete
+tag:
+  - seacrowd
+  - nli
+  - indonesian
+dataset_path: SEACrowd/wrete
+dataset_name: null
+dataset_kwargs:
+  trust_remote_code: true
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "Kalimat A: {{sent_A}}\nKalimat B: {{sent_B}}\nApakah kalimat B dapat disimpulkan dari kalimat A? Jawab dengan Entail atau NotEntail.\nJawaban:"
+doc_to_target: "{{{'Entail': 0, 'NotEntail': 1}[label]}}"
+doc_to_choice:
+  - "Entail"
+  - "NotEntail"
+should_decontaminate: true
+doc_to_decontamination_query: sent_A
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

@@ -1,0 +1,21 @@
+group: seahelm
+task:
+  - seahelm_nli_id
+  - seahelm_nli_th
+  - seahelm_nli_vi
+  - seahelm_nli_tl
+  - seahelm_nli_ta
+  - seahelm_causal_id
+  - seahelm_causal_th
+  - seahelm_causal_vi
+  - seahelm_causal_tl
+  - seahelm_sentiment_id
+  - seahelm_sentiment_th
+  - seahelm_sentiment_vi
+  - seahelm_sentiment_tl
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

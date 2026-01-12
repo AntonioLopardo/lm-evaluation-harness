@@ -1,0 +1,24 @@
+task: indonli
+dataset_path: karuniaperjuangan/indonli_benchmark
+dataset_name: null
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "{{premise}}\nPertanyaan: {{hypothesis}} Berhubungan, Netral, atau Kontradiktif?\nJawaban:"
+# Berhubungan = entailment
+# Netral = neutral
+# Kontradiktif = contradiction
+doc_to_target: "{{['Berhubungan', 'Netral', 'Kontradiktif'].index(label)}}"
+doc_to_choice:
+  - "Berhubungan"
+  - "Netral"
+  - "Kontradiktif"
+should_decontaminate: true
+doc_to_decontamination_query: premise
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

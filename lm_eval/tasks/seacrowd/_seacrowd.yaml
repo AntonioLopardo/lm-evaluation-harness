@@ -1,0 +1,11 @@
+group: seacrowd
+task:
+  - seacrowd_indonli
+  - seacrowd_wrete
+  - seacrowd_indolem_sentiment
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

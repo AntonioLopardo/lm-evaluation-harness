@@ -1,0 +1,8 @@
+task: seahelm_nli_id
+tag:
+  - seahelm
+  - seahelm_nli
+  - nli
+  - indonesian
+include: _seahelm_nli_template
+dataset_name: id

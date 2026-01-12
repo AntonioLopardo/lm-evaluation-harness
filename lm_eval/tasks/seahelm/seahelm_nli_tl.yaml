@@ -1,0 +1,8 @@
+task: seahelm_nli_tl
+tag:
+  - seahelm
+  - seahelm_nli
+  - nli
+  - tagalog
+include: _seahelm_nli_template
+dataset_name: tl

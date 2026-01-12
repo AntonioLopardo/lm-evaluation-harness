@@ -1,0 +1,23 @@
+task: seahelm_sentiment_id
+tag:
+  - seahelm
+  - seahelm_sentiment
+  - sentiment
+  - indonesian
+dataset_path: aisingapore/NLU-Sentiment-Analysis
+dataset_name: id
+output_type: multiple_choice
+test_split: eval
+process_docs: !function utils.process_sentiment_docs
+doc_to_text: "Analisis sentimen dari teks berikut:\n{{text}}\nSentimen:"
+doc_to_target: !function utils.sentiment_doc_to_target
+doc_to_choice:
+  - "Positif"
+  - "Negatif"
+  - "Netral"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

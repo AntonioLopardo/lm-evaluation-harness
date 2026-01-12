@@ -1,0 +1,30 @@
+task: seacrowd_indonli
+tag:
+  - seacrowd
+  - nli
+  - indonesian
+dataset_path: SEACrowd/indonli
+dataset_name: null
+dataset_kwargs:
+  trust_remote_code: true
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "{{premise}}\nPertanyaan: {{hypothesis}} Benar, Netral, atau Kontradiksi?\nJawaban:"
+# e = entailment (Benar)
+# n = neutral (Netral)
+# c = contradiction (Kontradiksi)
+doc_to_target: "{{{'e': 0, 'n': 1, 'c': 2}[label]}}"
+doc_to_choice:
+  - "Benar"
+  - "Netral"
+  - "Kontradiksi"
+should_decontaminate: true
+doc_to_decontamination_query: premise
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

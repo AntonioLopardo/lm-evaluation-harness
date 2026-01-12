@@ -1,0 +1,23 @@
+task: seahelm_sentiment_vi
+tag:
+  - seahelm
+  - seahelm_sentiment
+  - sentiment
+  - vietnamese
+dataset_path: aisingapore/NLU-Sentiment-Analysis
+dataset_name: vi
+output_type: multiple_choice
+test_split: eval
+process_docs: !function utils.process_sentiment_docs
+doc_to_text: "Phân tích cảm xúc của văn bản sau:\n{{text}}\nCảm xúc:"
+doc_to_target: !function utils.sentiment_doc_to_target
+doc_to_choice:
+  - "Tích cực"
+  - "Tiêu cực"
+  - "Trung lập"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

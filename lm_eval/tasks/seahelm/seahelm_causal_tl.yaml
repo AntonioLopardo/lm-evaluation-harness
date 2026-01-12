@@ -1,0 +1,8 @@
+task: seahelm_causal_tl
+tag:
+  - seahelm
+  - seahelm_causal
+  - causal_reasoning
+  - tagalog
+include: _seahelm_causal_template
+dataset_name: tl

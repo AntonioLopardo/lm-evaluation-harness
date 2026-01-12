@@ -1,0 +1,8 @@
+task: seahelm_nli_ta
+tag:
+  - seahelm
+  - seahelm_nli
+  - nli
+  - tamil
+include: _seahelm_nli_template
+dataset_name: ta

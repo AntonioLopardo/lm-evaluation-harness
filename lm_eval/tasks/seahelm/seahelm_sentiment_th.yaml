@@ -1,0 +1,23 @@
+task: seahelm_sentiment_th
+tag:
+  - seahelm
+  - seahelm_sentiment
+  - sentiment
+  - thai
+dataset_path: aisingapore/NLU-Sentiment-Analysis
+dataset_name: th
+output_type: multiple_choice
+test_split: eval
+process_docs: !function utils.process_sentiment_docs
+doc_to_text: "วิเคราะห์ความรู้สึกของข้อความต่อไปนี้:\n{{text}}\nความรู้สึก:"
+doc_to_target: !function utils.sentiment_doc_to_target
+doc_to_choice:
+  - "แง่บวก"
+  - "แง่ลบ"
+  - "เฉยๆ"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
