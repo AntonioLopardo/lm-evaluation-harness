@@ -1,0 +1,19 @@
+task: dumb_cola
+dataset_path: GroNLP/dutch-cola
+output_type: multiple_choice
+validation_split: validation
+test_split: test
+doc_to_text: "Zin: {{Sentence}}\nIs deze zin grammaticaal correct?\nAntwoord:"
+# 0=unacceptable, 1=acceptable
+doc_to_target: "{{Acceptability}}"
+doc_to_choice:
+  - "Nee"   # unacceptable (0)
+  - "Ja"    # acceptable (1)
+should_decontaminate: true
+doc_to_decontamination_query: Sentence
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

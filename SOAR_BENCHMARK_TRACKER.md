@@ -50,6 +50,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | CLUE | `clue` | ZH | NLI, Coreference |
 | ITALIC | `italic` | IT | Language, Culture |
 | Analogy | `analogy` | EN | Word Analogies |
+| DUMB | `dumb` | NL | Grammaticality, NLI, Sentiment |
 
 ---
 
@@ -123,7 +124,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
 | ITT-Bench | HI, IT | World Knowledge | TBD | ⬜ Not started |
 | CLUE | ZH | Various | [HuggingFace](https://huggingface.co/datasets/clue/clue) | ✅ Added (3 tasks) |
-| DUMB | NL | Various | TBD | ⬜ Not started |
+| DUMB | NL | Various | [Paper](https://openreview.net/pdf?id=ZSHcpMXWxX) | ✅ Added (3 tasks) |
 
 ---
 
@@ -180,6 +181,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | CLUE | ✅ Added | Group: `clue` with 3 tasks. Chinese NLI + Coreference |
 | 2026-01-12 | ITALIC | ✅ Added | Task: `italic`. Italian language + culture (10K examples) |
 | 2026-01-12 | Analogy | ✅ Added | Task: `analogy`. Google word analogy (19K examples) |
+| 2026-01-12 | DUMB | ✅ Added | Group: `dumb` with 3 tasks. Dutch benchmark |
 
 ### Benchmarks Added This Session
 
@@ -284,5 +286,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - Categories: semantic (capitals, currency, family) & syntactic (tense, plural)
     - Dataset: `almogtavor/google-analogy-dataset`
     - Generative task (exact match)
+    - No special dependencies ✓
+
+17. **DUMB** (`dumb` group) - 3 tasks
+    - `dumb_cola`: Dutch CoLA (2.4K, grammaticality)
+    - `dumb_sick`: Dutch SICK-NL (4.9K, NLI)
+    - `dumb_dbrd`: Dutch Book Reviews (2.2K, sentiment)
+    - Leaderboard: https://dumbench.nl/
     - No special dependencies ✓
 

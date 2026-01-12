@@ -1,0 +1,18 @@
+task: dumb_dbrd
+dataset_path: benjaminvdb/dbrd
+output_type: multiple_choice
+test_split: test
+doc_to_text: "Recensie: {{text[:500]}}\nWat is het sentiment van deze recensie?\nAntwoord:"
+# label: 0=negative, 1=positive
+doc_to_target: "{{label}}"
+doc_to_choice:
+  - "Negatief"   # negative (0)
+  - "Positief"   # positive (1)
+should_decontaminate: true
+doc_to_decontamination_query: "{{text[:200]}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

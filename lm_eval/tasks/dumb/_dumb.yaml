@@ -1,0 +1,11 @@
+group: dumb
+task:
+  - dumb_cola
+  - dumb_sick
+  - dumb_dbrd
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

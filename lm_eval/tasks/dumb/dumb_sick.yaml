@@ -1,0 +1,20 @@
+task: dumb_sick
+dataset_path: maximedb/sick_nl
+output_type: multiple_choice
+validation_split: validation
+test_split: test
+doc_to_text: "{{sentence_A}}\nVraag: {{sentence_B}} Is dit waar, niet waar, of neutraal?\nAntwoord:"
+# label: 0=entailment, 1=neutral, 2=contradiction
+doc_to_target: "{{label}}"
+doc_to_choice:
+  - "Waar"       # entailment (0)
+  - "Neutraal"   # neutral (1)
+  - "Niet waar"  # contradiction (2)
+should_decontaminate: true
+doc_to_decontamination_query: sentence_A
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
