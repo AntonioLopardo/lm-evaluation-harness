@@ -54,6 +54,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | EWoK | `ewok` | EN | Commonsense (World Knowledge) |
 | ITA-Bench | `ita_bench` | IT | ARC, HellaSwag, MMLU, PIQA, Winogrande |
 | MultiLoKo | `multiloko` | 31 langs | Local Knowledge QA |
+| CLiMP | `climp` | ZH | Grammaticality |
 
 ---
 
@@ -112,7 +113,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Syntax Gym | EN | Grammaticality | [HuggingFace](https://huggingface.co/datasets/cpllab/syntaxgym) | ✅ Added (3 tasks) |
 | BaBIEs | IT | Grammaticality | [Paper](https://aclanthology.org/2024.clicit-1.20.pdf) | ⚠️ Not on HF (use `multiblimp_ita`) |
 | LINDSEA | ID | Grammaticality | [HuggingFace](https://huggingface.co/datasets/juletxara/lindsea-blimp) | ✅ Added (4 tasks) |
-| CLIMP | ZH | Grammaticality | TBD | ⬜ Not started |
+| CLiMP | ZH | Grammaticality | [HuggingFace](https://huggingface.co/datasets/suchirsalhan/CLiMP) | ✅ Added (custom loader) |
 | XCOMPS | FR, TR, NL, ZH, DE, VI, ES | Compositionality | [HuggingFace](https://huggingface.co/datasets/fpadovani/xcomps-dataset) | ✅ Added (7 tasks) |
 | COMPS | EN | Compositionality | [HuggingFace](https://huggingface.co/datasets/kanishka/comps) | ✅ Added (3 tasks) |
 
@@ -154,7 +155,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Indonesian | ID | COPAL-ID, mHellaSwag, XStoryCloze, XCOPA, INCLUDE, Belebele, IndoNLI, SEACrowd, SEA-HELM | LINDSEA |
 | Turkish | TR | TurBLiMP, XCOPA, INCLUDE, Belebele | XCOMPS |
 | Dutch | NL | BLiMP-NL, mHellaSwag, INCLUDE, Belebele | DUMB, COPA-NL, XCOMPS |
-| Chinese | ZH | ZhoBLiMP, mHellaSwag, XStoryCloze, XCOPA, XNLI, INCLUDE, Belebele | CLIMP, CLUE, XCOMPS |
+| Chinese | ZH | ZhoBLiMP, mHellaSwag, XStoryCloze, XCOPA, XNLI, INCLUDE, Belebele, CLiMP, CLUE, XCOMPS | - |
 
 ---
 
