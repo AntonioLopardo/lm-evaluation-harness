@@ -84,6 +84,19 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 - Tests linguistic competence using adapted children's language tests
 - For Italian grammaticality, use **`multiblimp_ita`** (already in harness)
 
+### CLiMP (Chinese Grammaticality)
+
+**CLiMP** uses a custom dataset loader because the HuggingFace dataset has a broken CSV file (`ba_construction_1000.csv`).
+- The custom loader skips the broken file and loads 15 of 16 linguistic phenomena
+- 15,000 minimal pairs total
+
+### Train-Only Datasets
+
+Several grammaticality benchmarks only have a `train` split on HuggingFace (no test split):
+- **BLiMP-FR**, **COMPS**, **LINDSEA**, **Analogy**, **ITALIC**
+
+This is normal for minimal-pair evaluations where there's no model training. The YAML configs use `test_split: train` to tell lm-eval to use the train split for evaluation.
+
 ---
 
 ## ❌ To Be Added
