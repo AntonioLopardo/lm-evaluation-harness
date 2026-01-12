@@ -1,0 +1,28 @@
+# MultiLoKo: Multilingual Local Knowledge
+# Paper: https://arxiv.org/abs/2504.10356
+# Dataset: https://huggingface.co/datasets/facebook/multiloko
+#
+# Tests local knowledge across 31 languages using extractive QA.
+# Languages: Arabic, Bengali, Cantonese, Czech, Dutch, English, Farsi, French,
+# German, Hebrew, Hindi, Indonesian, Italian, Japanese, Khmer, Korean, Malay,
+# Marathi, Polish, Portuguese, Romanian, Russian, Simplified Mandarin, Spanish,
+# Swedish, Tagalog, Thai, Traditional Mandarin, Turkish, Urdu, Vietnamese
+task: multiloko_all
+dataset_path: facebook/multiloko
+output_type: generate_until
+validation_split: dev
+doc_to_text: "Context: {{text}}\n\nQuestion: {{question}}\n\nAnswer:"
+doc_to_target: "{{targets[0]}}"
+generation_kwargs:
+  max_gen_toks: 64
+  until:
+    - "\n"
+    - "Question:"
+    - "Context:"
+process_results: !function utils.process_results
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

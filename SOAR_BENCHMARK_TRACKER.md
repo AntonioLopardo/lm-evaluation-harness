@@ -53,6 +53,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | DUMB | `dumb` | NL | Grammaticality, NLI, Sentiment |
 | EWoK | `ewok` | EN | Commonsense (World Knowledge) |
 | ITA-Bench | `ita_bench` | IT | ARC, HellaSwag, MMLU, PIQA, Winogrande |
+| MultiLoKo | `multiloko` | 31 langs | Local Knowledge QA |
 
 ---
 
@@ -129,7 +130,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
 | FilBench | TL (Tagalog) | World Knowledge | [Paper](https://aclanthology.org/2025.emnlp-main.127/) | ⚠️ Main tasks not public (only NER/readability) |
-| MultiLoKo | Multi (31 langs) | World Knowledge | [HuggingFace](https://huggingface.co/datasets/facebook/multiloko) | ⚠️ Gated (requires access) |
+| MultiLoKo | Multi (31 langs) | World Knowledge | [HuggingFace](https://huggingface.co/datasets/facebook/multiloko) | ✅ Added |
 | IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
 | ITA-Bench | IT | Various | [HuggingFace](https://huggingface.co/collections/sapienzanlp/ita-bench-italian-benchmarks-for-llms) | ✅ Added (6 tasks) |
 | CLUE | ZH | Various | [HuggingFace](https://huggingface.co/datasets/clue/clue) | ✅ Added (3 tasks) |
