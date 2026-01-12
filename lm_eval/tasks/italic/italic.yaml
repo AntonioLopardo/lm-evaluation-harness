@@ -1,0 +1,18 @@
+task: italic
+dataset_path: Crisp-Unimib/ITALIC
+output_type: multiple_choice
+test_split: train
+doc_to_text: !function utils.doc_to_text
+doc_to_target: !function utils.doc_to_target
+doc_to_choice: !function utils.doc_to_choice
+should_decontaminate: true
+doc_to_decontamination_query: question
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

@@ -1,0 +1,20 @@
+task: clue_cluewsc
+dataset_path: clue/clue
+dataset_name: cluewsc2020
+output_type: multiple_choice
+validation_split: validation
+test_split: validation
+doc_to_text: "{{text}}\n问题: \"{{target['span2_text']}}\"是否指代\"{{target['span1_text']}}\"？\n答案:"
+# 0=no, 1=yes
+doc_to_target: "{{label}}"
+doc_to_choice:
+  - "否"   # no (0)
+  - "是"   # yes (1)
+should_decontaminate: true
+doc_to_decontamination_query: text
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

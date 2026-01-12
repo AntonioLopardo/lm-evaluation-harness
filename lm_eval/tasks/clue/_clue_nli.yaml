@@ -1,0 +1,10 @@
+group: clue_nli
+task:
+  - clue_cmnli
+  - clue_ocnli
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

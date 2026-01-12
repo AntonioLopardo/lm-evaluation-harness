@@ -47,6 +47,8 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | IndicMMLU-Pro | `indicmmlu_pro` | BN, GU, HI, KN, MR, PA, TA, TE, UR | World Knowledge |
 | LINDSEA | `lindsea` | ID | Grammaticality |
 | BATAYAN | `batayan` | TL (Filipino) | NLI, Causal, Sentiment |
+| CLUE | `clue` | ZH | NLI, Coreference |
+| ITALIC | `italic` | IT | Language, Culture |
 
 ---
 
@@ -108,7 +110,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 |-----------|-----------|----------|----------------|--------|
 | EWoK | EN | Commonsense | TBD | ⬜ Not started |
 | Analogy | EN | Commonsense | TBD | ⬜ Not started |
-| ITALIC | IT | Commonsense | TBD | ⬜ Not started |
+| ITALIC | IT | Commonsense | [HuggingFace](https://huggingface.co/datasets/Crisp-Unimib/ITALIC) | ✅ Added |
 | COPA-NL | NL | Commonsense | TBD | ⬜ Not started |
 
 ### Priority 5 - World Knowledge / MMLU variants
@@ -119,7 +121,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | MultiLoKg | Multi | World Knowledge | TBD | ⬜ Not started |
 | IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
 | ITT-Bench | HI, IT | World Knowledge | TBD | ⬜ Not started |
-| CLUE | ZH | Various | TBD | ⬜ Not started |
+| CLUE | ZH | Various | [HuggingFace](https://huggingface.co/datasets/clue/clue) | ✅ Added (3 tasks) |
 | DUMB | NL | Various | TBD | ⬜ Not started |
 
 ---
@@ -174,6 +176,8 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | IndicMMLU-Pro | ✅ Added | Group: `indicmmlu_pro` with 9 tasks. Indic MMLU-Pro (10-way MC) |
 | 2026-01-12 | LINDSEA | ✅ Added | Group: `lindsea` with 4 tasks. Indonesian grammaticality |
 | 2026-01-12 | BATAYAN | ✅ Added | Group: `batayan` with 3 tasks. Filipino NLI, Causal, Sentiment |
+| 2026-01-12 | CLUE | ✅ Added | Group: `clue` with 3 tasks. Chinese NLI + Coreference |
+| 2026-01-12 | ITALIC | ✅ Added | Task: `italic`. Italian language + culture (10K examples) |
 
 ### Benchmarks Added This Session
 
@@ -259,5 +263,17 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - Filipino NLP benchmark (ACL 2025)
     - Native-speaker validated (not machine translated)
     - Datasets: `aisingapore/NLR-NLI`, `aisingapore/NLR-Causal-Reasoning`, `aisingapore/NLU-Sentiment-Analysis`
+    - No special dependencies ✓
+
+14. **CLUE** (`clue` group) - 3 tasks
+    - Tasks: `clue_cmnli` (12K), `clue_ocnli` (3K), `clue_cluewsc` (304)
+    - Chinese Language Understanding Evaluation
+    - Dataset: `clue/clue`
+    - No special dependencies ✓
+
+15. **ITALIC** (`italic`) - 1 task
+    - Italian language and culture benchmark (10K examples)
+    - Categories: language capability, culture & commonsense
+    - Dataset: `Crisp-Unimib/ITALIC`
     - No special dependencies ✓
 

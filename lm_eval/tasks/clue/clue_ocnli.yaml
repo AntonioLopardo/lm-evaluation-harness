@@ -1,0 +1,21 @@
+task: clue_ocnli
+dataset_path: clue/clue
+dataset_name: ocnli
+output_type: multiple_choice
+validation_split: validation
+test_split: validation
+doc_to_text: "{{sentence1}}\n问题: {{sentence2}} 是真的、假的、还是不确定？\n答案:"
+# 0=neutral, 1=entailment, 2=contradiction
+doc_to_target: "{{label}}"
+doc_to_choice:
+  - "不确定"   # neutral (0)
+  - "是真的"   # entailment (1)
+  - "是假的"   # contradiction (2)
+should_decontaminate: true
+doc_to_decontamination_query: sentence1
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
