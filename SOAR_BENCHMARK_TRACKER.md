@@ -46,6 +46,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | COMPS | `comps` | EN | Compositionality |
 | IndicMMLU-Pro | `indicmmlu_pro` | BN, GU, HI, KN, MR, PA, TA, TE, UR | World Knowledge |
 | LINDSEA | `lindsea` | ID | Grammaticality |
+| BATAYAN | `batayan` | TL (Filipino) | NLI, Causal, Sentiment |
 
 ---
 
@@ -84,7 +85,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
-| BATAYA | TL (Tagalog) | NLI | TBD | ⬜ Not started |
+| BATAYAN | TL (Tagalog) | NLI + more | [HuggingFace](https://huggingface.co/datasets/aisingapore/NLR-NLI) | ✅ Added (3 tasks) |
 | COLE/FLUE | FR | NLI | [HuggingFace](https://huggingface.co/datasets/GETALP/flue) | ✅ Added |
 | IndicGLUE | HI, GU, MR | NLI + COPA | [HuggingFace](https://huggingface.co/datasets/ai4bharat/indic_glue) | ✅ Added (6 tasks) |
 | winoX | DE, FR, RU | Coreference | [HuggingFace](https://huggingface.co/datasets/demelin/wino_x) | ✅ Added (3 tasks) |
@@ -172,6 +173,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | COMPS | ✅ Added | Group: `comps` with 3 tasks. English compositional semantics |
 | 2026-01-12 | IndicMMLU-Pro | ✅ Added | Group: `indicmmlu_pro` with 9 tasks. Indic MMLU-Pro (10-way MC) |
 | 2026-01-12 | LINDSEA | ✅ Added | Group: `lindsea` with 4 tasks. Indonesian grammaticality |
+| 2026-01-12 | BATAYAN | ✅ Added | Group: `batayan` with 3 tasks. Filipino NLI, Causal, Sentiment |
 
 ### Benchmarks Added This Session
 
@@ -250,5 +252,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - Indonesian grammaticality using minimal pairs
     - 380 total examples across phenomena
     - Dataset: `juletxara/lindsea-blimp`
+    - No special dependencies ✓
+
+13. **BATAYAN** (`batayan` group) - 3 tasks
+    - Tasks: `batayan_nli` (600), `batayan_causal` (400), `batayan_sentiment` (600)
+    - Filipino NLP benchmark (ACL 2025)
+    - Native-speaker validated (not machine translated)
+    - Datasets: `aisingapore/NLR-NLI`, `aisingapore/NLR-Causal-Reasoning`, `aisingapore/NLU-Sentiment-Analysis`
     - No special dependencies ✓
 

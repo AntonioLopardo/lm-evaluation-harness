@@ -1,0 +1,11 @@
+group: batayan
+task:
+  - batayan_nli
+  - batayan_causal
+  - batayan_sentiment
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0
