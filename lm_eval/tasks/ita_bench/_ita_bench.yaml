@@ -1,0 +1,17 @@
+group: ita_bench
+task:
+  - ita_bench_arc_challenge
+  - ita_bench_arc_easy
+  - ita_bench_hellaswag
+  - ita_bench_mmlu
+  - ita_bench_piqa
+  - ita_bench_winogrande
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+  - metric: acc_norm
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

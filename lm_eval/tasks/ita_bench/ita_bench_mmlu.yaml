@@ -1,0 +1,16 @@
+# ITA-Bench: MMLU (Italian)
+# Source: https://huggingface.co/datasets/sapienzanlp/mmlu_italian
+task: ita_bench_mmlu
+dataset_path: sapienzanlp/mmlu_italian
+output_type: multiple_choice
+test_split: test
+fewshot_split: fewshot
+doc_to_text: "Domanda: {{input_translation}}\nRisposta:"
+doc_to_target: "{{label}}"
+doc_to_choice: "{{choices_translation}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

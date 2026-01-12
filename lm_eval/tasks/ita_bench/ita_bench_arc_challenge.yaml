@@ -1,0 +1,19 @@
+# ITA-Bench: ARC Challenge (Italian)
+# Source: https://huggingface.co/datasets/sapienzanlp/arc_italian
+task: ita_bench_arc_challenge
+dataset_path: sapienzanlp/arc_italian
+dataset_name: arc_challenge
+output_type: multiple_choice
+test_split: test
+doc_to_text: "Domanda: {{input_translation}}\nRisposta:"
+doc_to_target: "{{label}}"
+doc_to_choice: "{{choices_translation}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

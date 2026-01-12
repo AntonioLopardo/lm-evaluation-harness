@@ -52,6 +52,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | Analogy | `analogy` | EN | Word Analogies |
 | DUMB | `dumb` | NL | Grammaticality, NLI, Sentiment |
 | EWoK | `ewok` | EN | Commonsense (World Knowledge) |
+| ITA-Bench | `ita_bench` | IT | ARC, HellaSwag, MMLU, PIQA, Winogrande |
 
 ---
 
@@ -130,7 +131,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | FilBench | TL (Tagalog) | World Knowledge | TBD | ⬜ Not started |
 | MultiLoKg | Multi | World Knowledge | TBD | ⬜ Not started |
 | IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
-| ITT-Bench | HI, IT | World Knowledge | ❌ Not found | ⚠️ Does not exist as public benchmark |
+| ITA-Bench | IT | Various | [HuggingFace](https://huggingface.co/collections/sapienzanlp/ita-bench-italian-benchmarks-for-llms) | ✅ Added (6 tasks) |
 | CLUE | ZH | Various | [HuggingFace](https://huggingface.co/datasets/clue/clue) | ✅ Added (3 tasks) |
 | DUMB | NL | Various | [Paper](https://openreview.net/pdf?id=ZSHcpMXWxX) | ✅ Added (3 tasks) |
 
@@ -148,7 +149,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Hausa | HA | AfriXNLI, AfriMMLU, Belebele | - |
 | Hindi | HI | MultiBLiMP, XStoryCloze, XNLI, INCLUDE, Belebele, IndicGLUE, IndicMMLU-Pro | - |
 | English | EN | GLUE, SuperGLUE, BLiMP, PIQA, HellaSWag, MMLU, Syntax Gym, COMPS, EWoK, Analogy | - |
-| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC | BaBIEs (not on HF) |
+| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC, ITA-Bench | BaBIEs (not on HF) |
 | Indonesian | ID | COPAL-ID, mHellaSwag, XStoryCloze, XCOPA, INCLUDE, Belebele, IndoNLI, SEACrowd, SEA-HELM | LINDSEA |
 | Turkish | TR | TurBLiMP, XCOPA, INCLUDE, Belebele | XCOMPS |
 | Dutch | NL | BLiMP-NL, mHellaSwag, INCLUDE, Belebele | DUMB, COPA-NL, XCOMPS |

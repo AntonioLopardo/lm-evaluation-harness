@@ -1,0 +1,15 @@
+# ITA-Bench: Winogrande (Italian)
+# Source: https://huggingface.co/datasets/sapienzanlp/winogrande_italian
+task: ita_bench_winogrande
+dataset_path: sapienzanlp/winogrande_italian
+output_type: multiple_choice
+validation_split: validation
+doc_to_text: "{{input_translation}}"
+doc_to_target: "{{label}}"
+doc_to_choice: "{{choices_translation}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
