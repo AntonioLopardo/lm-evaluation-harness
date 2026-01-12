@@ -130,7 +130,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | FilBench | TL (Tagalog) | World Knowledge | TBD | ⬜ Not started |
 | MultiLoKg | Multi | World Knowledge | TBD | ⬜ Not started |
 | IndicMMLU-Pro | HI + 8 Indic | World Knowledge | [HuggingFace](https://huggingface.co/datasets/LinguaLift/IndicMMLU-Pro) | ✅ Added (9 tasks) |
-| ITT-Bench | HI, IT | World Knowledge | TBD | ⬜ Not started |
+| ITT-Bench | HI, IT | World Knowledge | ❌ Not found | ⚠️ Does not exist as public benchmark |
 | CLUE | ZH | Various | [HuggingFace](https://huggingface.co/datasets/clue/clue) | ✅ Added (3 tasks) |
 | DUMB | NL | Various | [Paper](https://openreview.net/pdf?id=ZSHcpMXWxX) | ✅ Added (3 tasks) |
 
@@ -146,9 +146,9 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Tamil | TA | INCLUDE, Belebele, SEA-HELM | - |
 | French | FR | MultiBLiMP, mHellaSwag, XNLI, INCLUDE, Belebele | COLE/FLUE, QFrBLiMP, XCOMPS |
 | Hausa | HA | AfriXNLI, AfriMMLU, Belebele | - |
-| Hindi | HI | MultiBLiMP, XStoryCloze, XNLI, INCLUDE, Belebele | IndicGLUE, IndicMMLU-Pro, ITT-Bench |
+| Hindi | HI | MultiBLiMP, XStoryCloze, XNLI, INCLUDE, Belebele, IndicGLUE, IndicMMLU-Pro | - |
 | English | EN | GLUE, SuperGLUE, BLiMP, PIQA, HellaSWag, MMLU, Syntax Gym, COMPS, EWoK, Analogy | - |
-| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC | BaBIEs (not on HF), ITT-Bench |
+| Italian | IT | MultiBLiMP (ita), XCOPA, INCLUDE, Belebele, ITALIC | BaBIEs (not on HF) |
 | Indonesian | ID | COPAL-ID, mHellaSwag, XStoryCloze, XCOPA, INCLUDE, Belebele, IndoNLI, SEACrowd, SEA-HELM | LINDSEA |
 | Turkish | TR | TurBLiMP, XCOPA, INCLUDE, Belebele | XCOMPS |
 | Dutch | NL | BLiMP-NL, mHellaSwag, INCLUDE, Belebele | DUMB, COPA-NL, XCOMPS |
