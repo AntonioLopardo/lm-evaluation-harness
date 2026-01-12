@@ -45,6 +45,7 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | SyntaxGym | `syntaxgym` | EN | Grammaticality |
 | COMPS | `comps` | EN | Compositionality |
 | IndicMMLU-Pro | `indicmmlu_pro` | BN, GU, HI, KN, MR, PA, TA, TE, UR | World Knowledge |
+| LINDSEA | `lindsea` | ID | Grammaticality |
 
 ---
 
@@ -95,7 +96,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | BLiMP-FR | FR | Grammaticality | [HuggingFace](https://huggingface.co/datasets/elliepreed/BLiMP-fr) | ✅ Added (7 tasks) |
 | Syntax Gym | EN | Grammaticality | [HuggingFace](https://huggingface.co/datasets/cpllab/syntaxgym) | ✅ Added (3 tasks) |
 | Babies | IT | Grammaticality | TBD | ⬜ Not started |
-| LINDSEA | ID | Grammaticality | TBD | ⬜ Not started |
+| LINDSEA | ID | Grammaticality | [HuggingFace](https://huggingface.co/datasets/juletxara/lindsea-blimp) | ✅ Added (4 tasks) |
 | CLIMP | ZH | Grammaticality | TBD | ⬜ Not started |
 | XCOMPS | FR, TR, NL, ZH, DE, VI, ES | Compositionality | [HuggingFace](https://huggingface.co/datasets/fpadovani/xcomps-dataset) | ✅ Added (7 tasks) |
 | COMPS | EN | Compositionality | [HuggingFace](https://huggingface.co/datasets/kanishka/comps) | ✅ Added (3 tasks) |
@@ -170,6 +171,7 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | SyntaxGym | ✅ Added | Group: `syntaxgym` with 3 tasks. English syntactic evaluation |
 | 2026-01-12 | COMPS | ✅ Added | Group: `comps` with 3 tasks. English compositional semantics |
 | 2026-01-12 | IndicMMLU-Pro | ✅ Added | Group: `indicmmlu_pro` with 9 tasks. Indic MMLU-Pro (10-way MC) |
+| 2026-01-12 | LINDSEA | ✅ Added | Group: `lindsea` with 4 tasks. Indonesian grammaticality |
 
 ### Benchmarks Added This Session
 
@@ -241,5 +243,12 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
     - 10-way multiple choice MMLU-Pro for Indic languages
     - ~12K test examples per language
     - Dataset: `LinguaLift/IndicMMLU-Pro`
+    - No special dependencies ✓
+
+12. **LINDSEA** (`lindsea` group) - 4 tasks
+    - Tasks: `lindsea_argument_structure`, `lindsea_npis_and_negation`, `lindsea_filler_gap`, `lindsea_morphology`
+    - Indonesian grammaticality using minimal pairs
+    - 380 total examples across phenomena
+    - Dataset: `juletxara/lindsea-blimp`
     - No special dependencies ✓
 

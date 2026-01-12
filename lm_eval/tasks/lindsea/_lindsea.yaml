@@ -1,0 +1,12 @@
+group: lindsea
+task:
+  - lindsea_argument_structure
+  - lindsea_npis_and_negation
+  - lindsea_filler_gap
+  - lindsea_morphology
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

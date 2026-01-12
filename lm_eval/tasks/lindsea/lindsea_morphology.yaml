@@ -1,0 +1,3 @@
+include: _lindsea_template.yaml
+task: lindsea_morphology
+dataset_name: morphology

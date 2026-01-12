@@ -1,0 +1,3 @@
+include: _lindsea_template.yaml
+task: lindsea_argument_structure
+dataset_name: argument_structure

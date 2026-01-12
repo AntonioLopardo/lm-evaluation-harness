@@ -1,0 +1,3 @@
+include: _lindsea_template.yaml
+task: lindsea_npis_and_negation
+dataset_name: npis_and_negation
