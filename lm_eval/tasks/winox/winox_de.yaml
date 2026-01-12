@@ -1,0 +1,5 @@
+include: _winox_template.yaml
+task: winox_de
+dataset_name: lm_en_de
+doc_to_text: !function utils.doc_to_text_de
+doc_to_choice: !function utils.doc_to_choice_de

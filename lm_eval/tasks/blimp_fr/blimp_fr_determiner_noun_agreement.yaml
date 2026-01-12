@@ -1,0 +1,3 @@
+include: _blimp_fr_template.yaml
+task: blimp_fr_determiner_noun_agreement
+dataset_name: determiner_noun_agreement

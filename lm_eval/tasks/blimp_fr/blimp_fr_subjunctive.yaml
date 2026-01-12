@@ -1,0 +1,3 @@
+include: _blimp_fr_template.yaml
+task: blimp_fr_subjunctive
+dataset_name: subjunctive

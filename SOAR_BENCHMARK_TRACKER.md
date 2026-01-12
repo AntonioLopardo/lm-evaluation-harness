@@ -39,6 +39,9 @@ This document tracks which benchmarks from the SOAR Tokenizer Group are availabl
 | SEA-HELM | `seahelm` | ID, TH, VI, TL, TA | NLI, Causal, Sentiment |
 | XCOMPS | `xcomps` | FR, NL, TR, ZH, DE, VI, ES | Compositionality |
 | IndicGLUE | `indicglue` | HI, GU, MR | NLI (WNLI), COPA |
+| WinoX | `winox` | DE, FR, RU | Coreference |
+| FLUE | `flue` | FR | NLI |
+| BLiMP-FR | `blimp_fr` | FR | Grammaticality |
 
 ---
 
@@ -78,15 +81,15 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
 | BATAYA | TL (Tagalog) | NLI | TBD | ⬜ Not started |
-| COLE/FLUE | FR | NLI | TBD | ⬜ Not started |
+| COLE/FLUE | FR | NLI | [HuggingFace](https://huggingface.co/datasets/GETALP/flue) | ✅ Added |
 | IndicGLUE | HI, GU, MR | NLI + COPA | [HuggingFace](https://huggingface.co/datasets/ai4bharat/indic_glue) | ✅ Added (6 tasks) |
-| winoX | Multi | Coreference | TBD | ⬜ Not started |
+| winoX | DE, FR, RU | Coreference | [HuggingFace](https://huggingface.co/datasets/demelin/wino_x) | ✅ Added (3 tasks) |
 
 ### Priority 3 - Grammaticality / Linguistic
 
 | Benchmark | Languages | Category | Dataset Source | Status |
 |-----------|-----------|----------|----------------|--------|
-| QFrBLiMP | FR | Grammaticality | TBD | ⬜ Not started |
+| BLiMP-FR | FR | Grammaticality | [HuggingFace](https://huggingface.co/datasets/elliepreed/BLiMP-fr) | ✅ Added (7 tasks) |
 | Syntax Gym | EN | Grammaticality | TBD | ⬜ Not started |
 | Babies | IT | Grammaticality | TBD | ⬜ Not started |
 | LINDSEA | ID | Grammaticality | TBD | ⬜ Not started |
@@ -158,6 +161,9 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
 | 2026-01-12 | SEA-HELM | ✅ Added | Group: `seahelm` with 13 tasks across 5 languages. No special dependencies |
 | 2026-01-12 | XCOMPS | ✅ Added | Group: `xcomps` with 7 tasks (FR, NL, TR, ZH, DE, VI, ES). Compositionality benchmark |
 | 2026-01-12 | IndicGLUE | ✅ Added | Group: `indicglue` with 6 tasks (WNLI + COPA for HI, GU, MR) |
+| 2026-01-12 | WinoX | ✅ Added | Group: `winox` with 3 tasks (DE, FR, RU). Cross-lingual coreference |
+| 2026-01-12 | FLUE | ✅ Added | Task: `flue_xnli`. French NLI (requires trust_remote_code) |
+| 2026-01-12 | BLiMP-FR | ✅ Added | Group: `blimp_fr` with 7 tasks. French grammaticality |
 
 ### Benchmarks Added This Session
 
@@ -192,5 +198,23 @@ This may conflict with other packages (e.g., `tokenizer-analysis` requires `data
    - WNLI: `indicglue_wnli_{hi,gu,mr}` (natural language inference)
    - Languages: Hindi, Gujarati, Marathi
    - Dataset: `ai4bharat/indic_glue`
+   - No special dependencies ✓
+
+6. **WinoX** (`winox` group) - 3 tasks
+   - Tasks: `winox_{de,fr,ru}`
+   - Cross-lingual Winograd schemas for coreference resolution
+   - Dataset: `demelin/wino_x`
+   - No special dependencies ✓
+
+7. **FLUE** (`flue` group) - 1 task
+   - Task: `flue_xnli` (French XNLI, 5,010 test examples)
+   - Dataset: `GETALP/flue` (requires trust_remote_code)
+   - No additional dependencies ✓
+
+8. **BLiMP-FR** (`blimp_fr` group) - 7 tasks
+   - Tasks: anaphor_agreement, adjective_noun_agreement, determiner_noun_agreement,
+     clitic_placement, auxiliary_agreement, negation, subjunctive
+   - French grammaticality using minimal pairs
+   - Dataset: `elliepreed/BLiMP-fr`
    - No special dependencies ✓
 

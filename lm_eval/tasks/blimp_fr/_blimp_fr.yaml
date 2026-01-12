@@ -1,0 +1,15 @@
+group: blimp_fr
+task:
+  - blimp_fr_anaphor_agreement
+  - blimp_fr_adjective_noun_agreement
+  - blimp_fr_determiner_noun_agreement
+  - blimp_fr_clitic_placement
+  - blimp_fr_auxiliary_agreement
+  - blimp_fr_negation
+  - blimp_fr_subjunctive
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0
