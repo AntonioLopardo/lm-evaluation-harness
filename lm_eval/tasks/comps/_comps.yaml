@@ -1,0 +1,5 @@
+group: comps
+task:
+  - comps_base
+  - comps_wugs
+  - comps_wugs_dist

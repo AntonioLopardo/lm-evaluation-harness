@@ -1,0 +1,3 @@
+include: _comps_template.yaml
+task: comps_wugs
+dataset_name: wugs

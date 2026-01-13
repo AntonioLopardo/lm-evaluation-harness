@@ -1,0 +1,3 @@
+include: _comps_template.yaml
+task: comps_base
+dataset_name: base
