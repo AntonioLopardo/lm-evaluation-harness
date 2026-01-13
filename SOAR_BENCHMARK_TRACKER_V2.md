@@ -114,7 +114,7 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 | Mandarinograd | GitLab only (not on HF) | ✅ Use `xwinograd_zh` (504 examples, includes CLUE-WSC) |
 | FarsEval-PKBETS | Gated (requires access request) | Request access at HF |
 | Syntran-fa | QA fluency dataset, not evaluation | persian_qa covers Farsi QA |
-| PerCQA | Dataset loader error (Pdf type) | - |
+| PerCQA | Not a proper HF dataset (only PDF+RAR files) | Use `persian_qa` for Farsi QA |
 
 ---
 
