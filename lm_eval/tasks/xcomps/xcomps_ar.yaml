@@ -1,0 +1,3 @@
+include: _xcomps_template.yaml
+task: xcomps_ar
+test_split: comps_ar

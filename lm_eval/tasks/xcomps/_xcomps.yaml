@@ -1,0 +1,19 @@
+group: xcomps
+task:
+  - xcomps_ar
+  - xcomps_ca
+  - xcomps_de
+  - xcomps_el
+  - xcomps_es
+  - xcomps_fa
+  - xcomps_fr
+  - xcomps_he
+  - xcomps_hu
+  - xcomps_ja
+  - xcomps_ko
+  - xcomps_nl
+  - xcomps_ru
+  - xcomps_tr
+  - xcomps_uk
+  - xcomps_vi
+  - xcomps_zh
