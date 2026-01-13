@@ -1,0 +1,18 @@
+task: clue_cluewsc
+dataset_path: clue/clue
+dataset_name: cluewsc2020
+dataset_kwargs:
+  trust_remote_code: true
+output_type: multiple_choice
+test_split: validation
+doc_to_text: "文本: {{text}}\n问题: \"{{target.span2_text}}\"是否指代\"{{target.span1_text}}\"？"
+doc_to_target: "{{label}}"
+doc_to_choice:
+  - "否"   # 0 = not coreferent
+  - "是"   # 1 = coreferent
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

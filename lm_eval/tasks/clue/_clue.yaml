@@ -1,0 +1,5 @@
+group: clue
+task:
+  - clue_cmnli
+  - clue_ocnli
+  - clue_cluewsc
