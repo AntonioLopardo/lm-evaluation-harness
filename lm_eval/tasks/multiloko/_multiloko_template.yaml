@@ -1,0 +1,18 @@
+dataset_path: facebook/multiloko
+output_type: generate_until
+test_split: dev
+doc_to_text: "Context: {{text}}\n\nQuestion: {{question}}\n\nAnswer:"
+doc_to_target: "{{targets[0]}}"
+generation_kwargs:
+  until:
+    - "\n"
+    - "Question:"
+    - "Context:"
+  max_gen_toks: 64
+process_results: !function utils.process_results
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

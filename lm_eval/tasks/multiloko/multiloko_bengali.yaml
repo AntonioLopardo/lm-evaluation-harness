@@ -1,0 +1,3 @@
+include: _multiloko_template.yaml
+task: multiloko_bengali
+process_docs: !function utils.filter_bengali

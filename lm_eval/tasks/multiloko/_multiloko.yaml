@@ -1,0 +1,33 @@
+group: multiloko
+task:
+  - multiloko_arabic
+  - multiloko_bengali
+  - multiloko_cantonese
+  - multiloko_czech
+  - multiloko_dutch
+  - multiloko_english
+  - multiloko_farsi
+  - multiloko_french
+  - multiloko_german
+  - multiloko_hebrew
+  - multiloko_hindi
+  - multiloko_indonesian
+  - multiloko_italian
+  - multiloko_japanese
+  - multiloko_khmer
+  - multiloko_korean
+  - multiloko_malay
+  - multiloko_marathi
+  - multiloko_polish
+  - multiloko_portuguese
+  - multiloko_romanian
+  - multiloko_russian
+  - multiloko_simplified_mandarin
+  - multiloko_spanish
+  - multiloko_swedish
+  - multiloko_tagalog
+  - multiloko_thai
+  - multiloko_traditional_mandarin
+  - multiloko_turkish
+  - multiloko_urdu
+  - multiloko_vietnamese

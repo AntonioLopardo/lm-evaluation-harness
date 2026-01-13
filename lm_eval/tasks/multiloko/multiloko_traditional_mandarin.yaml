@@ -1,0 +1,3 @@
+include: _multiloko_template.yaml
+task: multiloko_traditional_mandarin
+process_docs: !function utils.filter_traditional_mandarin
