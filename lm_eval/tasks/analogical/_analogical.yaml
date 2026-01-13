@@ -1,0 +1,8 @@
+group: analogical
+task:
+  - analogical_bats
+  - analogical_google
+  - analogical_sat
+  - analogical_u2
+  - analogical_u4
+  - analogical_scan

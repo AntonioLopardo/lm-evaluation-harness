@@ -1,0 +1,3 @@
+include: _analogical_template.yaml
+task: analogical_bats
+dataset_name: bats
