@@ -54,8 +54,8 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 |-----------|------|--------|--------|
 | **CLUE** | `clue` | ✅ **Added** | [clue/clue](https://huggingface.co/datasets/clue/clue) |
 | ZhoBLiMP | `zhoblimp` | ✅ Already in harness | - |
-| XWinograd | `xwinograd` | ✅ Already in harness | - |
-| Mandarinogrande | - | ❌ Not found on HF | - |
+| XWinograd | `xwinograd_zh` | ✅ Already in harness | - |
+| Mandarinograd | `xwinograd_zh` | ✅ Covered by XWinograd (504 examples) | [Paper](https://aclanthology.org/2020.lrec-1.3.pdf) |
 | **XCOMPS** | `xcomps_zh` | ✅ **Added** | [fpadovani/xcomps-dataset](https://huggingface.co/datasets/fpadovani/xcomps-dataset) |
 | XCOPA | `xcopa` | ✅ Already in harness | - |
 | XStoryCloze | `xstorycloze` | ✅ Already in harness | - |
@@ -111,7 +111,7 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 
 | Benchmark | Reason | Alternative |
 |-----------|--------|-------------|
-| Mandarinogrande | Not found on HuggingFace | Use XWinograd or CLUE-WSC |
+| Mandarinograd | GitLab only (not on HF) | ✅ Use `xwinograd_zh` (504 examples, includes CLUE-WSC) |
 | FarsEval-PKBETS | Gated (requires access request) | Request access at HF |
 | Syntran-fa | QA fluency dataset, not evaluation | persian_qa covers Farsi QA |
 | PerCQA | Dataset loader error (Pdf type) | - |
