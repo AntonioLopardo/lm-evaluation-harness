@@ -14,7 +14,7 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 | MultiBLiMP | `multiblimp` | ✅ Already in harness | - |
 | BLiMP | `blimp` | ✅ Already in harness | - |
 | **COMPS** | `comps` | ✅ **Added** | [kanishka/comps](https://huggingface.co/datasets/kanishka/comps) |
-| ANALOGICAL | - | ⚠️ Not found (BARD variants exist) | - |
+| **ANALOGICAL** | `analogical` | ✅ **Added** | [relbert/analogy_questions](https://huggingface.co/datasets/relbert/analogy_questions) |
 | **EWoK** | `ewok` | ✅ **Added** | [ewok-core/ewok-core-1.0](https://huggingface.co/datasets/ewok-core/ewok-core-1.0) |
 | PIQA | `piqa` | ✅ Already in harness | - |
 | Global PIQA | `global_piqa` | ✅ Already in harness | - |
@@ -101,8 +101,9 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 | `clue` | Chinese | 3 | clue/clue |
 | `comps` | English | 3 | kanishka/comps |
 | `ewok` | English | 1 | ewok-core/ewok-core-1.0 |
+| `analogical` | English | 6 | relbert/analogy_questions |
 
-**Total: 60 new tasks**
+**Total: 66 new tasks**
 
 ---
 
@@ -110,7 +111,6 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 
 | Benchmark | Reason | Alternative |
 |-----------|--------|-------------|
-| ANALOGICAL | Not found as single dataset | Use BARD analogical reasoning tasks |
 | Mandarinogrande | Not found on HuggingFace | Use XWinograd or CLUE-WSC |
 | FarsEval-PKBETS | Gated (requires access request) | Request access at HF |
 | Syntran-fa | QA fluency dataset, not evaluation | persian_qa covers Farsi QA |
