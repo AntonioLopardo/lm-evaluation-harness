@@ -82,7 +82,7 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 | INCLUDE | `include` | ✅ Already in harness | - |
 | Global MMLU | `global_mmlu` | ✅ Already in harness | - |
 | FarsEval-PKBETS | - | ⚠️ Gated (requires access) | [MatinaAI/pkbets](https://huggingface.co/datasets/MatinaAI/pkbets) |
-| Syntran-fa | - | ⏭️ Skipped (QA fluency only) | [SLPL/syntran-fa](https://huggingface.co/datasets/SLPL/syntran-fa) |
+| **Syntran-fa** | `syntran_fa` | ✅ **Added** | [SLPL/syntran-fa](https://huggingface.co/datasets/SLPL/syntran-fa) |
 | **persianQA** | `persian_qa` | ✅ **Added** | [SajjadAyoubi/persian_qa](https://huggingface.co/datasets/SajjadAyoubi/persian_qa) |
 | PerCQA | - | ❌ Cannot load (Pdf type error) | [NaghmehAI/PerCQA](https://huggingface.co/datasets/NaghmehAI/PerCQA) |
 
@@ -102,8 +102,9 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 | `comps` | English | 3 | kanishka/comps |
 | `ewok` | English | 1 | ewok-core/ewok-core-1.0 |
 | `analogical` | English | 6 | relbert/analogy_questions |
+| `syntran_fa` | Farsi | 1 | SLPL/syntran-fa |
 
-**Total: 66 new tasks**
+**Total: 67 new tasks**
 
 ---
 
@@ -113,8 +114,7 @@ Cross-reference of benchmarks from "SOAR Tokenizer Group Main Doc (1).pdf" with 
 |-----------|--------|-------------|
 | Mandarinograd | GitLab only (not on HF) | ✅ Use `xwinograd_zh` (504 examples, includes CLUE-WSC) |
 | FarsEval-PKBETS | Gated (requires access request) | Request access at HF |
-| Syntran-fa | QA fluency dataset, not evaluation | persian_qa covers Farsi QA |
-| PerCQA | RAR archive on HF, extraction fails | [Paper](https://arxiv.org/pdf/2112.13238), use `persian_qa` |
+| PerCQA | Dataset loader error (Pdf type) | - |
 
 ---
 
