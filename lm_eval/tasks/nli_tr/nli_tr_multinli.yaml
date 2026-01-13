@@ -1,0 +1,3 @@
+include: _nli_tr_template.yaml
+task: nli_tr_multinli
+dataset_name: multinli_tr

@@ -1,0 +1,4 @@
+group: nli_tr
+task:
+  - nli_tr_snli
+  - nli_tr_multinli

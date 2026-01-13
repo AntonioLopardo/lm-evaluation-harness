@@ -1,0 +1,15 @@
+task: winogrande_tr
+dataset_path: malhajar/winogrande-tr
+output_type: multiple_choice
+test_split: validation
+doc_to_text: "Cümle: {{sentence}}\nDoğru seçenek hangisi?"
+doc_to_target: "{{answer | int - 1}}"
+doc_to_choice:
+  - "{{option1}}"
+  - "{{option2}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0
