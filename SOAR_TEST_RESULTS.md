@@ -14,6 +14,7 @@
 |--------|-------|-------------|
 | ✅ **Running** | **140+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
+| 🔧 **Pending** | **1** | Belebele refactor still needed |
 
 ### 📊 Complete Task Verification Table
 
@@ -89,6 +90,7 @@
 | `percqa`                       | 🚫 Unavailable | —                                | —                | —      | — N/A                  |
 | `uinauil_*` (6 tasks)          | 🚫 Unavailable | —                                | —                | —      | — ELG API broken       |
 | `blimp_it`                     | 🚫 Unavailable | —                                | —                | —      | — Use `multiblimp_ita` |
+| `belebele`                     | 🔧 Pending     | —                                | —                | —      | — Refactor needed      |
 
 **Legend:**
 - ✅ **Comparable to paper** = Within 15% of paper baseline
