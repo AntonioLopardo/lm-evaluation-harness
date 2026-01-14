@@ -1,0 +1,5 @@
+group: stringbench
+task:
+  - stringbench_hash
+  - stringbench_multilingual
+  - stringbench_random

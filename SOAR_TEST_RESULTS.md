@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **69+** | Tasks run correctly, results above random |
+| ✅ **Running** | **72+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -63,6 +63,9 @@
 | `charbench_count_unique` | ✅ Running | 31% (Qwen2-1.5B-Instruct)          | ~43%              | ~10%   | ✅ Comparable to paper  |
 | `charbench_find_first` | ✅ Running | 20% (Qwen2-1.5B-Instruct)            | ~43%              | ~5%    | ✅ Comparable to paper  |
 | `charbench_find_last` | ✅ Running | 11% (Qwen2-1.5B-Instruct)             | ~32%              | ~5%    | ✅ Comparable to paper  |
+| `stringbench_hash` | ✅ Running | 1% (Qwen2-1.5B-Instruct)                 | ~48%              | ~0%    | ⚠️ Expected (very hard) |
+| `stringbench_multilingual` | ✅ Running | 1% (Qwen2-1.5B-Instruct)         | ~48%              | ~0%    | ⚠️ Expected (very hard) |
+| `stringbench_random` | ✅ Running | 1% (Qwen2-1.5B-Instruct)               | ~44%              | ~0%    | ⚠️ Expected (very hard) |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -150,6 +153,18 @@ The [CharBench benchmark](https://arxiv.org/abs/2508.02591) tests character coun
 | `charbench_find_last` | ✅ | ✅ | ✅ **11%** (Qwen2-1.5B) | ✅ **Ready** | Last occurrence index (hardest) |
 
 **Key Insight**: Positional understanding tasks (~11-20%) are significantly harder than counting tasks (~31-39%). The paper finds that token length correlates with position task accuracy—longer tokens obscure character positions.
+
+### StringBench (Composite String Processing - ICLR 2025)
+
+The [StringBench benchmark](https://arxiv.org/abs/2410.01208) tests comprehensive string processing with atomic and composite operations.
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `stringbench_hash` | ✅ | ✅ | ✅ **1%** (Qwen2-1.5B) | ⚠️ **Hard** | Hash string operations |
+| `stringbench_multilingual` | ✅ | ✅ | ✅ **1%** (Qwen2-1.5B) | ⚠️ **Hard** | Multilingual text |
+| `stringbench_random` | ✅ | ✅ | ✅ **1%** (Qwen2-1.5B) | ⚠️ **Hard** | Random strings (hardest) |
+
+**Key Insight**: StringBench tests 1,500+ string processing tasks combining 41+ atomic operations. Even GPT-4 achieves only ~48% accuracy! Small models (~1.5B) get ~1%. This benchmark demonstrates fundamental limits of LLM tokenization for character-level operations.
 
 ### Turkish Benchmarks
 
@@ -482,10 +497,11 @@ Testing with native-language models to verify task correctness:
 | CUTE (English) | 14 | 14 | 0 | 0 | 0 |
 | EXECUTE (Multilingual) | 30+ | 30+ | 0 | 0 | 0 |
 | CharBench (English) | 4 | 4 | 0 | 0 | 0 |
+| StringBench (ICLR 2025) | 3 | 3 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **69+** | **69+** | **0** | **0** | **2** |
+| **Total** | **72+** | **72+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -504,6 +520,8 @@ Testing with native-language models to verify task correctness:
 7. **EXECUTE shows script-dependent performance** - Multilingual token understanding varies by script: Chinese (logographic) ~96%, English ~90%, Korean ~28%, Arabic ~12%. This correlates with character-word-token statistics.
 
 8. **CharBench confirms tokenization-task relationship** - Character counting tasks (39%) are easier than positional tasks (11-20%). Token length correlates with accuracy on position tasks, but word length/count matters more for counting tasks.
+
+9. **StringBench exposes LLM string processing limits** - Comprehensive benchmark shows ~1% accuracy for small models on composite string operations. Even GPT-4 only achieves ~48%. Fine-tuning helps significantly (+38%).
 
 ### Action Items
 

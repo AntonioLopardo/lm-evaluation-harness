@@ -1,0 +1,12 @@
+dataset_path: /home/StringLLM/stringbench_hf.py
+output_type: generate_until
+test_split: test
+doc_to_text: "{{prompt}}\n\nAnswer:"
+doc_to_target: "{{answer}}"
+generation_kwargs:
+  until:
+    - "\n"
+  max_gen_toks: 100
+process_results: !function utils.process_results
+metadata:
+  version: 1.0

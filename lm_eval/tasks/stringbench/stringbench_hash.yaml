@@ -1,0 +1,5 @@
+include: _stringbench_template.yaml
+task: stringbench_hash
+dataset_name: hash_all
+tag:
+  - stringbench
