@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_jpn_spell_inverse
+dataset_name: jpn_spell_inverse
+tag:
+  - execute
+  - execute_jpn

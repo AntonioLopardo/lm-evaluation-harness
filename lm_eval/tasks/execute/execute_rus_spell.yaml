@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_rus_spell
+dataset_name: rus_spell
+tag:
+  - execute
+  - execute_rus

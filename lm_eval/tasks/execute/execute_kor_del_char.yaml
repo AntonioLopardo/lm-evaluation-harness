@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_kor_del_char
+dataset_name: kor_del_char
+tag:
+  - execute
+  - execute_kor

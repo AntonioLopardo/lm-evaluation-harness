@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_rus_del_char
+dataset_name: rus_del_char
+tag:
+  - execute
+  - execute_rus

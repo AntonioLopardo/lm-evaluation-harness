@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_deu_spell_inverse
+dataset_name: deu_spell_inverse
+tag:
+  - execute
+  - execute_deu

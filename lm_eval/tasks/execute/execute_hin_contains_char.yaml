@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_hin_contains_char
+dataset_name: hin_contains_char
+tag:
+  - execute
+  - execute_hin

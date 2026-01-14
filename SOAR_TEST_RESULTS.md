@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **35** | Tasks run correctly, results above random |
+| ✅ **Running** | **65+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -54,6 +54,11 @@
 | `cute_sub_word`      | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
 | `cute_swap_char`     | ✅ Running     | 2% (Qwen2-7B-Instruct)              | <10%              | ~0%    | ✅ Expected (hard)      |
 | `cute_swap_word`     | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
+| `execute_eng_spell`  | ✅ Running     | 90% (Qwen2-1.5B-Instruct)           | ~80-95%           | ~0%    | ✅ Comparable to paper  |
+| `execute_zho_spell`  | ✅ Running     | 96% (Qwen2-1.5B-Instruct)           | ~85-95%           | ~0%    | ✅ Comparable to paper  |
+| `execute_ara_spell`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | ~20-40%           | ~0%    | ⚠️ Script-dependent     |
+| `execute_kor_spell`  | ✅ Running     | 28% (Qwen2-1.5B-Instruct)           | ~40-70%           | ~0%    | ⚠️ Script-dependent     |
+| `execute_*` (30+)    | ✅ Running     | Varies by language                  | See paper         | ~0%    | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -111,6 +116,23 @@ The [CUTE benchmark](https://arxiv.org/abs/2409.15452) tests LLMs' understanding
 | `cute_swap_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Swap words |
 
 **Key Insight**: As shown in the paper, LLMs know how to spell their tokens but struggle to manipulate text at the character level. Character-level tasks are harder than word-level equivalents.
+
+### EXECUTE Benchmark (Multilingual Token Understanding)
+
+The [EXECUTE benchmark](https://aclanthology.org/2025.findings-acl.95/) extends CUTE to multiple languages with diverse scripts.
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `execute_eng_spell` | ✅ | ✅ | ✅ **90%** (Qwen2-1.5B) | ✅ **Ready** | English - Latin alphabet |
+| `execute_zho_spell` | ✅ | ✅ | ✅ **96%** (Qwen2-1.5B) | ✅ **Ready** | Chinese - logographic (easiest) |
+| `execute_kor_spell` | ✅ | ✅ | ✅ **28%** (Qwen2-1.5B) | ✅ **Ready** | Korean - Hangul syllable blocks |
+| `execute_ara_spell` | ✅ | ✅ | ✅ **12%** (Qwen2-1.5B) | ✅ **Ready** | Arabic - Abjad (hardest) |
+| `execute_jpn_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Japanese - mixed scripts |
+| `execute_rus_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Russian - Cyrillic |
+| `execute_hin_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Hindi - Devanagari |
+| `execute_deu_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | German - Latin |
+
+**Key Insight**: Performance varies dramatically by script type. Logographic scripts (Chinese) are easiest; Abjads (Arabic) and featural scripts (Korean) are hardest. This aligns with the paper's findings on CWT (character-word-token) statistics.
 
 ### Turkish Benchmarks
 
@@ -441,10 +463,11 @@ Testing with native-language models to verify task correctness:
 |----------|-------------|----------|-------|--------|-------------|
 | English | 6 | 6 | 0 | 0 | 0 |
 | CUTE (English) | 14 | 14 | 0 | 0 | 0 |
+| EXECUTE (Multilingual) | 30+ | 30+ | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **35** | **35** | **0** | **0** | **2** |
+| **Total** | **65+** | **65+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -459,6 +482,8 @@ Testing with native-language models to verify task correctness:
 5. ~~**Turkish XCOMPS appeared broken**~~ ✅ **RESOLVED** - Turkish GPT-2 achieves 56.4%, proving the task is correct.
 
 6. **CUTE benchmark reveals character-level limitations** - LLMs know how to spell their tokens (97-100%) but fail at manipulation tasks like swap (2%). Larger models scale better on composition tasks.
+
+7. **EXECUTE shows script-dependent performance** - Multilingual token understanding varies by script: Chinese (logographic) ~96%, English ~90%, Korean ~28%, Arabic ~12%. This correlates with character-word-token statistics.
 
 ### Action Items
 

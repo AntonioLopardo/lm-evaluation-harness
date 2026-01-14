@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_eng_spell
+dataset_name: eng_spell
+tag:
+  - execute
+  - execute_eng

@@ -1,0 +1,6 @@
+include: _execute_template.yaml
+task: execute_hin_spell
+dataset_name: hin_spell
+tag:
+  - execute
+  - execute_hin

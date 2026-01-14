@@ -1,0 +1,40 @@
+group: execute
+task:
+  # English tasks
+  - execute_eng_spell
+  - execute_eng_spell_inverse
+  - execute_eng_contains_char
+  - execute_eng_del_char
+  - execute_eng_swap_char
+  # Arabic tasks  
+  - execute_ara_spell
+  - execute_ara_spell_inverse
+  - execute_ara_contains_char
+  - execute_ara_del_char
+  # Chinese tasks
+  - execute_zho_spell
+  - execute_zho_spell_inverse
+  - execute_zho_contains_char
+  - execute_zho_del_char
+  # Japanese tasks
+  - execute_jpn_spell
+  - execute_jpn_spell_inverse
+  - execute_jpn_contains_char
+  - execute_jpn_del_char
+  # Korean tasks
+  - execute_kor_spell
+  - execute_kor_spell_inverse
+  - execute_kor_contains_char
+  - execute_kor_del_char
+  # Russian tasks
+  - execute_rus_spell
+  - execute_rus_spell_inverse
+  - execute_rus_contains_char
+  - execute_rus_del_char
+  # Hindi tasks
+  - execute_hin_spell
+  - execute_hin_spell_inverse
+  - execute_hin_contains_char
+  # German tasks
+  - execute_deu_spell
+  - execute_deu_spell_inverse
