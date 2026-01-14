@@ -1,0 +1,28 @@
+group: itabench_leaderboard_bbh_it
+task:
+  - leaderboard_bbh_it_boolean_expressions
+  - leaderboard_bbh_it_causal_judgement
+  - leaderboard_bbh_it_date_understanding
+  - leaderboard_bbh_it_disambiguation_qa
+  - leaderboard_bbh_it_formal_fallacies
+  - leaderboard_bbh_it_geometric_shapes
+  - leaderboard_bbh_it_logical_deduction_five_objects
+  - leaderboard_bbh_it_logical_deduction_seven_objects
+  - leaderboard_bbh_it_logical_deduction_three_objects
+  - leaderboard_bbh_it_movie_recommendation
+  - leaderboard_bbh_it_navigate
+  - leaderboard_bbh_it_object_counting
+  - leaderboard_bbh_it_penguins_in_a_table
+  - leaderboard_bbh_it_reasoning_about_colored_objects
+  - leaderboard_bbh_it_salient_translation_error_detection
+  - leaderboard_bbh_it_snarks
+  - leaderboard_bbh_it_sports_understanding
+  - leaderboard_bbh_it_temporal_sequences
+  - leaderboard_bbh_it_tracking_shuffled_objects_five_objects
+  - leaderboard_bbh_it_tracking_shuffled_objects_seven_objects
+  - leaderboard_bbh_it_tracking_shuffled_objects_three_objects
+  - leaderboard_bbh_it_web_of_lies
+aggregate_metric_list:
+  - metric: acc_norm
+    aggregation: mean
+    weight_by_size: true

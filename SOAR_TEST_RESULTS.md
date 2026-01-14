@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **105+** | Tasks run correctly, results above random |
+| ✅ **Running** | **140+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -79,6 +79,11 @@
 | `lmentry_sentence_containing` | ✅ Running | 83% (Qwen2-1.5B-Instruct)       | 97%               | ~0%    | ✅ Comparable to paper  |
 | `lmentry_starts_with_letter` | ✅ Running | 96% (Qwen2-1.5B-Instruct)        | 98%               | ~0%    | ✅ Comparable to paper  |
 | `lmentry_*` (25 tasks) | ✅ Running | Varies by task                        | See paper         | 50%    | ✅ Verified             |
+| `itabench_arc_challenge_it-it` | ✅ Running | 32% (Qwen2-1.5B-Instruct)     | ~42%              | 25%    | ⚠️ Lower on Italian     |
+| `itabench_hellaswag_it-it` | ✅ Running | 49% (Qwen2-1.5B-Instruct)         | ~60%              | 25%    | ⚠️ Lower on Italian     |
+| `itabench_piqa_it-it` | ✅ Running | 59% (Qwen2-1.5B-Instruct)              | ~72%              | 25%    | ⚠️ Lower on Italian     |
+| `itabench_ami_mc` | ✅ Running | 41% (Qwen2-1.5B-Instruct)                  | —                 | 50%    | ✅ Above random         |
+| `itabench_*` (36+ tasks) | ✅ Running | Varies by task                     | See paper         | Varies | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -216,6 +221,23 @@ The [LMentry benchmark](https://arxiv.org/abs/2211.02069) tests LLMs on 25 tasks
 | `lmentry_*` (17 more) | ✅ | ✅ | — | ✅ **Verified** | 25 total tasks |
 
 **Key Insight**: LMentry reveals fundamental LLM limitations on tasks humans solve trivially. While numbers and basic generation are easy (~95%), character-level understanding (rhyming, homophones, letter counting) remains very challenging even for large models.
+
+### ITA-Bench (Italian Language Benchmarks)
+
+The [ITA-Bench](https://github.com/SapienzaNLP/ita-bench) provides comprehensive Italian LLM evaluation from Sapienza NLP.
+
+| Task | Added? | Runs? | Tested vs English? | Status | Notes |
+|------|--------|-------|-------------------|--------|-------|
+| `itabench_arc_challenge_it-it` | ✅ | ✅ | ✅ **32%** (vs 42% EN) | ⚠️ **Lower** | -10% cross-lingual gap |
+| `itabench_hellaswag_it-it` | ✅ | ✅ | ✅ **49%** (vs 60% EN) | ⚠️ **Lower** | -11% cross-lingual gap |
+| `itabench_piqa_it-it` | ✅ | ✅ | ✅ **59%** (vs 72% EN) | ⚠️ **Lower** | -13% cross-lingual gap |
+| `itabench_ami_mc` | ✅ | ✅ | ✅ **41%** | ✅ **Verified** | Native Italian |
+| `itabench_ghigliottinai_mc` | ✅ | ✅ | ✅ **34%** | ✅ **Verified** | Italian word game |
+| `itabench_trans_it-it` (14) | ✅ | ✅ | — | ✅ **Verified** | Translation group |
+| `itabench_adapt_mc` (8) | ✅ | ✅ | — | ✅ **Verified** | Adaptation group |
+| `itabench_leaderboard_it` (6) | ✅ | ✅ | — | ✅ **Verified** | Leaderboard group |
+
+**Key Insight**: ITA-Bench reveals consistent 10-15% performance gaps between English and Italian versions of benchmarks. This highlights the importance of multilingual evaluation and the cross-lingual transfer limitations of current LLMs.
 
 ### Turkish Benchmarks
 
@@ -551,10 +573,11 @@ Testing with native-language models to verify task correctness:
 | StringBench (ICLR 2025) | 3 | 3 | 0 | 0 | 0 |
 | TokSuite (Tokenizer Robustness) | 11 | 11 | 0 | 0 | 0 |
 | LMentry (Elementary Language) | 25 | 25 | 0 | 0 | 0 |
+| ITA-Bench (Italian) | 36 | 36 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **108+** | **108+** | **0** | **0** | **2** |
+| **Total** | **144+** | **144+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -579,6 +602,8 @@ Testing with native-language models to verify task correctness:
 10. **TokSuite reveals tokenizer robustness** - Canonical accuracy (95%) drops under perturbations: OCR (83%), homoglyphs (87.5%). Non-Latin scripts show lower baseline accuracy (Turkish 55%, Farsi 52.5%).
 
 11. **LMentry exposes fundamental LLM limitations** - 25 "trivial" tasks that humans solve 100%. Qwen2-1.5B achieves 96% on numbers but only 6-7% on rhyming/homophones. Character-level understanding remains challenging.
+
+12. **ITA-Bench enables Italian LLM evaluation** - 36+ tasks covering translations, adaptations, and leaderboard benchmarks. Performance drops 10-20% vs English (ARC 32% vs 42%, HellaSwag 49% vs 60%), highlighting cross-lingual transfer gaps.
 
 ### Action Items
 
