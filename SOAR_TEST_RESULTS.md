@@ -86,6 +86,7 @@
 | `itabench_*` (36+ tasks) | ✅ Running | Varies by task                     | See paper         | Varies | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
+| `uinauil_*` (6 tasks) | 🚫 Unavailable | —                                  | —                 | —      | — ELG API broken        |
 
 **Legend:**
 - ✅ **Comparable to paper** = Within 15% of paper baseline
@@ -577,7 +578,7 @@ Testing with native-language models to verify task correctness:
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **144+** | **144+** | **0** | **0** | **2** |
+| **Total** | **144+** | **144+** | **0** | **0** | **3** |
 
 ### Performance Observations
 
