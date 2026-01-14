@@ -88,6 +88,7 @@
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `uinauil_*` (6 tasks) | 🚫 Unavailable | —                                  | —                 | —      | — ELG API broken        |
+| `blimp_it` | 🚫 Unavailable | —                                           | —                 | —      | — Use `multiblimp_ita`  |
 
 **Legend:**
 - ✅ **Comparable to paper** = Within 15% of paper baseline
