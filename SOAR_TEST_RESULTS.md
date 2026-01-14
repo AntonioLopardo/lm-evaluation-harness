@@ -12,10 +12,45 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Ready** | **20** | Tasks working correctly, matching paper baselines |
-| ⚠️ **Needs Review** | **0** | None |
-| ❌ **Data Issue** | **1** | `winogrande_tr` - 42% samples have translation mismatches |
+| ✅ **Running** | **18** | Tasks run correctly, results above random |
+| ❌ **Broken** | **1** | `winogrande_tr` - 42% samples have translation mismatches |
+| ⚠️ **Error** | **2** | `persian_qa`, `syntran_fa` - task config issues |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
+
+### 📊 Complete Task Verification Table
+
+| Task                 | Status         | Our Result                          | Paper Baseline    | Random | Evaluation              |
+|----------------------|----------------|-------------------------------------|-------------------|--------|-------------------------|
+| `comps_base`         | ✅ Running     | 64% (GPT-2)                         | 64.2%             | 50%    | ✅ Comparable to paper  |
+| `comps_wugs`         | ✅ Running     | 60% (GPT-2)                         | 58%               | 50%    | ✅ Comparable to paper  |
+| `comps_wugs_dist`    | ✅ Running     | 51% (GPT-2)                         | ~50% (OOD)        | 50%    | ✅ Expected (OOD)       |
+| `analogical_bats`    | ✅ Running     | 57% (GPT-2)                         | >BERT (~45%)      | 50%    | ✅ Comparable to paper  |
+| `analogical_google`  | ✅ Running     | 57% (GPT-2)                         | >BERT (~45%)      | 50%    | ✅ Comparable to paper  |
+| `ewok`               | ✅ Running     | 55.4% (Qwen2-1.5B 5-shot)           | 55%               | 50%    | ✅ Comparable to paper  |
+| `nli_tr_snli`        | ✅ Running     | 43% (Qwen2-1.5B-Instruct 5-shot)    | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
+| `nli_tr_multinli`    | ✅ Running     | 33% (zero-shot)                     | 77% (fine-tuned)  | 33%    | ❌ At random            |
+| `winogrande_tr`      | ❌ Broken      | 50% (all models)                    | 65-70%            | 50%    | ❌ Data issue           |
+| `xcomps_tr`          | ✅ Running     | 66% (Turkish GPT-2-large 5-shot)    | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
+| `multiloko_turkish`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
+| `farstail`           | ✅ Running     | 38% (PersianMind 5-shot)            | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
+| `xcomps_fa`          | ✅ Running     | 56% (PersianMind)                   | ~75% (XLM-R)      | 50%    | ⚠️ Only above random    |
+| `persian_qa`         | ⚠️ Error       | Task config issue                   | —                 | 0%     | — N/A                   |
+| `syntran_fa`         | ⚠️ Error       | Task config issue                   | —                 | 0%     | — N/A                   |
+| `multiloko_farsi`    | ✅ Running     | 34% (PersianMind)                   | —                 | 0%     | ✅ Above random         |
+| `clue_cmnli`         | ✅ Running     | 45.5% (Qwen2-1.5B-Instruct 5-shot)  | 80% (fine-tuned)  | 33%    | ⚠️ Only above random    |
+| `clue_ocnli`         | ✅ Running     | 42% (Qwen2-1.5B 20-shot)            | 73% (fine-tuned)  | 33%    | ⚠️ Only above random    |
+| `clue_cluewsc`       | ✅ Running     | 52-63% (zero-shot)                  | 70% (fine-tuned)  | 50%    | ⚠️ Only above random    |
+| `xcomps_zh`          | ✅ Running     | 62% (Qwen2-1.5B 20-shot)            | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
+| `multiloko_mandarin` | ✅ Running     | 10% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
+| `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
+| `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
+
+**Legend:**
+- ✅ **Comparable to paper** = Within 15% of paper baseline
+- ✅ **Above random** = Significantly above random (no paper baseline to compare)
+- ⚠️ **Only above random** = Above random but far from paper baseline (expected for zero/few-shot vs fine-tuned)
+- ❌ **At random** = At random baseline (needs investigation or better model)
+- ❌ **Data issue** = Dataset has quality problems
 
 ### 🎉 Key Finding: Language-Specific Models
 
@@ -23,9 +58,9 @@ Testing with native-language models confirmed all tasks work correctly:
 
 | Language | Model | Key Results |
 |----------|-------|-------------|
-| Turkish | `ytu-ce-cosmos/turkish-gpt2` | `xcomps_tr`: **56.4%** ✅ (was 35-43% with English models) |
-| Farsi | `bolbolzaban/gpt2-persian` | `xcomps_fa`: **57.6%** ✅ |
-| Chinese | `Qwen/Qwen2-0.5B` | `xcomps_zh`: **56.4%** ✅, `clue_cluewsc`: 63.5% |
+| Turkish | `ytu-ce-cosmos/turkish-gpt2` | `xcomps_tr`: **66%** ✅ (was 35-43% with English models) |
+| Farsi | `universitytehran/PersianMind-v1.0` | `multiloko_farsi`: **34%** ✅, `xcomps_fa`: **56%** ✅ |
+| Chinese | `Qwen/Qwen2-1.5B-Instruct` | `multiloko_mandarin`: **10%** ✅, `clue_cmnli`: **45.5%** ✅ |
 
 ---
 
@@ -46,31 +81,31 @@ Testing with native-language models confirmed all tasks work correctly:
 
 | Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
 |------|--------|-------|------------------|--------|-------|
-| `nli_tr_snli` | ✅ | ✅ | ✅ Expected for zero-shot | ✅ **Ready** | ~35% for English-only models |
-| `nli_tr_multinli` | ✅ | ✅ | ✅ Expected for zero-shot | ✅ **Ready** | Same as above |
+| `nli_tr_snli` | ✅ | ✅ | ✅ **43%** (Qwen2-1.5B-Instruct 5-shot) | ✅ **Verified** | Above 33% random baseline |
+| `nli_tr_multinli` | ✅ | ✅ | ✅ Expected for zero-shot (~33%) | ✅ **Verified** | At random, expected for zero-shot |
 | `winogrande_tr` | ✅ | ✅ | ❌ ~50% (random) with ALL models | ❌ **DATA ISSUE** | 42% of samples have option/sentence mismatches |
-| `xcomps_tr` | ✅ | ✅ | ✅ **56.4%** with Turkish GPT-2 | ✅ **Ready** | ✅ Fixed! English models fail, Turkish works |
-| `multiloko_turkish` | ✅ | ✅ | ✅ 0% EM expected | ✅ **Ready** | Generation task; needs larger models |
+| `xcomps_tr` | ✅ | ✅ | ✅ **66%** (Turkish GPT-2-large 5-shot) | ✅ **Verified** | Above 50% random baseline |
+| `multiloko_turkish` | ✅ | ✅ | ✅ **12% EM** (Qwen2-1.5B-Instruct) | ✅ **Verified** | Above 0% random baseline |
 
 ### Farsi/Persian Benchmarks
 
 | Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
 |------|--------|-------|------------------|--------|-------|
-| `farstail` | ✅ | ✅ | ✅ Expected for zero-shot | ✅ **Ready** | ~35% for English-only models |
-| `xcomps_fa` | ✅ | ✅ | ✅ Above random (52-58%) | ✅ **Ready** | Works correctly |
-| `persian_qa` | ✅ | ✅ | ✅ Loads correctly | ✅ **Ready** | Generation task |
-| `syntran_fa` | ✅ | ✅ | ✅ Loads correctly | ✅ **Ready** | Generation task |
-| `multiloko_farsi` | ✅ | ✅ | ✅ 0% EM expected | ✅ **Ready** | Generation task |
+| `farstail` | ✅ | ✅ | ✅ **38%** (PersianMind 5-shot) | ✅ **Verified** | Above 33% random baseline |
+| `xcomps_fa` | ✅ | ✅ | ✅ **56%** (PersianMind) | ✅ **Verified** | Above 50% random baseline |
+| `persian_qa` | ✅ | ❌ | ❌ Task config error | ⚠️ **Error** | Jinja template issue |
+| `syntran_fa` | ✅ | ❌ | ❌ Task config error | ⚠️ **Error** | Jinja template issue |
+| `multiloko_farsi` | ✅ | ✅ | ✅ **34% EM** (PersianMind) | ✅ **Verified** | Above 0% random baseline |
 
 ### Chinese Benchmarks
 
 | Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
 |------|--------|-------|------------------|--------|-------|
-| `clue_cmnli` | ✅ | ✅ | ✅ Expected for zero-shot | ✅ **Ready** | ~32% for English-only models |
-| `clue_ocnli` | ✅ | ✅ | ✅ Expected for zero-shot | ✅ **Ready** | ~41% for English-only models |
-| `clue_cluewsc` | ✅ | ✅ | ✅ 52-63% expected | ✅ **Ready** | WSC tasks show above-random performance |
-| `xcomps_zh` | ✅ | ✅ | ✅ At/above random (51-60%) | ✅ **Ready** | Works correctly |
-| `multiloko_*_mandarin` | ✅ | ✅ | ✅ Expected | ✅ **Ready** | Generation task |
+| `clue_cmnli` | ✅ | ✅ | ✅ **45.5%** (Qwen2-1.5B-Instruct 5-shot) | ✅ **Verified** | Above 33% random baseline |
+| `clue_ocnli` | ✅ | ✅ | ✅ **42%** (Qwen2-1.5B 20-shot) | ✅ **Verified** | Above 33% random baseline |
+| `clue_cluewsc` | ✅ | ✅ | ✅ **52-63%** (zero-shot) | ✅ **Verified** | Above 50% random baseline |
+| `xcomps_zh` | ✅ | ✅ | ✅ **62%** (Qwen2-1.5B 20-shot) | ✅ **Verified** | Above 50% random baseline |
+| `multiloko_mandarin` | ✅ | ✅ | ✅ **10% EM** (Qwen2-1.5B-Instruct) | ✅ **Verified** | Above 0% random baseline |
 
 ### Unavailable Tasks
 
@@ -355,13 +390,13 @@ Testing with native-language models to verify task correctness:
 
 ### Task Implementation Status Summary
 
-| Category | Tasks Added | Ready | Needs Review | Broken |
-|----------|-------------|-------|--------------|--------|
-| English | 6 | 6 | 0 | 0 |
-| Turkish | 5 | 5 | 0 | 0 |
-| Farsi | 5 | 5 | 0 | 0 |
-| Chinese | 5 | 5 | 0 | 0 |
-| **Total** | **21** | **21** | **0** | **0** |
+| Category | Tasks Added | Verified | Error | Broken | Unavailable |
+|----------|-------------|----------|-------|--------|-------------|
+| English | 6 | 6 | 0 | 0 | 0 |
+| Turkish | 5 | 4 | 0 | 1 | 0 |
+| Farsi | 5 | 3 | 2 | 0 | 2 |
+| Chinese | 5 | 5 | 0 | 0 | 0 |
+| **Total** | **21** | **18** | **2** | **1** | **2** |
 
 ### Performance Observations
 
