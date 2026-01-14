@@ -13,12 +13,13 @@ Turkish translation of the Winogrande benchmark for commonsense reasoning and co
 ### Usage
 
 ```bash
-lm_eval --tasks winogrande_tr --model hf --model_args pretrained=dbmdz/bert-base-turkish-cased
+lm_eval --tasks winogrande_tr --model hf --model_args pretrained=Qwen/Qwen2-7B-Instruct
 ```
 
 ### Dataset
 
-- HuggingFace: https://huggingface.co/datasets/malhajar/winogrande-tr
+- **Current**: https://huggingface.co/datasets/malhajar/winogrande-tr-v0.2 (GPT-4 translations)
+- Used by: [OpenLLMTurkishLeaderboard](https://huggingface.co/datasets/malhajar/winogrande-tr-v0.2)
 
 ### Format
 
@@ -27,17 +28,19 @@ Each example contains:
 - `option1`, `option2`: Two possible completions
 - `answer`: Correct option (1 or 2)
 
-### ⚠️ Known Data Quality Issue
+### Results
 
-**Warning**: This dataset has translation quality issues that affect evaluation results.
+| Model | Accuracy | Notes |
+|-------|----------|-------|
+| TURKCELL/Turkcell-LLM-7b-v1 | **56.1%** | Turkish-specific model, best result |
+| Qwen2-7B-Instruct | 52.8% | Multilingual model |
+| English Winogrande (Qwen2-7B) | 66% | For comparison |
 
-Approximately **42% of samples** have mismatches between option text and sentence text:
-- Example: Sentence contains "Sarah" but `option1` contains "Sara"
-- This breaks perplexity-based evaluation since the options don't match the sentence context
+### Notes
 
-As a result, all models (including large multilingual models like Qwen2-7B and mGPT) score ~50% (random chance) on this task, compared to ~68% on the English Winogrande with the same models.
-
-The task implementation is correct (matching the English Winogrande format), but the dataset needs correction.
+- Turkish-specific models (like Turkcell-LLM-7b-v1) perform best on this task
+- The task shows ~10% lower accuracy compared to English Winogrande with the same models
+- Uses the official OpenLLMTurkishLeaderboard v0.2 dataset with GPT-4 translations
 
 ### Citation
 

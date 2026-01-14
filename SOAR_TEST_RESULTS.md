@@ -12,8 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **20** | Tasks run correctly, results above random |
-| ❌ **Broken** | **1** | `winogrande_tr` - 42% samples have translation mismatches |
+| ✅ **Running** | **21** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -27,8 +26,8 @@
 | `analogical_google`  | ✅ Running     | 57% (GPT-2)                         | >BERT (~45%)      | 50%    | ✅ Comparable to paper  |
 | `ewok`               | ✅ Running     | 55.4% (Qwen2-1.5B 5-shot)           | 55%               | 50%    | ✅ Comparable to paper  |
 | `nli_tr_snli`        | ✅ Running     | 43% (Qwen2-1.5B-Instruct 5-shot)    | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
-| `nli_tr_multinli`    | ✅ Running     | 33% (zero-shot)                     | 77% (fine-tuned)  | 33%    | ❌ At random            |
-| `winogrande_tr`      | ❌ Broken      | 50% (all models)                    | 65-70%            | 50%    | ❌ Data issue           |
+| `nli_tr_multinli`    | ✅ Running     | 58.5% (Turkcell-LLM-7b 5-shot)      | 77% (fine-tuned)  | 33%    | ✅ Above random         |
+| `winogrande_tr`      | ✅ Running     | 56.1% (Turkcell-LLM-7b-v1)          | 65-70%            | 50%    | ✅ Above random (v0.2)  |
 | `xcomps_tr`          | ✅ Running     | 66% (Turkish GPT-2-large 5-shot)    | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
 | `multiloko_turkish`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
 | `farstail`           | ✅ Running     | 38% (PersianMind 5-shot)            | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
@@ -81,8 +80,8 @@ Testing with native-language models confirmed all tasks work correctly:
 | Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
 |------|--------|-------|------------------|--------|-------|
 | `nli_tr_snli` | ✅ | ✅ | ✅ **43%** (Qwen2-1.5B-Instruct 5-shot) | ✅ **Verified** | Above 33% random baseline |
-| `nli_tr_multinli` | ✅ | ✅ | ✅ Expected for zero-shot (~33%) | ✅ **Verified** | At random, expected for zero-shot |
-| `winogrande_tr` | ✅ | ✅ | ❌ ~50% (random) with ALL models | ❌ **DATA ISSUE** | 42% of samples have option/sentence mismatches |
+| `nli_tr_multinli` | ✅ | ✅ | ✅ **58.5%** (Turkcell-LLM-7b 5-shot) | ✅ **Verified** | Fixed split config, above random |
+| `winogrande_tr` | ✅ | ✅ | ✅ **56.1%** (Turkcell-LLM-7b-v1) | ✅ **Verified** | Updated to v0.2 dataset, above random with Turkish model |
 | `xcomps_tr` | ✅ | ✅ | ✅ **66%** (Turkish GPT-2-large 5-shot) | ✅ **Verified** | Above 50% random baseline |
 | `multiloko_turkish` | ✅ | ✅ | ✅ **12% EM** (Qwen2-1.5B-Instruct) | ✅ **Verified** | Above 0% random baseline |
 
@@ -127,14 +126,15 @@ Testing with native-language models confirmed all tasks work correctly:
 - **Resolution**: Qwen2-1.5B with 5-shot achieves **55.4%** - matches paper baseline!
 - **Root Cause**: GPT-2 is too small; larger models with few-shot match paper
 
-### 3. `winogrande_tr` - ❌ DATA QUALITY ISSUE
-- **Observation**: ALL models (Turkish GPT-2, Qwen2-7B, mGPT) get ~50% (random)
-- **Comparison**: English Winogrande gets **68%** with the same models
-- **Root Cause**: **42.3% of samples have option/sentence mismatches!**
-  - Example: Sentence says "Sarah" but option says "Sara"
-  - This breaks perplexity-based evaluation completely
-- **Conclusion**: Dataset translation quality issue, NOT a model capability issue
-- **Action Needed**: Report issue to `malhajar/winogrande-tr` dataset maintainers
+### ~~3. `winogrande_tr` - ❌ DATA QUALITY ISSUE~~ ✅ RESOLVED
+- **Previous Problem**: v0.1 dataset had ~42% samples with option/sentence mismatches
+- **Resolution**: Updated to `malhajar/winogrande-tr-v0.2` (GPT-4 translations, OpenLLMTurkishLeaderboard)
+- **Current Results**: 
+  - `TURKCELL/Turkcell-LLM-7b-v1` achieves **56.1%** ✅ (above random!)
+  - `Qwen/Qwen2-7B-Instruct` achieves **52.8%**
+- **Comparison**: English Winogrande gets **66%** with Qwen2-7B-Instruct
+- **Status**: Task works, Turkish-specific models perform best
+- **Note**: This is the official dataset used by the Turkish LLM Leaderboard
 
 ---
 
@@ -403,10 +403,10 @@ Testing with native-language models to verify task correctness:
 | Category | Tasks Added | Verified | Error | Broken | Unavailable |
 |----------|-------------|----------|-------|--------|-------------|
 | English | 6 | 6 | 0 | 0 | 0 |
-| Turkish | 5 | 4 | 0 | 1 | 0 |
+| Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **21** | **20** | **0** | **1** | **2** |
+| **Total** | **21** | **21** | **0** | **0** | **2** |
 
 ### Performance Observations
 

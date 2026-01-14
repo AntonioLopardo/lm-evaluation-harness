@@ -10,10 +10,21 @@ NLI-TR provides Turkish translations of SNLI and MultiNLI datasets for natural l
 
 ### Tasks
 
-| Task | Config | Test Size |
-|------|--------|-----------|
-| `nli_tr_snli` | snli_tr | 10,000 |
-| `nli_tr_multinli` | multinli_tr | 10,000 |
+| Task | Config | Eval Split | Size |
+|------|--------|------------|------|
+| `nli_tr_snli` | snli_tr | test | 10,000 |
+| `nli_tr_multinli` | multinli_tr | validation_matched | 10,000 |
+
+**Note**: MultiNLI-TR uses `validation_matched` as the eval split since the dataset doesn't have a `test` split.
+
+### Results
+
+| Task | Model | Few-shot | Accuracy |
+|------|-------|----------|----------|
+| `nli_tr_snli` | Qwen2-1.5B-Instruct | 5-shot | 43% |
+| `nli_tr_multinli` | TURKCELL/Turkcell-LLM-7b-v1 | 5-shot | **58.5%** |
+
+The random baseline for 3-way NLI is 33%.
 
 ### Groups
 

@@ -1,7 +1,9 @@
 task: winogrande_tr
-dataset_path: malhajar/winogrande-tr
+dataset_path: malhajar/winogrande-tr-v0.2
 output_type: multiple_choice
 test_split: validation
+# Note: Using v0.2 which uses GPT-4 translations (OpenLLMTurkishLeaderboard)
+# See: https://huggingface.co/datasets/malhajar/winogrande-tr-v0.2
 doc_to_text: !function preprocess_winogrande_tr.doc_to_text
 doc_to_target: !function preprocess_winogrande_tr.doc_to_target
 doc_to_choice: !function preprocess_winogrande_tr.doc_to_choice
@@ -12,4 +14,4 @@ metric_list:
     aggregation: mean
     higher_is_better: true
 metadata:
-  version: 1.1
+  version: 2.0
