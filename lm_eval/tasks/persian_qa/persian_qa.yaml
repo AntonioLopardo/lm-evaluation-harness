@@ -2,6 +2,7 @@ task: persian_qa
 dataset_path: SajjadAyoubi/persian_qa
 output_type: generate_until
 test_split: validation
+process_docs: !function utils.filter_answerable
 doc_to_text: "متن: {{context}}\n\nسوال: {{question}}\n\nپاسخ:"
 doc_to_target: "{{answers.text[0]}}"
 generation_kwargs:
@@ -10,6 +11,7 @@ generation_kwargs:
     - "سوال:"
     - "متن:"
   max_gen_toks: 64
+process_results: !function utils.process_results
 metric_list:
   - metric: exact_match
     aggregation: mean

@@ -9,6 +9,7 @@ generation_kwargs:
     - "\n"
     - "سوال:"
   max_gen_toks: 64
+process_results: !function utils.process_results
 metric_list:
   - metric: exact_match
     aggregation: mean

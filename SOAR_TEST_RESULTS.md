@@ -1,6 +1,6 @@
 # SOAR Benchmark Test Results
 
-**Test Date**: January 13, 2026  
+**Test Date**: January 14, 2026 (updated)  
 **Branch**: `soar-benchmarks-v2`  
 **Environment**: Linux 6.8.0-87-generic  
 **Python**: 3.12.3  
@@ -12,9 +12,8 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **18** | Tasks run correctly, results above random |
+| ✅ **Running** | **20** | Tasks run correctly, results above random |
 | ❌ **Broken** | **1** | `winogrande_tr` - 42% samples have translation mismatches |
-| ⚠️ **Error** | **2** | `persian_qa`, `syntran_fa` - task config issues |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -34,8 +33,8 @@
 | `multiloko_turkish`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
 | `farstail`           | ✅ Running     | 38% (PersianMind 5-shot)            | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
 | `xcomps_fa`          | ✅ Running     | 56% (PersianMind)                   | ~75% (XLM-R)      | 50%    | ⚠️ Only above random    |
-| `persian_qa`         | ⚠️ Error       | Task config issue                   | —                 | 0%     | — N/A                   |
-| `syntran_fa`         | ⚠️ Error       | Task config issue                   | —                 | 0%     | — N/A                   |
+| `persian_qa`         | ✅ Running     | 28% (Qwen2-1.5B-Instruct 5-shot)    | —                 | 0%     | ✅ Above random         |
+| `syntran_fa`         | ✅ Running     | 12% (Qwen2-1.5B-Instruct 5-shot)    | —                 | 0%     | ✅ Above random         |
 | `multiloko_farsi`    | ✅ Running     | 34% (PersianMind)                   | —                 | 0%     | ✅ Above random         |
 | `clue_cmnli`         | ✅ Running     | 45.5% (Qwen2-1.5B-Instruct 5-shot)  | 80% (fine-tuned)  | 33%    | ⚠️ Only above random    |
 | `clue_ocnli`         | ✅ Running     | 42% (Qwen2-1.5B 20-shot)            | 73% (fine-tuned)  | 33%    | ⚠️ Only above random    |
@@ -93,8 +92,8 @@ Testing with native-language models confirmed all tasks work correctly:
 |------|--------|-------|------------------|--------|-------|
 | `farstail` | ✅ | ✅ | ✅ **38%** (PersianMind 5-shot) | ✅ **Verified** | Above 33% random baseline |
 | `xcomps_fa` | ✅ | ✅ | ✅ **56%** (PersianMind) | ✅ **Verified** | Above 50% random baseline |
-| `persian_qa` | ✅ | ❌ | ❌ Task config error | ⚠️ **Error** | Jinja template issue |
-| `syntran_fa` | ✅ | ❌ | ❌ Task config error | ⚠️ **Error** | Jinja template issue |
+| `persian_qa` | ✅ | ✅ | ✅ **28% EM** (Qwen2-1.5B-Instruct 5-shot) | ✅ **Verified** | Generation QA task, above 0% random |
+| `syntran_fa` | ✅ | ✅ | ✅ **12% EM** (Qwen2-1.5B-Instruct 5-shot) | ✅ **Verified** | Generation QA task, above 0% random |
 | `multiloko_farsi` | ✅ | ✅ | ✅ **34% EM** (PersianMind) | ✅ **Verified** | Above 0% random baseline |
 
 ### Chinese Benchmarks
@@ -239,11 +238,22 @@ Testing with native-language models confirmed all tasks work correctly:
 |------|----------|--------|-------|
 | xcomps_fa | **58%** | ±4.96% | Above random baseline |
 
-### 3.3 Persian QA & SynTran-FA
+### ~~3.3 Persian QA & SynTran-FA~~ ✅ RESOLVED
 
-**Status**: ✅ Tasks load correctly  
-**Type**: Generation tasks (exact_match metric)  
-**Note**: Require generative models; dummy model returns 0% EM
+**Previous Issue**: Jinja template errors due to:
+1. `persian_qa`: Unanswerable questions with empty `answers.text` lists caused `list object has no element 0` error
+2. Both tasks: No answer normalization (whitespace/case) causing 0% exact match
+
+**Resolution**: Added `utils.py` with:
+- `filter_answerable()`: Filters out unanswerable questions in `persian_qa`
+- `process_results()`: Normalizes predictions (strip + lowercase) before comparison
+
+**Results** (Qwen2-1.5B-Instruct 5-shot, limit=50):
+
+| Task | Exact Match | Stderr | Notes |
+|------|-------------|--------|-------|
+| persian_qa | **28%** | ±6.4% | Generation QA - above 0% random |
+| syntran_fa | **12%** | ±4.6% | Generation QA - above 0% random |
 
 ---
 
@@ -394,9 +404,9 @@ Testing with native-language models to verify task correctness:
 |----------|-------------|----------|-------|--------|-------------|
 | English | 6 | 6 | 0 | 0 | 0 |
 | Turkish | 5 | 4 | 0 | 1 | 0 |
-| Farsi | 5 | 3 | 2 | 0 | 2 |
+| Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **21** | **18** | **2** | **1** | **2** |
+| **Total** | **21** | **20** | **0** | **1** | **2** |
 
 ### Performance Observations
 
@@ -416,6 +426,7 @@ Testing with native-language models to verify task correctness:
 |----------|------|-------------|
 | ~~🔴 High~~ | ~~Fix `xcomps_tr`~~ | ✅ Resolved - use `ytu-ce-cosmos/turkish-gpt2` |
 | ~~🟡 Medium~~ | ~~Review `ewok`~~ | ✅ Resolved - Qwen2-1.5B 5-shot gets 55.4% |
+| ~~🟡 Medium~~ | ~~Fix `persian_qa`, `syntran_fa`~~ | ✅ Resolved - added filtering & normalization |
 | 🟢 Low | Request access | FarsEval-PKBETS gated dataset |
 
 ### Recommended Models for Each Language
@@ -433,5 +444,6 @@ Testing with native-language models to verify task correctness:
 2. ~~Test with language-specific models~~ ✅ Done - All tasks work correctly!
 3. ~~Test with few-shot prompting~~ ✅ Done - 5-shot and 20-shot tested
 4. ~~Review tasks at random baseline~~ ✅ Done - All explained/resolved
-5. Run full evaluations without `--limit` for publication-ready results
-6. Test generation tasks (MultiLoKo, Persian QA) with instruction-tuned models
+5. ~~Fix `persian_qa` and `syntran_fa` config errors~~ ✅ Done - Added filtering & normalization
+6. Run full evaluations without `--limit` for publication-ready results
+7. Test generation tasks (MultiLoKo, Persian QA) with instruction-tuned models
