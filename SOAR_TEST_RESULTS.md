@@ -84,6 +84,7 @@
 | `itabench_piqa_it-it` | ✅ Running | 59% (Qwen2-1.5B-Instruct)              | ~72%              | 25%    | ⚠️ Lower on Italian     |
 | `itabench_ami_mc` | ✅ Running | 41% (Qwen2-1.5B-Instruct)                  | —                 | 50%    | ✅ Above random         |
 | `itabench_*` (36+ tasks) | ✅ Running | Varies by task                     | See paper         | Varies | ✅ Verified             |
+| `italic` | ✅ Running | 38% (Qwen2-1.5B-Instruct)                       | —                 | 25%    | ✅ Above random         |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `uinauil_*` (6 tasks) | 🚫 Unavailable | —                                  | —                 | —      | — ELG API broken        |
@@ -575,10 +576,11 @@ Testing with native-language models to verify task correctness:
 | TokSuite (Tokenizer Robustness) | 11 | 11 | 0 | 0 | 0 |
 | LMentry (Elementary Language) | 25 | 25 | 0 | 0 | 0 |
 | ITA-Bench (Italian) | 36 | 36 | 0 | 0 | 0 |
+| ITALIC (Italian Culture) | 1 | 1 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **144+** | **144+** | **0** | **0** | **3** |
+| **Total** | **145+** | **145+** | **0** | **0** | **3** |
 
 ### Performance Observations
 
