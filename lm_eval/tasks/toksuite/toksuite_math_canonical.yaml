@@ -1,0 +1,7 @@
+include: _toksuite_template.yaml
+task: toksuite_math_canonical
+dataset_path: toksuite/tokenizer_robustness_completion_math
+dataset_name: tokenizer_robustness_completion_math_canonical
+tag:
+  - toksuite
+  - toksuite_math

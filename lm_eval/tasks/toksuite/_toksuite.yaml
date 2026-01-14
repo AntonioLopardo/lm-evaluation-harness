@@ -1,0 +1,10 @@
+group: toksuite
+task:
+  - toksuite_english_canonical
+  - toksuite_turkish_canonical
+  - toksuite_farsi_canonical
+  - toksuite_chinese_canonical
+  - toksuite_italian_canonical
+  - toksuite_stem_canonical
+  - toksuite_math_canonical
+  - toksuite_general_canonical

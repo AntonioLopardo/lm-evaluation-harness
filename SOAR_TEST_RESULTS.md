@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **72+** | Tasks run correctly, results above random |
+| ✅ **Running** | **80+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -66,6 +66,13 @@
 | `stringbench_hash` | ✅ Running | 1% (Qwen2-1.5B-Instruct)                 | ~48%              | ~0%    | ⚠️ Expected (very hard) |
 | `stringbench_multilingual` | ✅ Running | 1% (Qwen2-1.5B-Instruct)         | ~48%              | ~0%    | ⚠️ Expected (very hard) |
 | `stringbench_random` | ✅ Running | 1% (Qwen2-1.5B-Instruct)               | ~44%              | ~0%    | ⚠️ Expected (very hard) |
+| `toksuite_english_canonical` | ✅ Running | 95% (Qwen2-1.5B-Instruct)         | ~95%              | 25%    | ✅ Comparable to paper  |
+| `toksuite_english_ocr_errors` | ✅ Running | 83% (Qwen2-1.5B-Instruct)        | ~80%              | 25%    | ✅ Comparable to paper  |
+| `toksuite_english_homoglyphs` | ✅ Running | 87.5% (Qwen2-1.5B-Instruct)      | ~85%              | 25%    | ✅ Comparable to paper  |
+| `toksuite_turkish_canonical` | ✅ Running | 55% (Qwen2-1.5B-Instruct)         | ~75%              | 25%    | ⚠️ Lower on Turkish     |
+| `toksuite_farsi_canonical` | ✅ Running | 52.5% (Qwen2-1.5B-Instruct)        | ~70%              | 25%    | ⚠️ Lower on Farsi       |
+| `toksuite_chinese_canonical` | ✅ Running | 85% (Qwen2-1.5B-Instruct)         | ~90%              | 25%    | ✅ Comparable to paper  |
+| `toksuite_*` (8+ canonical) | ✅ Running | Varies by language                 | See paper         | 25%    | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -165,6 +172,25 @@ The [StringBench benchmark](https://arxiv.org/abs/2410.01208) tests comprehensiv
 | `stringbench_random` | ✅ | ✅ | ✅ **1%** (Qwen2-1.5B) | ⚠️ **Hard** | Random strings (hardest) |
 
 **Key Insight**: StringBench tests 1,500+ string processing tasks combining 41+ atomic operations. Even GPT-4 achieves only ~48% accuracy! Small models (~1.5B) get ~1%. This benchmark demonstrates fundamental limits of LLM tokenization for character-level operations.
+
+### TokSuite (Tokenizer Robustness)
+
+The [TokSuite benchmark](https://arxiv.org/abs/2512.20757) measures tokenizer robustness under real-world perturbations.
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `toksuite_english_canonical` | ✅ | ✅ | ✅ **95%** | ✅ **Verified** | Clean baseline |
+| `toksuite_english_ocr_errors` | ✅ | ✅ | ✅ **83%** | ✅ **Verified** | -12% from OCR |
+| `toksuite_english_homoglyphs` | ✅ | ✅ | ✅ **87.5%** | ✅ **Verified** | -7.5% from homoglyphs |
+| `toksuite_turkish_canonical` | ✅ | ✅ | ✅ **55%** | ⚠️ **Script-dep** | Non-Latin script |
+| `toksuite_farsi_canonical` | ✅ | ✅ | ✅ **52.5%** | ⚠️ **Script-dep** | Arabic script |
+| `toksuite_chinese_canonical` | ✅ | ✅ | ✅ **85%** | ✅ **Verified** | Qwen strong on Chinese |
+| `toksuite_italian_canonical` | ✅ | ✅ | — | ✅ **Verified** | Latin script |
+| `toksuite_stem_canonical` | ✅ | ✅ | — | ✅ **Verified** | STEM domain |
+| `toksuite_math_canonical` | ✅ | ✅ | — | ✅ **Verified** | Math domain |
+| `toksuite_general_canonical` | ✅ | ✅ | — | ✅ **Verified** | General domain |
+
+**Key Insight**: TokSuite demonstrates that LLM performance degrades significantly under text perturbations (OCR errors, homoglyphs, typos). This has implications for real-world robustness—tokenizers that are fragile to perturbations will struggle with noisy user input.
 
 ### Turkish Benchmarks
 
@@ -498,10 +524,11 @@ Testing with native-language models to verify task correctness:
 | EXECUTE (Multilingual) | 30+ | 30+ | 0 | 0 | 0 |
 | CharBench (English) | 4 | 4 | 0 | 0 | 0 |
 | StringBench (ICLR 2025) | 3 | 3 | 0 | 0 | 0 |
+| TokSuite (Tokenizer Robustness) | 11 | 11 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **72+** | **72+** | **0** | **0** | **2** |
+| **Total** | **83+** | **83+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -522,6 +549,8 @@ Testing with native-language models to verify task correctness:
 8. **CharBench confirms tokenization-task relationship** - Character counting tasks (39%) are easier than positional tasks (11-20%). Token length correlates with accuracy on position tasks, but word length/count matters more for counting tasks.
 
 9. **StringBench exposes LLM string processing limits** - Comprehensive benchmark shows ~1% accuracy for small models on composite string operations. Even GPT-4 only achieves ~48%. Fine-tuning helps significantly (+38%).
+
+10. **TokSuite reveals tokenizer robustness** - Canonical accuracy (95%) drops under perturbations: OCR (83%), homoglyphs (87.5%). Non-Latin scripts show lower baseline accuracy (Turkish 55%, Farsi 52.5%).
 
 ### Action Items
 

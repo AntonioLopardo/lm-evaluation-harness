@@ -1,0 +1,8 @@
+include: _toksuite_template.yaml
+task: toksuite_english_keyboard_errors
+dataset_path: toksuite/tokenizer_robustness_completion_english
+dataset_name: tokenizer_robustness_completion_english_keyboard_proximity_errors
+tag:
+  - toksuite
+  - toksuite_english
+  - toksuite_perturbation
