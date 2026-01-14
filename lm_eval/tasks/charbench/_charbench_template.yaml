@@ -1,0 +1,13 @@
+dataset_path: omriuz/CharBench
+output_type: generate_until
+test_split: train
+doc_to_text: "Answer this question only with the final number, without any other text. Lowercase and uppercase letters are considered different characters.\n\nQuestion: {{question}}\n\nAnswer:"
+doc_to_target: "{{answer}}"
+generation_kwargs:
+  until:
+    - "\n"
+    - "."
+  max_gen_toks: 10
+process_results: !function utils.process_results
+metadata:
+  version: 1.0

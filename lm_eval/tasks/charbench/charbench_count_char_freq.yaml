@@ -1,0 +1,6 @@
+include: _charbench_template.yaml
+task: charbench_count_char_freq
+process_docs: !function utils.filter_count_character_frequency
+tag:
+  - charbench
+  - charbench_counting

@@ -1,0 +1,6 @@
+include: _charbench_template.yaml
+task: charbench_count_unique
+process_docs: !function utils.filter_count_unique_chars
+tag:
+  - charbench
+  - charbench_counting

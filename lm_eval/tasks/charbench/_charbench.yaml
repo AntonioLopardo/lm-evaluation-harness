@@ -1,0 +1,6 @@
+group: charbench
+task:
+  - charbench_count_char_freq
+  - charbench_count_unique
+  - charbench_find_first
+  - charbench_find_last

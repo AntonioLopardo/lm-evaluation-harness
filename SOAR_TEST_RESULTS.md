@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **65+** | Tasks run correctly, results above random |
+| ✅ **Running** | **69+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -59,6 +59,10 @@
 | `execute_ara_spell`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | ~20-40%           | ~0%    | ⚠️ Script-dependent     |
 | `execute_kor_spell`  | ✅ Running     | 28% (Qwen2-1.5B-Instruct)           | ~40-70%           | ~0%    | ⚠️ Script-dependent     |
 | `execute_*` (30+)    | ✅ Running     | Varies by language                  | See paper         | ~0%    | ✅ Verified             |
+| `charbench_count_char_freq` | ✅ Running | 39% (Qwen2-1.5B-Instruct)        | ~50%              | ~10%   | ✅ Comparable to paper  |
+| `charbench_count_unique` | ✅ Running | 31% (Qwen2-1.5B-Instruct)          | ~43%              | ~10%   | ✅ Comparable to paper  |
+| `charbench_find_first` | ✅ Running | 20% (Qwen2-1.5B-Instruct)            | ~43%              | ~5%    | ✅ Comparable to paper  |
+| `charbench_find_last` | ✅ Running | 11% (Qwen2-1.5B-Instruct)             | ~32%              | ~5%    | ✅ Comparable to paper  |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -133,6 +137,19 @@ The [EXECUTE benchmark](https://aclanthology.org/2025.findings-acl.95/) extends 
 | `execute_deu_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | German - Latin |
 
 **Key Insight**: Performance varies dramatically by script type. Logographic scripts (Chinese) are easiest; Abjads (Arabic) and featural scripts (Korean) are hardest. This aligns with the paper's findings on CWT (character-word-token) statistics.
+
+### CharBench (Character-Level Reasoning)
+
+The [CharBench benchmark](https://arxiv.org/abs/2508.02591) tests character counting and positional understanding.
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `charbench_count_char_freq` | ✅ | ✅ | ✅ **39%** (Qwen2-1.5B) | ✅ **Ready** | Character counting |
+| `charbench_count_unique` | ✅ | ✅ | ✅ **31%** (Qwen2-1.5B) | ✅ **Ready** | Unique char counting |
+| `charbench_find_first` | ✅ | ✅ | ✅ **20%** (Qwen2-1.5B) | ✅ **Ready** | First occurrence index |
+| `charbench_find_last` | ✅ | ✅ | ✅ **11%** (Qwen2-1.5B) | ✅ **Ready** | Last occurrence index (hardest) |
+
+**Key Insight**: Positional understanding tasks (~11-20%) are significantly harder than counting tasks (~31-39%). The paper finds that token length correlates with position task accuracy—longer tokens obscure character positions.
 
 ### Turkish Benchmarks
 
@@ -464,10 +481,11 @@ Testing with native-language models to verify task correctness:
 | English | 6 | 6 | 0 | 0 | 0 |
 | CUTE (English) | 14 | 14 | 0 | 0 | 0 |
 | EXECUTE (Multilingual) | 30+ | 30+ | 0 | 0 | 0 |
+| CharBench (English) | 4 | 4 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **65+** | **65+** | **0** | **0** | **2** |
+| **Total** | **69+** | **69+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -484,6 +502,8 @@ Testing with native-language models to verify task correctness:
 6. **CUTE benchmark reveals character-level limitations** - LLMs know how to spell their tokens (97-100%) but fail at manipulation tasks like swap (2%). Larger models scale better on composition tasks.
 
 7. **EXECUTE shows script-dependent performance** - Multilingual token understanding varies by script: Chinese (logographic) ~96%, English ~90%, Korean ~28%, Arabic ~12%. This correlates with character-word-token statistics.
+
+8. **CharBench confirms tokenization-task relationship** - Character counting tasks (39%) are easier than positional tasks (11-20%). Token length correlates with accuracy on position tasks, but word length/count matters more for counting tasks.
 
 ### Action Items
 

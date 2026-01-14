@@ -1,0 +1,6 @@
+include: _charbench_template.yaml
+task: charbench_find_last
+process_docs: !function utils.filter_find_last_occurrence
+tag:
+  - charbench
+  - charbench_indexing

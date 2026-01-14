@@ -1,0 +1,6 @@
+include: _charbench_template.yaml
+task: charbench_find_first
+process_docs: !function utils.filter_find_first_occurrence
+tag:
+  - charbench
+  - charbench_indexing
