@@ -1,0 +1,6 @@
+include: _cute_template.yaml
+task: cute_contains_word
+tag:
+  - cute
+  - cute_composition
+test_split: contains_word

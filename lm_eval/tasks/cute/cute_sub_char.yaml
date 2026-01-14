@@ -1,0 +1,6 @@
+include: _cute_template.yaml
+task: cute_sub_char
+tag:
+  - cute
+  - cute_manipulation
+test_split: sub_char

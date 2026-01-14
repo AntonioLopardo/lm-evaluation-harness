@@ -1,0 +1,6 @@
+include: _cute_template.yaml
+task: cute_swap_char
+tag:
+  - cute
+  - cute_manipulation
+test_split: swap_char

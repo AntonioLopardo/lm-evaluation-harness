@@ -1,0 +1,12 @@
+dataset_path: Leukas/CUTE
+output_type: generate_until
+doc_to_text: "{{prompt}}\nAnswer: \""
+doc_to_target: "{{answer}}"
+generation_kwargs:
+  until:
+    - "\""
+    - "\n"
+  max_gen_toks: 50
+process_results: !function utils.process_results
+metadata:
+  version: 1.0

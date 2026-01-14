@@ -1,0 +1,16 @@
+group: cute
+task:
+  - cute_spell
+  - cute_spell_inverse
+  - cute_contains_char
+  - cute_contains_word
+  - cute_orth
+  - cute_sem
+  - cute_ins_char
+  - cute_ins_word
+  - cute_del_char
+  - cute_del_word
+  - cute_sub_char
+  - cute_sub_word
+  - cute_swap_char
+  - cute_swap_word

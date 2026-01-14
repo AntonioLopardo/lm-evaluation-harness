@@ -1,0 +1,6 @@
+include: _cute_template.yaml
+task: cute_spell_inverse
+tag:
+  - cute
+  - cute_composition
+test_split: spell_inverse

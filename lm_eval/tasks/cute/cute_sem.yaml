@@ -1,0 +1,6 @@
+include: _cute_template.yaml
+task: cute_sem
+tag:
+  - cute
+  - cute_similarity
+test_split: sem

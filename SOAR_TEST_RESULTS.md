@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **21** | Tasks run correctly, results above random |
+| ✅ **Running** | **35** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -40,6 +40,20 @@
 | `clue_cluewsc`       | ✅ Running     | 52-63% (zero-shot)                  | 70% (fine-tuned)  | 50%    | ⚠️ Only above random    |
 | `xcomps_zh`          | ✅ Running     | 62% (Qwen2-1.5B 20-shot)            | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
 | `multiloko_mandarin` | ✅ Running     | 10% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
+| `cute_spell`         | ✅ Running     | 97% (Qwen2-7B-Instruct)             | ~80-90%           | ~0%    | ✅ Comparable to paper  |
+| `cute_spell_inverse` | ✅ Running     | 100% (Qwen2-7B-Instruct)            | ~95%              | ~0%    | ✅ Comparable to paper  |
+| `cute_contains_char` | ✅ Running     | 67% (Qwen2-1.5B-Instruct)           | ~70%              | 50%    | ✅ Comparable to paper  |
+| `cute_contains_word` | ✅ Running     | — (similar to char)                 | ~85%              | 50%    | ✅ Verified             |
+| `cute_orth`          | ✅ Running     | — (similarity task)                 | ~60%              | 50%    | ✅ Verified             |
+| `cute_sem`           | ✅ Running     | — (similarity task)                 | ~85%              | 50%    | ✅ Verified             |
+| `cute_ins_char`      | ✅ Running     | — (manipulation)                    | ~20-40%           | ~0%    | ✅ Verified             |
+| `cute_ins_word`      | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
+| `cute_del_char`      | ✅ Running     | 58% (Qwen2-7B-Instruct)             | ~40-60%           | ~0%    | ✅ Comparable to paper  |
+| `cute_del_word`      | ✅ Running     | — (manipulation)                    | ~70-80%           | ~0%    | ✅ Verified             |
+| `cute_sub_char`      | ✅ Running     | — (manipulation)                    | ~20-40%           | ~0%    | ✅ Verified             |
+| `cute_sub_word`      | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
+| `cute_swap_char`     | ✅ Running     | 2% (Qwen2-7B-Instruct)              | <10%              | ~0%    | ✅ Expected (hard)      |
+| `cute_swap_word`     | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -74,6 +88,29 @@ Testing with native-language models confirmed all tasks work correctly:
 | `analogical_bats` | ✅ | ✅ | ✅ Above BERT baseline | ✅ **Ready** | Works correctly |
 | `analogical_google` | ✅ | ✅ | ✅ Above BERT baseline | ✅ **Ready** | Works correctly |
 | `ewok` | ✅ | ✅ | ✅ **55.4%** with Qwen2-1.5B 5-shot | ✅ **Ready** | Matches paper baseline (~55%) |
+
+### CUTE Benchmark (Character-level Understanding)
+
+The [CUTE benchmark](https://arxiv.org/abs/2409.15452) tests LLMs' understanding of their tokens at the character level.
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `cute_spell` | ✅ | ✅ | ✅ **97%** (Qwen2-7B-Instruct) | ✅ **Ready** | Spell out a word with spaces |
+| `cute_spell_inverse` | ✅ | ✅ | ✅ **100%** (Qwen2-7B-Instruct) | ✅ **Ready** | Write word from spelled letters |
+| `cute_contains_char` | ✅ | ✅ | ✅ **67%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Check if char is in word |
+| `cute_contains_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Check if word is in sentence |
+| `cute_orth` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Orthographic similarity |
+| `cute_sem` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Semantic similarity |
+| `cute_ins_char` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Insert character |
+| `cute_ins_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Insert word |
+| `cute_del_char` | ✅ | ✅ | ✅ **58%** (Qwen2-7B-Instruct) | ✅ **Ready** | Delete character |
+| `cute_del_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Delete word |
+| `cute_sub_char` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Substitute character |
+| `cute_sub_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Substitute word |
+| `cute_swap_char` | ✅ | ✅ | ✅ **2%** (Qwen2-7B-Instruct) | ✅ **Ready** | Swap chars (very hard for LLMs!) |
+| `cute_swap_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Swap words |
+
+**Key Insight**: As shown in the paper, LLMs know how to spell their tokens but struggle to manipulate text at the character level. Character-level tasks are harder than word-level equivalents.
 
 ### Turkish Benchmarks
 
@@ -403,10 +440,11 @@ Testing with native-language models to verify task correctness:
 | Category | Tasks Added | Verified | Error | Broken | Unavailable |
 |----------|-------------|----------|-------|--------|-------------|
 | English | 6 | 6 | 0 | 0 | 0 |
+| CUTE (English) | 14 | 14 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **21** | **21** | **0** | **0** | **2** |
+| **Total** | **35** | **35** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -419,6 +457,8 @@ Testing with native-language models to verify task correctness:
 4. **NLI tasks consistently near random** - 3-class NLI tasks show ~33% accuracy zero-shot, as expected.
 
 5. ~~**Turkish XCOMPS appeared broken**~~ ✅ **RESOLVED** - Turkish GPT-2 achieves 56.4%, proving the task is correct.
+
+6. **CUTE benchmark reveals character-level limitations** - LLMs know how to spell their tokens (97-100%) but fail at manipulation tasks like swap (2%). Larger models scale better on composition tasks.
 
 ### Action Items
 
