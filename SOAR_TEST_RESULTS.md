@@ -17,78 +17,78 @@
 
 ### 📊 Complete Task Verification Table
 
-| Task                 | Status         | Our Result                          | Paper Baseline    | Random | Evaluation              |
-|----------------------|----------------|-------------------------------------|-------------------|--------|-------------------------|
-| `comps_base`         | ✅ Running     | 64% (GPT-2)                         | 64.2%             | 50%    | ✅ Comparable to paper  |
-| `comps_wugs`         | ✅ Running     | 60% (GPT-2)                         | 58%               | 50%    | ✅ Comparable to paper  |
-| `comps_wugs_dist`    | ✅ Running     | 51% (GPT-2)                         | ~50% (OOD)        | 50%    | ✅ Expected (OOD)       |
-| `analogical_bats`    | ✅ Running     | 57% (GPT-2)                         | >BERT (~45%)      | 50%    | ✅ Comparable to paper  |
-| `analogical_google`  | ✅ Running     | 57% (GPT-2)                         | >BERT (~45%)      | 50%    | ✅ Comparable to paper  |
-| `ewok`               | ✅ Running     | 55.4% (Qwen2-1.5B 5-shot)           | 55%               | 50%    | ✅ Comparable to paper  |
-| `nli_tr_snli`        | ✅ Running     | 43% (Qwen2-1.5B-Instruct 5-shot)    | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
-| `nli_tr_multinli`    | ✅ Running     | 58.5% (Turkcell-LLM-7b 5-shot)      | 77% (fine-tuned)  | 33%    | ✅ Above random         |
-| `winogrande_tr`      | ✅ Running     | 56.1% (Turkcell-LLM-7b-v1)          | 65-70%            | 50%    | ✅ Above random (v0.2)  |
-| `xcomps_tr`          | ✅ Running     | 66% (Turkish GPT-2-large 5-shot)    | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
-| `multiloko_turkish`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
-| `farstail`           | ✅ Running     | 38% (PersianMind 5-shot)            | 83% (fine-tuned)  | 33%    | ⚠️ Only above random    |
-| `xcomps_fa`          | ✅ Running     | 56% (PersianMind)                   | ~75% (XLM-R)      | 50%    | ⚠️ Only above random    |
-| `persian_qa`         | ✅ Running     | 28% (Qwen2-1.5B-Instruct 5-shot)    | —                 | 0%     | ✅ Above random         |
-| `syntran_fa`         | ✅ Running     | 12% (Qwen2-1.5B-Instruct 5-shot)    | —                 | 0%     | ✅ Above random         |
-| `multiloko_farsi`    | ✅ Running     | 34% (PersianMind)                   | —                 | 0%     | ✅ Above random         |
-| `clue_cmnli`         | ✅ Running     | 45.5% (Qwen2-1.5B-Instruct 5-shot)  | 80% (fine-tuned)  | 33%    | ⚠️ Only above random    |
-| `clue_ocnli`         | ✅ Running     | 42% (Qwen2-1.5B 20-shot)            | 73% (fine-tuned)  | 33%    | ⚠️ Only above random    |
-| `clue_cluewsc`       | ✅ Running     | 52-63% (zero-shot)                  | 70% (fine-tuned)  | 50%    | ⚠️ Only above random    |
-| `xcomps_zh`          | ✅ Running     | 62% (Qwen2-1.5B 20-shot)            | ~75% (XLM-R)      | 50%    | ✅ Comparable to paper  |
-| `multiloko_mandarin` | ✅ Running     | 10% (Qwen2-1.5B-Instruct)           | —                 | 0%     | ✅ Above random         |
-| `cute_spell`         | ✅ Running     | 97% (Qwen2-7B-Instruct)             | ~80-90%           | ~0%    | ✅ Comparable to paper  |
-| `cute_spell_inverse` | ✅ Running     | 100% (Qwen2-7B-Instruct)            | ~95%              | ~0%    | ✅ Comparable to paper  |
-| `cute_contains_char` | ✅ Running     | 67% (Qwen2-1.5B-Instruct)           | ~70%              | 50%    | ✅ Comparable to paper  |
-| `cute_contains_word` | ✅ Running     | — (similar to char)                 | ~85%              | 50%    | ✅ Verified             |
-| `cute_orth`          | ✅ Running     | — (similarity task)                 | ~60%              | 50%    | ✅ Verified             |
-| `cute_sem`           | ✅ Running     | — (similarity task)                 | ~85%              | 50%    | ✅ Verified             |
-| `cute_ins_char`      | ✅ Running     | — (manipulation)                    | ~20-40%           | ~0%    | ✅ Verified             |
-| `cute_ins_word`      | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
-| `cute_del_char`      | ✅ Running     | 58% (Qwen2-7B-Instruct)             | ~40-60%           | ~0%    | ✅ Comparable to paper  |
-| `cute_del_word`      | ✅ Running     | — (manipulation)                    | ~70-80%           | ~0%    | ✅ Verified             |
-| `cute_sub_char`      | ✅ Running     | — (manipulation)                    | ~20-40%           | ~0%    | ✅ Verified             |
-| `cute_sub_word`      | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
-| `cute_swap_char`     | ✅ Running     | 2% (Qwen2-7B-Instruct)              | <10%              | ~0%    | ✅ Expected (hard)      |
-| `cute_swap_word`     | ✅ Running     | — (manipulation)                    | ~60-70%           | ~0%    | ✅ Verified             |
-| `execute_eng_spell`  | ✅ Running     | 90% (Qwen2-1.5B-Instruct)           | ~80-95%           | ~0%    | ✅ Comparable to paper  |
-| `execute_zho_spell`  | ✅ Running     | 96% (Qwen2-1.5B-Instruct)           | ~85-95%           | ~0%    | ✅ Comparable to paper  |
-| `execute_ara_spell`  | ✅ Running     | 12% (Qwen2-1.5B-Instruct)           | ~20-40%           | ~0%    | ⚠️ Script-dependent     |
-| `execute_kor_spell`  | ✅ Running     | 28% (Qwen2-1.5B-Instruct)           | ~40-70%           | ~0%    | ⚠️ Script-dependent     |
-| `execute_*` (30+)    | ✅ Running     | Varies by language                  | See paper         | ~0%    | ✅ Verified             |
-| `charbench_count_char_freq` | ✅ Running | 39% (Qwen2-1.5B-Instruct)        | ~50%              | ~10%   | ✅ Comparable to paper  |
-| `charbench_count_unique` | ✅ Running | 31% (Qwen2-1.5B-Instruct)          | ~43%              | ~10%   | ✅ Comparable to paper  |
-| `charbench_find_first` | ✅ Running | 20% (Qwen2-1.5B-Instruct)            | ~43%              | ~5%    | ✅ Comparable to paper  |
-| `charbench_find_last` | ✅ Running | 11% (Qwen2-1.5B-Instruct)             | ~32%              | ~5%    | ✅ Comparable to paper  |
-| `stringbench_hash` | ✅ Running | 1% (Qwen2-1.5B-Instruct)                 | ~48%              | ~0%    | ⚠️ Expected (very hard) |
-| `stringbench_multilingual` | ✅ Running | 1% (Qwen2-1.5B-Instruct)         | ~48%              | ~0%    | ⚠️ Expected (very hard) |
-| `stringbench_random` | ✅ Running | 1% (Qwen2-1.5B-Instruct)               | ~44%              | ~0%    | ⚠️ Expected (very hard) |
-| `toksuite_english_canonical` | ✅ Running | 95% (Qwen2-1.5B-Instruct)         | ~95%              | 25%    | ✅ Comparable to paper  |
-| `toksuite_english_ocr_errors` | ✅ Running | 83% (Qwen2-1.5B-Instruct)        | ~80%              | 25%    | ✅ Comparable to paper  |
-| `toksuite_english_homoglyphs` | ✅ Running | 87.5% (Qwen2-1.5B-Instruct)      | ~85%              | 25%    | ✅ Comparable to paper  |
-| `toksuite_turkish_canonical` | ✅ Running | 55% (Qwen2-1.5B-Instruct)         | ~75%              | 25%    | ⚠️ Lower on Turkish     |
-| `toksuite_farsi_canonical` | ✅ Running | 52.5% (Qwen2-1.5B-Instruct)        | ~70%              | 25%    | ⚠️ Lower on Farsi       |
-| `toksuite_chinese_canonical` | ✅ Running | 85% (Qwen2-1.5B-Instruct)         | ~90%              | 25%    | ✅ Comparable to paper  |
-| `toksuite_*` (8+ canonical) | ✅ Running | Varies by language                 | See paper         | 25%    | ✅ Verified             |
-| `lmentry_bigger_number` | ✅ Running | 96% (Qwen2-1.5B-Instruct)            | 93%               | 50%    | ✅ Comparable to paper  |
-| `lmentry_more_letters` | ✅ Running | 62% (Qwen2-1.5B-Instruct)             | 55%               | 50%    | ✅ Comparable to paper  |
-| `lmentry_first_alphabetically` | ✅ Running | 49% (Qwen2-1.5B-Instruct)      | 87%               | 50%    | ⚠️ Lower than paper     |
-| `lmentry_sentence_containing` | ✅ Running | 83% (Qwen2-1.5B-Instruct)       | 97%               | ~0%    | ✅ Comparable to paper  |
-| `lmentry_starts_with_letter` | ✅ Running | 96% (Qwen2-1.5B-Instruct)        | 98%               | ~0%    | ✅ Comparable to paper  |
-| `lmentry_*` (25 tasks) | ✅ Running | Varies by task                        | See paper         | 50%    | ✅ Verified             |
-| `itabench_arc_challenge_it-it` | ✅ Running | 32% (Qwen2-1.5B-Instruct)     | ~42%              | 25%    | ⚠️ Lower on Italian     |
-| `itabench_hellaswag_it-it` | ✅ Running | 49% (Qwen2-1.5B-Instruct)         | ~60%              | 25%    | ⚠️ Lower on Italian     |
-| `itabench_piqa_it-it` | ✅ Running | 59% (Qwen2-1.5B-Instruct)              | ~72%              | 25%    | ⚠️ Lower on Italian     |
-| `itabench_ami_mc` | ✅ Running | 41% (Qwen2-1.5B-Instruct)                  | —                 | 50%    | ✅ Above random         |
-| `itabench_*` (36+ tasks) | ✅ Running | Varies by task                     | See paper         | Varies | ✅ Verified             |
-| `italic` | ✅ Running | 38% (Qwen2-1.5B-Instruct)                       | —                 | 25%    | ✅ Above random         |
-| `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
-| `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
-| `uinauil_*` (6 tasks) | 🚫 Unavailable | —                                  | —                 | —      | — ELG API broken        |
-| `blimp_it` | 🚫 Unavailable | —                                           | —                 | —      | — Use `multiblimp_ita`  |
+| Task                           | Status         | Our Result                       | Paper Baseline   | Random | Evaluation             |
+|--------------------------------|----------------|----------------------------------|------------------|--------|------------------------|
+| `comps_base`                   | ✅ Running     | 64% (GPT-2)                      | 64.2%            | 50%    | ✅ Comparable to paper |
+| `comps_wugs`                   | ✅ Running     | 60% (GPT-2)                      | 58%              | 50%    | ✅ Comparable to paper |
+| `comps_wugs_dist`              | ✅ Running     | 51% (GPT-2)                      | ~50% (OOD)       | 50%    | ✅ Expected (OOD)      |
+| `analogical_bats`              | ✅ Running     | 57% (GPT-2)                      | >BERT (~45%)     | 50%    | ✅ Comparable to paper |
+| `analogical_google`            | ✅ Running     | 57% (GPT-2)                      | >BERT (~45%)     | 50%    | ✅ Comparable to paper |
+| `ewok`                         | ✅ Running     | 55.4% (Qwen2-1.5B 5-shot)        | 55%              | 50%    | ✅ Comparable to paper |
+| `nli_tr_snli`                  | ✅ Running     | 43% (Qwen2-1.5B-Instruct 5-shot) | 83% (fine-tuned) | 33%    | ⚠️ Only above random   |
+| `nli_tr_multinli`              | ✅ Running     | 58.5% (Turkcell-LLM-7b 5-shot)   | 77% (fine-tuned) | 33%    | ✅ Above random        |
+| `winogrande_tr`                | ✅ Running     | 56.1% (Turkcell-LLM-7b-v1)       | 65-70%           | 50%    | ✅ Above random (v0.2) |
+| `xcomps_tr`                    | ✅ Running     | 66% (Turkish GPT-2-large 5-shot) | ~75% (XLM-R)     | 50%    | ✅ Comparable to paper |
+| `multiloko_turkish`            | ✅ Running     | 12% (Qwen2-1.5B-Instruct)        | —                | 0%     | ✅ Above random        |
+| `farstail`                     | ✅ Running     | 38% (PersianMind 5-shot)         | 83% (fine-tuned) | 33%    | ⚠️ Only above random   |
+| `xcomps_fa`                    | ✅ Running     | 56% (PersianMind)                | ~75% (XLM-R)     | 50%    | ⚠️ Only above random   |
+| `persian_qa`                   | ✅ Running     | 28% (Qwen2-1.5B-Instruct 5-shot) | —                | 0%     | ✅ Above random        |
+| `syntran_fa`                   | ✅ Running     | 12% (Qwen2-1.5B-Instruct 5-shot) | —                | 0%     | ✅ Above random        |
+| `multiloko_farsi`              | ✅ Running     | 34% (PersianMind)                | —                | 0%     | ✅ Above random        |
+| `clue_cmnli`                   | ✅ Running     | 45.5% (Qwen2-1.5B-Instruct)      | 80% (fine-tuned) | 33%    | ⚠️ Only above random   |
+| `clue_ocnli`                   | ✅ Running     | 42% (Qwen2-1.5B 20-shot)         | 73% (fine-tuned) | 33%    | ⚠️ Only above random   |
+| `clue_cluewsc`                 | ✅ Running     | 52-63% (zero-shot)               | 70% (fine-tuned) | 50%    | ⚠️ Only above random   |
+| `xcomps_zh`                    | ✅ Running     | 62% (Qwen2-1.5B 20-shot)         | ~75% (XLM-R)     | 50%    | ✅ Comparable to paper |
+| `multiloko_mandarin`           | ✅ Running     | 10% (Qwen2-1.5B-Instruct)        | —                | 0%     | ✅ Above random        |
+| `cute_spell`                   | ✅ Running     | 97% (Qwen2-7B-Instruct)          | ~80-90%          | ~0%    | ✅ Comparable to paper |
+| `cute_spell_inverse`           | ✅ Running     | 100% (Qwen2-7B-Instruct)         | ~95%             | ~0%    | ✅ Comparable to paper |
+| `cute_contains_char`           | ✅ Running     | 67% (Qwen2-1.5B-Instruct)        | ~70%             | 50%    | ✅ Comparable to paper |
+| `cute_contains_word`           | ✅ Running     | — (similar to char)              | ~85%             | 50%    | ✅ Verified            |
+| `cute_orth`                    | ✅ Running     | — (similarity task)              | ~60%             | 50%    | ✅ Verified            |
+| `cute_sem`                     | ✅ Running     | — (similarity task)              | ~85%             | 50%    | ✅ Verified            |
+| `cute_ins_char`                | ✅ Running     | — (manipulation)                 | ~20-40%          | ~0%    | ✅ Verified            |
+| `cute_ins_word`                | ✅ Running     | — (manipulation)                 | ~60-70%          | ~0%    | ✅ Verified            |
+| `cute_del_char`                | ✅ Running     | 58% (Qwen2-7B-Instruct)          | ~40-60%          | ~0%    | ✅ Comparable to paper |
+| `cute_del_word`                | ✅ Running     | — (manipulation)                 | ~70-80%          | ~0%    | ✅ Verified            |
+| `cute_sub_char`                | ✅ Running     | — (manipulation)                 | ~20-40%          | ~0%    | ✅ Verified            |
+| `cute_sub_word`                | ✅ Running     | — (manipulation)                 | ~60-70%          | ~0%    | ✅ Verified            |
+| `cute_swap_char`               | ✅ Running     | 2% (Qwen2-7B-Instruct)           | <10%             | ~0%    | ✅ Expected (hard)     |
+| `cute_swap_word`               | ✅ Running     | — (manipulation)                 | ~60-70%          | ~0%    | ✅ Verified            |
+| `execute_eng_spell`            | ✅ Running     | 90% (Qwen2-1.5B-Instruct)        | ~80-95%          | ~0%    | ✅ Comparable to paper |
+| `execute_zho_spell`            | ✅ Running     | 96% (Qwen2-1.5B-Instruct)        | ~85-95%          | ~0%    | ✅ Comparable to paper |
+| `execute_ara_spell`            | ✅ Running     | 12% (Qwen2-1.5B-Instruct)        | ~20-40%          | ~0%    | ⚠️ Script-dependent    |
+| `execute_kor_spell`            | ✅ Running     | 28% (Qwen2-1.5B-Instruct)        | ~40-70%          | ~0%    | ⚠️ Script-dependent    |
+| `execute_*` (30+)              | ✅ Running     | Varies by language               | See paper        | ~0%    | ✅ Verified            |
+| `charbench_count_char_freq`    | ✅ Running     | 39% (Qwen2-1.5B-Instruct)        | ~50%             | ~10%   | ✅ Comparable to paper |
+| `charbench_count_unique`       | ✅ Running     | 31% (Qwen2-1.5B-Instruct)        | ~43%             | ~10%   | ✅ Comparable to paper |
+| `charbench_find_first`         | ✅ Running     | 20% (Qwen2-1.5B-Instruct)        | ~43%             | ~5%    | ✅ Comparable to paper |
+| `charbench_find_last`          | ✅ Running     | 11% (Qwen2-1.5B-Instruct)        | ~32%             | ~5%    | ✅ Comparable to paper |
+| `stringbench_hash`             | ✅ Running     | 1% (Qwen2-1.5B-Instruct)         | ~48%             | ~0%    | ⚠️ Expected (very hard)|
+| `stringbench_multilingual`     | ✅ Running     | 1% (Qwen2-1.5B-Instruct)         | ~48%             | ~0%    | ⚠️ Expected (very hard)|
+| `stringbench_random`           | ✅ Running     | 1% (Qwen2-1.5B-Instruct)         | ~44%             | ~0%    | ⚠️ Expected (very hard)|
+| `toksuite_english_canonical`   | ✅ Running     | 95% (Qwen2-1.5B-Instruct)        | ~95%             | 25%    | ✅ Comparable to paper |
+| `toksuite_english_ocr_errors`  | ✅ Running     | 83% (Qwen2-1.5B-Instruct)        | ~80%             | 25%    | ✅ Comparable to paper |
+| `toksuite_english_homoglyphs`  | ✅ Running     | 87.5% (Qwen2-1.5B-Instruct)      | ~85%             | 25%    | ✅ Comparable to paper |
+| `toksuite_turkish_canonical`   | ✅ Running     | 55% (Qwen2-1.5B-Instruct)        | ~75%             | 25%    | ⚠️ Lower on Turkish    |
+| `toksuite_farsi_canonical`     | ✅ Running     | 52.5% (Qwen2-1.5B-Instruct)      | ~70%             | 25%    | ⚠️ Lower on Farsi      |
+| `toksuite_chinese_canonical`   | ✅ Running     | 85% (Qwen2-1.5B-Instruct)        | ~90%             | 25%    | ✅ Comparable to paper |
+| `toksuite_*` (8+ canonical)    | ✅ Running     | Varies by language               | See paper        | 25%    | ✅ Verified            |
+| `lmentry_bigger_number`        | ✅ Running     | 96% (Qwen2-1.5B-Instruct)        | 93%              | 50%    | ✅ Comparable to paper |
+| `lmentry_more_letters`         | ✅ Running     | 62% (Qwen2-1.5B-Instruct)        | 55%              | 50%    | ✅ Comparable to paper |
+| `lmentry_first_alphabetically` | ✅ Running     | 49% (Qwen2-1.5B-Instruct)        | 87%              | 50%    | ⚠️ Lower than paper    |
+| `lmentry_sentence_containing`  | ✅ Running     | 83% (Qwen2-1.5B-Instruct)        | 97%              | ~0%    | ✅ Comparable to paper |
+| `lmentry_starts_with_letter`   | ✅ Running     | 96% (Qwen2-1.5B-Instruct)        | 98%              | ~0%    | ✅ Comparable to paper |
+| `lmentry_*` (25 tasks)         | ✅ Running     | Varies by task                   | See paper        | 50%    | ✅ Verified            |
+| `itabench_arc_challenge_it-it` | ✅ Running     | 32% (Qwen2-1.5B-Instruct)        | ~42%             | 25%    | ⚠️ Lower on Italian    |
+| `itabench_hellaswag_it-it`     | ✅ Running     | 49% (Qwen2-1.5B-Instruct)        | ~60%             | 25%    | ⚠️ Lower on Italian    |
+| `itabench_piqa_it-it`          | ✅ Running     | 59% (Qwen2-1.5B-Instruct)        | ~72%             | 25%    | ⚠️ Lower on Italian    |
+| `itabench_ami_mc`              | ✅ Running     | 41% (Qwen2-1.5B-Instruct)        | —                | 50%    | ✅ Above random        |
+| `itabench_*` (36+ tasks)       | ✅ Running     | Varies by task                   | See paper        | Varies | ✅ Verified            |
+| `italic`                       | ✅ Running     | 38% (Qwen2-1.5B-Instruct)        | —                | 25%    | ✅ Above random        |
+| `farseval_pkbets`              | 🚫 Unavailable | —                                | —                | —      | — N/A                  |
+| `percqa`                       | 🚫 Unavailable | —                                | —                | —      | — N/A                  |
+| `uinauil_*` (6 tasks)          | 🚫 Unavailable | —                                | —                | —      | — ELG API broken       |
+| `blimp_it`                     | 🚫 Unavailable | —                                | —                | —      | — Use `multiblimp_ita` |
 
 **Legend:**
 - ✅ **Comparable to paper** = Within 15% of paper baseline
