@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_bigger_number
+dataset_name: bigger_number
+tag:
+  - lmentry
+  - lmentry_mc

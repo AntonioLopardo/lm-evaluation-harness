@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_last_letter
+dataset_name: last_letter
+tag:
+  - lmentry
+  - lmentry_mc

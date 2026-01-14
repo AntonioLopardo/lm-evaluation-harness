@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_first_alphabetically
+dataset_name: first_alphabetically
+tag:
+  - lmentry
+  - lmentry_mc

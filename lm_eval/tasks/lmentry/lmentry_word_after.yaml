@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_word_after
+dataset_name: word_after
+tag:
+  - lmentry
+  - lmentry_mc

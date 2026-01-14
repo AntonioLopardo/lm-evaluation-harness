@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_more_letters
+dataset_name: more_letters
+tag:
+  - lmentry
+  - lmentry_mc

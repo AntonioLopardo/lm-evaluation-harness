@@ -1,0 +1,13 @@
+# Template for LMentry generative tasks
+# These tasks require model to generate a sentence/word matching criteria
+dataset_path: clembench-playpen/lmentry
+test_split: test
+output_type: generate_until
+doc_to_text: "{{input}}"
+doc_to_target: ""
+generation_kwargs:
+  until:
+    - "\n"
+  max_gen_toks: 100
+metadata:
+  version: 1.0

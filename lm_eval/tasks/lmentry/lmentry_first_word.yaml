@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_first_word
+dataset_name: first_word
+tag:
+  - lmentry
+  - lmentry_mc

@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_rhyming_word
+dataset_name: rhyming_word
+tag:
+  - lmentry
+  - lmentry_mc

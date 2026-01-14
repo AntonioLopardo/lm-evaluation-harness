@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_any_words_category
+dataset_name: any_words_from_category
+tag:
+  - lmentry
+  - lmentry_mc

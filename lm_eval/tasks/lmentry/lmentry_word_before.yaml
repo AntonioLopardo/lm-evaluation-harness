@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_word_before
+dataset_name: word_before
+tag:
+  - lmentry
+  - lmentry_mc

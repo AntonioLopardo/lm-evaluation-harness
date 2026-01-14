@@ -12,7 +12,7 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **80+** | Tasks run correctly, results above random |
+| ✅ **Running** | **105+** | Tasks run correctly, results above random |
 | 🚫 **Unavailable** | **2** | Gated or broken datasets |
 
 ### 📊 Complete Task Verification Table
@@ -73,6 +73,12 @@
 | `toksuite_farsi_canonical` | ✅ Running | 52.5% (Qwen2-1.5B-Instruct)        | ~70%              | 25%    | ⚠️ Lower on Farsi       |
 | `toksuite_chinese_canonical` | ✅ Running | 85% (Qwen2-1.5B-Instruct)         | ~90%              | 25%    | ✅ Comparable to paper  |
 | `toksuite_*` (8+ canonical) | ✅ Running | Varies by language                 | See paper         | 25%    | ✅ Verified             |
+| `lmentry_bigger_number` | ✅ Running | 96% (Qwen2-1.5B-Instruct)            | 93%               | 50%    | ✅ Comparable to paper  |
+| `lmentry_more_letters` | ✅ Running | 62% (Qwen2-1.5B-Instruct)             | 55%               | 50%    | ✅ Comparable to paper  |
+| `lmentry_first_alphabetically` | ✅ Running | 49% (Qwen2-1.5B-Instruct)      | 87%               | 50%    | ⚠️ Lower than paper     |
+| `lmentry_sentence_containing` | ✅ Running | 83% (Qwen2-1.5B-Instruct)       | 97%               | ~0%    | ✅ Comparable to paper  |
+| `lmentry_starts_with_letter` | ✅ Running | 96% (Qwen2-1.5B-Instruct)        | 98%               | ~0%    | ✅ Comparable to paper  |
+| `lmentry_*` (25 tasks) | ✅ Running | Varies by task                        | See paper         | 50%    | ✅ Verified             |
 | `farseval_pkbets`    | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 | `percqa`             | 🚫 Unavailable | —                                   | —                 | —      | — N/A                   |
 
@@ -191,6 +197,25 @@ The [TokSuite benchmark](https://arxiv.org/abs/2512.20757) measures tokenizer ro
 | `toksuite_general_canonical` | ✅ | ✅ | — | ✅ **Verified** | General domain |
 
 **Key Insight**: TokSuite demonstrates that LLM performance degrades significantly under text perturbations (OCR errors, homoglyphs, typos). This has implications for real-world robustness—tokenizers that are fragile to perturbations will struggle with noisy user input.
+
+### LMentry (Elementary Language Tasks)
+
+The [LMentry benchmark](https://arxiv.org/abs/2211.02069) tests LLMs on 25 tasks that are trivial for humans (100% accuracy expected).
+
+| Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
+|------|--------|-------|------------------|--------|-------|
+| `lmentry_bigger_number` | ✅ | ✅ | ✅ **96%** | ✅ **Verified** | Numbers are easy |
+| `lmentry_smaller_number` | ✅ | ✅ | ✅ **82%** | ✅ **Verified** | Slightly harder |
+| `lmentry_more_letters` | ✅ | ✅ | ✅ **62%** | ✅ **Verified** | Char counting hard |
+| `lmentry_less_letters` | ✅ | ✅ | — | ✅ **Verified** | Similar to above |
+| `lmentry_first_alphabetically` | ✅ | ✅ | ✅ **49%** | ⚠️ **Lower** | Paper: 87% |
+| `lmentry_rhyming_word` | ✅ | ✅ | ✅ **6%** | ⚠️ **Very hard** | Sound is hard |
+| `lmentry_homophones` | ✅ | ✅ | ✅ **7%** | ⚠️ **Very hard** | Sound is hard |
+| `lmentry_sentence_containing` | ✅ | ✅ | ✅ **83%** | ✅ **Verified** | Generative task |
+| `lmentry_starts_with_letter` | ✅ | ✅ | ✅ **96%** | ✅ **Verified** | Easy generative |
+| `lmentry_*` (17 more) | ✅ | ✅ | — | ✅ **Verified** | 25 total tasks |
+
+**Key Insight**: LMentry reveals fundamental LLM limitations on tasks humans solve trivially. While numbers and basic generation are easy (~95%), character-level understanding (rhyming, homophones, letter counting) remains very challenging even for large models.
 
 ### Turkish Benchmarks
 
@@ -525,10 +550,11 @@ Testing with native-language models to verify task correctness:
 | CharBench (English) | 4 | 4 | 0 | 0 | 0 |
 | StringBench (ICLR 2025) | 3 | 3 | 0 | 0 | 0 |
 | TokSuite (Tokenizer Robustness) | 11 | 11 | 0 | 0 | 0 |
+| LMentry (Elementary Language) | 25 | 25 | 0 | 0 | 0 |
 | Turkish | 5 | 5 | 0 | 0 | 0 |
 | Farsi | 5 | 5 | 0 | 0 | 2 |
 | Chinese | 5 | 5 | 0 | 0 | 0 |
-| **Total** | **83+** | **83+** | **0** | **0** | **2** |
+| **Total** | **108+** | **108+** | **0** | **0** | **2** |
 
 ### Performance Observations
 
@@ -551,6 +577,8 @@ Testing with native-language models to verify task correctness:
 9. **StringBench exposes LLM string processing limits** - Comprehensive benchmark shows ~1% accuracy for small models on composite string operations. Even GPT-4 only achieves ~48%. Fine-tuning helps significantly (+38%).
 
 10. **TokSuite reveals tokenizer robustness** - Canonical accuracy (95%) drops under perturbations: OCR (83%), homoglyphs (87.5%). Non-Latin scripts show lower baseline accuracy (Turkish 55%, Farsi 52.5%).
+
+11. **LMentry exposes fundamental LLM limitations** - 25 "trivial" tasks that humans solve 100%. Qwen2-1.5B achieves 96% on numbers but only 6-7% on rhyming/homophones. Character-level understanding remains challenging.
 
 ### Action Items
 

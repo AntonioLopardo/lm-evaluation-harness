@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_most_associated
+dataset_name: most_associated_word
+tag:
+  - lmentry
+  - lmentry_mc

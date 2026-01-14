@@ -1,0 +1,6 @@
+include: _lmentry_mc_template.yaml
+task: lmentry_last_word
+dataset_name: last_word
+tag:
+  - lmentry
+  - lmentry_mc
