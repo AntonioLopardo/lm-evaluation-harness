@@ -12,8 +12,8 @@
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ **Running** | **262+** | Tasks run correctly, results above random (includes 122 Belebele languages x2 variants) |
-| 🚫 **Unavailable** | **2** | Gated or broken datasets |
+| ✅ **Running** | **389+** | Tasks run correctly, results above random (includes 122 Belebele languages x2 variants) |
+| 🚫 **Unavailable** | **4** | Gated or broken datasets (farseval_pkbets, percqa, uinauil_*, blimp_it) |
 
 ### 📊 Complete Task Verification Table
 
@@ -211,17 +211,17 @@ The [CUTE benchmark](https://arxiv.org/abs/2409.15452) tests LLMs' understanding
 | `cute_spell` | ✅ | ✅ | ✅ **97%** (Qwen2-7B-Instruct) | ✅ **Ready** | Spell out a word with spaces |
 | `cute_spell_inverse` | ✅ | ✅ | ✅ **100%** (Qwen2-7B-Instruct) | ✅ **Ready** | Write word from spelled letters |
 | `cute_contains_char` | ✅ | ✅ | ✅ **67%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Check if char is in word |
-| `cute_contains_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Check if word is in sentence |
-| `cute_orth` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Orthographic similarity |
-| `cute_sem` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Semantic similarity |
-| `cute_ins_char` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Insert character |
-| `cute_ins_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Insert word |
-| `cute_del_char` | ✅ | ✅ | ✅ **58%** (Qwen2-7B-Instruct) | ✅ **Ready** | Delete character |
-| `cute_del_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Delete word |
-| `cute_sub_char` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Substitute character |
-| `cute_sub_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Substitute word |
-| `cute_swap_char` | ✅ | ✅ | ✅ **2%** (Qwen2-7B-Instruct) | ✅ **Ready** | Swap chars (very hard for LLMs!) |
-| `cute_swap_word` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Swap words |
+| `cute_contains_word` | ✅ | ✅ | ✅ **86%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Check if word is in sentence |
+| `cute_orth` | ✅ | ✅ | ✅ **53%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Orthographic similarity |
+| `cute_sem` | ✅ | ✅ | ✅ **83%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Semantic similarity |
+| `cute_ins_char` | ✅ | ✅ | ✅ **4%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Insert character |
+| `cute_ins_word` | ✅ | ✅ | ✅ **22%** (Qwen2-1.5B-Instruct) | ✅ **Ready** | Insert word |
+| `cute_del_char` | ✅ | ✅ | ✅ **22-25%** (Qwen2-1.5B, 0-3shot) | ✅ **Ready** | Delete character |
+| `cute_del_word` | ✅ | ✅ | ✅ **46%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Delete word |
+| `cute_sub_char` | ✅ | ✅ | ✅ **2-3%** (Qwen2-1.5B, 0-3shot) | ✅ **Ready** | Substitute character |
+| `cute_sub_word` | ✅ | ✅ | ✅ **38%** (Qwen2-1.5B, 0-3shot) | ✅ **Ready** | Substitute word |
+| `cute_swap_char` | ✅ | ✅ | ✅ **0.5-1%** (Qwen2-1.5B, 0-3shot) | ✅ **Ready** | Swap chars (very hard for LLMs!) |
+| `cute_swap_word` | ✅ | ✅ | ✅ **6-8%** (Qwen2-1.5B, 0-3shot) | ✅ **Ready** | Swap words |
 
 **Key Insight**: As shown in the paper, LLMs know how to spell their tokens but struggle to manipulate text at the character level. Character-level tasks are harder than word-level equivalents.
 
@@ -231,14 +231,14 @@ The [EXECUTE benchmark](https://aclanthology.org/2025.findings-acl.95/) extends 
 
 | Task | Added? | Runs? | Tested vs Paper? | Status | Notes |
 |------|--------|-------|------------------|--------|-------|
-| `execute_eng_spell` | ✅ | ✅ | ✅ **90%** (Qwen2-1.5B) | ✅ **Ready** | English - Latin alphabet |
-| `execute_zho_spell` | ✅ | ✅ | ✅ **96%** (Qwen2-1.5B) | ✅ **Ready** | Chinese - logographic (easiest) |
-| `execute_kor_spell` | ✅ | ✅ | ✅ **28%** (Qwen2-1.5B) | ✅ **Ready** | Korean - Hangul syllable blocks |
-| `execute_ara_spell` | ✅ | ✅ | ✅ **12%** (Qwen2-1.5B) | ✅ **Ready** | Arabic - Abjad (hardest) |
-| `execute_jpn_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Japanese - mixed scripts |
-| `execute_rus_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Russian - Cyrillic |
-| `execute_hin_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | Hindi - Devanagari |
-| `execute_deu_*` | ✅ | ✅ | ✅ Verified | ✅ **Ready** | German - Latin |
+| `execute_eng_spell` | ✅ | ✅ | ✅ **83%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | English - Latin alphabet |
+| `execute_zho_spell` | ✅ | ✅ | ✅ **92%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Chinese - logographic (easiest) |
+| `execute_kor_spell` | ✅ | ✅ | ✅ **26%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Korean - Hangul syllable blocks |
+| `execute_ara_spell` | ✅ | ✅ | ✅ **13%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Arabic - Abjad (hardest) |
+| `execute_jpn_spell` | ✅ | ✅ | ✅ **52%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Japanese - mixed scripts |
+| `execute_rus_spell` | ✅ | ✅ | ✅ **24%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Russian - Cyrillic |
+| `execute_hin_spell` | ✅ | ✅ | ✅ **21%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | Hindi - Devanagari |
+| `execute_deu_spell` | ✅ | ✅ | ✅ **60%** (Qwen2-1.5B, 3-shot) | ✅ **Ready** | German - Latin |
 
 **Key Insight**: Performance varies dramatically by script type. Logographic scripts (Chinese) are easiest; Abjads (Arabic) and featural scripts (Korean) are hardest. This aligns with the paper's findings on CWT (character-word-token) statistics.
 
@@ -770,7 +770,7 @@ Testing with native-language models to verify task correctness:
 
 6. **CUTE benchmark reveals character-level limitations** - LLMs know how to spell their tokens (97-100%) but fail at manipulation tasks like swap (2%). Larger models scale better on composition tasks.
 
-7. **EXECUTE shows script-dependent performance** - Multilingual token understanding varies by script: Chinese (logographic) ~96%, English ~90%, Korean ~28%, Arabic ~12%. This correlates with character-word-token statistics.
+7. **EXECUTE shows script-dependent performance** - Multilingual token understanding varies by script: Chinese (logographic) ~92%, English ~83%, Korean ~26%, Arabic ~13%. This correlates with character-word-token statistics.
 
 8. **CharBench confirms tokenization-task relationship** - Character counting tasks (39%) are easier than positional tasks (11-20%). Token length correlates with accuracy on position tasks, but word length/count matters more for counting tasks.
 
