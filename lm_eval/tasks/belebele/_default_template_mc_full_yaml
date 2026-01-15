@@ -1,0 +1,37 @@
+# Belebele template with FULL ANSWER probability scoring
+# Instead of scoring just the letter (A, B, C, D), this scores the 
+# probability of each complete answer text.
+#
+# This approach (like openbookqa/hellaswag):
+# 1. Shows only the passage and question (no answer options in prompt)
+# 2. Scores the probability of each complete answer text
+# 3. Picks the answer with highest probability (acc_norm recommended)
+#
+# Usage: Use tasks like belebele_mc_full_eng_Latn instead of belebele_eng_Latn
+#
+dataset_path: facebook/belebele
+fewshot_config:
+  sampler: first_n
+output_type: multiple_choice
+should_decontaminate: true
+doc_to_decontamination_query: "{{question}}"
+
+# Present only the passage and question - no options shown
+# This follows the openbookqa/hellaswag pattern
+doc_to_text: "{{flores_passage}}\n\nQuestion: {{question.strip()}}\nAnswer:"
+
+# Score the FULL answer text - use function to handle special characters in answers
+doc_to_choice: !function utils.doc_to_choice
+
+# Target is the index (0-3) of the correct answer
+doc_to_target: "{{['1', '2', '3', '4'].index(correct_answer_num)}}"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.0

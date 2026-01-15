@@ -1,0 +1,5 @@
+"dataset_name": "heb_Hebr"
+"fewshot_split": "test"
+"include": "_default_template_mc_full_yaml"
+"task": "belebele_mc_full_heb_Hebr"
+"test_split": "test"

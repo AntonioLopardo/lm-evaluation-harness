@@ -1,0 +1,5 @@
+"dataset_name": "lin_Latn"
+"fewshot_split": "test"
+"include": "_default_template_mc_full_yaml"
+"task": "belebele_mc_full_lin_Latn"
+"test_split": "test"

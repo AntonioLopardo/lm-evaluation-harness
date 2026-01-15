@@ -1,6 +1,8 @@
 include: _lmentry_mc_template.yaml
 task: lmentry_all_words_category
 dataset_name: all_words_from_category
+doc_to_target: !function utils.doc_to_target_all_words_category
+process_results: !function utils.process_results_yes_no
 tag:
   - lmentry
   - lmentry_mc

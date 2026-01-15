@@ -26,15 +26,40 @@ Homepage: https://github.com/facebookresearch/belebele
 
 #### Groups
 
-- `belebele`: All 122 languages of the Belebele dataset, evaluated following the methodology in MMLU's original implementation.
+- `belebele`: All 122 languages of the Belebele dataset, evaluated with letter-only probability scoring (A/B/C/D).
+- `belebele_mc_full`: All 122 languages with full answer text probability scoring.
 
 #### Tasks
 
+Two evaluation variants are available:
 
-The following tasks evaluate languages in the Belebele dataset using loglikelihood-based multiple-choice scoring:
-- `belebele_{language}`
+**1. Letter-only scoring (default, higher scores):**
+- `belebele_{language}` - Scores the probability of letters A, B, C, D
+- Example: `belebele_eng_Latn`
+- Uses template: `_default_template_yaml`
+- Benchmark: ~69% on English with Qwen2-1.5B-Instruct
+
+**2. Full answer scoring:**
+- `belebele_mc_full_{language}` - Scores the probability of the complete answer text
+- Example: `belebele_mc_full_eng_Latn`
+- Uses template: `_default_template_mc_full_yaml`
+- Benchmark: ~49% (acc_norm) on English with Qwen2-1.5B-Instruct
+- This approach is more semantically meaningful as it evaluates the model's understanding of the actual answer content rather than just letter preferences.
+- Use `acc_norm` metric for best results (normalizes by answer length)
 
 The variant evaluated here is the 0-shot or few-shot evaluation with English Instructions.
+
+#### Generating Configs
+
+To generate configs for all languages:
+
+```bash
+# Letter-only scoring (existing behavior)
+python _generate_configs.py --base_yaml_path _default_template_yaml
+
+# Full answer scoring
+python _generate_configs.py --base_yaml_path _default_template_mc_full_yaml --task_prefix mc_full
+```
 
 ### Checklist
 

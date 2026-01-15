@@ -135,3 +135,48 @@ def process_results_ends_with_word(doc, results):
     ends = 1.0 if re.search(pattern, pred) else 0.0
     
     return {"exact_match": ends}
+
+
+def doc_to_target_any_words_category(doc):
+    """Compute target for any_words_from_category task.
+    
+    Returns 'yes' if any words are in the category, 'no' otherwise.
+    """
+    category_words = doc.get("category_words", [])
+    return "yes" if len(category_words) > 0 else "no"
+
+
+def doc_to_target_all_words_category(doc):
+    """Compute target for all_words_from_category task.
+    
+    Returns 'yes' if all words are in the category (no distractors), 'no' otherwise.
+    """
+    distractors = doc.get("distractors", [])
+    return "yes" if len(distractors) == 0 else "no"
+
+
+def process_results_yes_no(doc, results):
+    """Check if prediction matches yes/no answer for category tasks."""
+    pred = results[0].strip().lower()
+    # Remove common punctuation
+    pred = re.sub(r'[.,!?;:\'"]+', '', pred).strip()
+    
+    # Get the target from the doc_to_target function result
+    # The target is computed dynamically, so we check which task this is
+    category_words = doc.get("category_words", [])
+    distractors = doc.get("distractors", [])
+    
+    # Determine expected answer based on task type
+    # For any_words_category: yes if any category_words exist
+    # For all_words_category: yes if no distractors
+    # We can distinguish by checking num_words vs len(category_words)
+    if "num_distractors" in doc:
+        # This is likely all_words_category
+        target = "yes" if len(distractors) == 0 else "no"
+    else:
+        target = "yes" if len(category_words) > 0 else "no"
+    
+    # Exact match
+    exact_match = 1.0 if pred == target else 0.0
+    
+    return {"exact_match": exact_match}
