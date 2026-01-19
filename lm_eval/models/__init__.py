@@ -69,3 +69,4 @@ def _register_all_models():
 _register_all_models()
 
 __all__ = ["MODEL_MAPPING"]
+from lm_eval.models.pathpiece_hf import PathPieceHFLM
