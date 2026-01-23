@@ -27,6 +27,10 @@ MODEL_MAPPING = {
     "anthropic-chat-completions": "lm_eval.models.anthropic_llms:AnthropicChat",
     "anthropic-completions": "lm_eval.models.anthropic_llms:AnthropicLM",
     "dummy": "lm_eval.models.dummy:DummyLM",
+    # TokSuite custom tokenizer models
+    "toksuite_hf": "lm_eval.models.toksuite_hf:TokSuiteHFLM",
+    "toksuite_tiktoken": "lm_eval.models.toksuite_hf:TokSuiteTiktokenLM",
+    "toksuite_tokenmonster": "lm_eval.models.toksuite_hf:TokSuiteTokenMonsterLM",
     "ggml": "lm_eval.models.gguf:GGUFLM",
     "gguf": "lm_eval.models.gguf:GGUFLM",
     "hf": "lm_eval.models.huggingface:HFLM",
@@ -69,4 +73,9 @@ def _register_all_models():
 _register_all_models()
 
 __all__ = ["MODEL_MAPPING"]
-from lm_eval.models.pathpiece_hf import PathPieceHFLM
+
+# PathPiece is optional - only import if pathpiece package is available
+try:
+    from lm_eval.models.pathpiece_hf import PathPieceHFLM
+except ImportError:
+    pass  # pathpiece not installed, skip this model

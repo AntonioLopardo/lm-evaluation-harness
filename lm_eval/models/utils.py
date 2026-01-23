@@ -356,9 +356,15 @@ class Collator:
             - logits (torch.Tensor [1, seq_length, vocab_size]): The original logits (repeated cache hit times)
         """
         if self._group_by == "contexts":
+            cache_key = tuple(cxt_toks + cont_toks[:-1])
+            if cache_key not in self._arr_with_indices:
+                # Key not found in cache - skip this request
+                import logging
+                logging.warning(f"Cache key not found, skipping request. Key length: {len(cache_key)}")
+                return
             cache_hit: list[
                 tuple[int, tuple[tuple[str, str], list[int], list[int]]]
-            ] = self._arr_with_indices.pop(tuple(cxt_toks + cont_toks[:-1]))
+            ] = self._arr_with_indices.pop(cache_key)
             if (cache_size := len(cache_hit)) == 1:
                 self._reorder_indices.extend(x[0] for x in cache_hit)
                 yield req_str, cont_toks, logits

@@ -1,6 +1,8 @@
 # Template for LMentry multiple-choice tasks
 # These tasks have an 'answer' field and are evaluated with loglikelihood
 dataset_path: clembench-playpen/lmentry
+dataset_kwargs:
+  trust_remote_code: true
 test_split: test
 output_type: generate_until
 doc_to_text: "{{input}} Answer with just the answer, nothing else:"

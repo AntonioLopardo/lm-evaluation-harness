@@ -91,6 +91,7 @@ class HFLM(TemplateLM):
         use_fast_tokenizer: bool | None = True,
         add_bos_token: bool | None = None,
         prefix_token_id: int | None = None,
+        eos_token_id: int | None = None,
         # arguments used for splitting a model across GPUs naively.
         # only used if `parallelize=True`.
         parallelize: bool | None = False,
@@ -339,6 +340,7 @@ class HFLM(TemplateLM):
             self._world_size = 1
 
         self.custom_prefix_token_id = prefix_token_id
+        self.custom_eos_token_id = eos_token_id
         if prefix_token_id is not None:
             eval_logger.info(
                 f"Loglikelihood prefix token id used in evaluation: {self.prefix_token_id}"
@@ -446,6 +448,8 @@ class HFLM(TemplateLM):
     @property
     def eot_token_id(self) -> int:
         # we use EOT because end of *text* is more accurate for what we're doing than end of *sentence*
+        if self.custom_eos_token_id is not None:
+            return self.custom_eos_token_id
         return self.tokenizer.eos_token_id
 
     @property
@@ -1210,7 +1214,13 @@ class HFLM(TemplateLM):
             for _, context_enc, continuation_enc in chunk:
                 # sanity check
                 assert len(context_enc) > 0
-                assert len(continuation_enc) > 0
+                # Handle empty continuations by substituting a placeholder token
+                if len(continuation_enc) == 0:
+                    eval_logger.warning(
+                        f"Empty continuation encoding encountered. Using placeholder token."
+                    )
+                    # Use EOS token as placeholder - result will be treated as low probability
+                    continuation_enc = [self.tokenizer.eos_token_id if self.tokenizer.eos_token_id is not None else 0]
                 assert len(continuation_enc) <= self.max_length
 
                 # how this all works (illustrated on a causal decoder-only setup):

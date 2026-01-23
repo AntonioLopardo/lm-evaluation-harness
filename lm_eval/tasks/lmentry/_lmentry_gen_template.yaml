@@ -1,6 +1,8 @@
 # Template for LMentry generative tasks
 # These tasks require model to generate a sentence/word matching criteria
 dataset_path: clembench-playpen/lmentry
+dataset_kwargs:
+  trust_remote_code: true
 test_split: test
 output_type: generate_until
 doc_to_text: "{{input}}"
