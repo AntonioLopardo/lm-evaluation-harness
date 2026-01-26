@@ -1,7 +1,7 @@
 include: _toksuite_template.yaml
 task: toksuite_stem_canonical
 dataset_path: toksuite/tokenizer_robustness_completion_stem
-dataset_name: tokenizer_robustness_completion_stem_canonical
+dataset_name: toksuite_stem_canonical
 tag:
   - toksuite
   - toksuite_stem

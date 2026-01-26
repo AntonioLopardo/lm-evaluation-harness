@@ -1,7 +1,7 @@
 include: _toksuite_template.yaml
 task: toksuite_english_homoglyphs
 dataset_path: toksuite/tokenizer_robustness_completion_english
-dataset_name: tokenizer_robustness_completion_english_homoglyphs
+dataset_name: toksuite_english_homoglyphs
 tag:
   - toksuite
   - toksuite_english

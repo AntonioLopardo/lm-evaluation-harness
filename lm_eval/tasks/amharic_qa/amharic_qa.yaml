@@ -1,0 +1,24 @@
+task: amharic_qa
+dataset_path: israel/AmharicQA
+output_type: generate_until
+training_split: train
+validation_split: validation
+test_split: test
+doc_to_text: "አውድ: {{context}}\n\nጥያቄ: {{question}}\n\nመልስ:"
+doc_to_target: "{{answers}}"
+process_results: !function utils.process_results_amharic_qa
+generation_kwargs:
+  until:
+    - "\n"
+  do_sample: false
+  temperature: 0.0
+  max_gen_toks: 128
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+  - metric: f1
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

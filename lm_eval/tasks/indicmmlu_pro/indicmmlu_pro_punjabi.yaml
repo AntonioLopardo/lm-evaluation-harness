@@ -1,0 +1,3 @@
+task: indicmmlu_pro_punjabi
+dataset_name: punjabi
+include: _default_template_yaml

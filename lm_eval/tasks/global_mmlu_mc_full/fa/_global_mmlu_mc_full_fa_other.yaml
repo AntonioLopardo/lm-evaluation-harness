@@ -1,0 +1,21 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: global_mmlu_mc_full_fa_other
+metadata:
+  version: 0.0
+task:
+- global_mmlu_mc_full_fa_business_ethics
+- global_mmlu_mc_full_fa_clinical_knowledge
+- global_mmlu_mc_full_fa_college_medicine
+- global_mmlu_mc_full_fa_global_facts
+- global_mmlu_mc_full_fa_human_aging
+- global_mmlu_mc_full_fa_international_law
+- global_mmlu_mc_full_fa_management
+- global_mmlu_mc_full_fa_marketing
+- global_mmlu_mc_full_fa_medical_genetics
+- global_mmlu_mc_full_fa_miscellaneous
+- global_mmlu_mc_full_fa_nutrition
+- global_mmlu_mc_full_fa_professional_accounting
+- global_mmlu_mc_full_fa_professional_law
+- global_mmlu_mc_full_fa_professional_medicine

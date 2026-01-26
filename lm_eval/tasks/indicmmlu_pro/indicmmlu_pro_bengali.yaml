@@ -1,0 +1,3 @@
+task: indicmmlu_pro_bengali
+dataset_name: bengali
+include: _default_template_yaml

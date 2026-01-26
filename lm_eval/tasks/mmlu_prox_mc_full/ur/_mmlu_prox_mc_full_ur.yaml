@@ -1,0 +1,22 @@
+group: mmlu_prox_mc_full_ur
+task:
+  - mmlu_prox_mc_full_ur_biology
+  - mmlu_prox_mc_full_ur_business
+  - mmlu_prox_mc_full_ur_chemistry
+  - mmlu_prox_mc_full_ur_computer_science
+  - mmlu_prox_mc_full_ur_economics
+  - mmlu_prox_mc_full_ur_engineering
+  - mmlu_prox_mc_full_ur_health
+  - mmlu_prox_mc_full_ur_history
+  - mmlu_prox_mc_full_ur_law
+  - mmlu_prox_mc_full_ur_math
+  - mmlu_prox_mc_full_ur_other
+  - mmlu_prox_mc_full_ur_philosophy
+  - mmlu_prox_mc_full_ur_physics
+  - mmlu_prox_mc_full_ur_psychology
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 0.0

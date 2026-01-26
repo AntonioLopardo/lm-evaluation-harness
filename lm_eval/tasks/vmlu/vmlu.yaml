@@ -1,0 +1,16 @@
+task: vmlu
+dataset_path: vilm/vmlu_val
+output_type: multiple_choice
+validation_split: validation
+doc_to_text: !function utils.doc_to_text
+doc_to_choice: !function utils.doc_to_choice
+doc_to_target: "{{answer}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

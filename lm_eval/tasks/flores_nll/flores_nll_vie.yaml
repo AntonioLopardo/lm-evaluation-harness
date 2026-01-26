@@ -1,0 +1,3 @@
+task: flores_nll_vie
+dataset_name: vie_Latn
+include: _default_template_yaml

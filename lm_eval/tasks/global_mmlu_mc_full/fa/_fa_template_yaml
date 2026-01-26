@@ -1,0 +1,29 @@
+# Global MMLU MC Full template for fa
+# Uses full answer text probability scoring instead of A/B/C/D letters
+dataset_path: CohereForAI/Global-MMLU
+dataset_name: fa
+test_split: test
+fewshot_split: dev
+fewshot_config:
+  sampler: first_n
+output_type: multiple_choice
+
+# Present only the question - no answer options shown in prompt
+# This follows the belebele_mc_full/hellaswag pattern
+doc_to_text: "{{question.strip()}}\nAnswer:"
+
+# Score the FULL answer text - use function to handle special characters in answers
+doc_to_choice: !function utils.doc_to_choice
+
+# Target is the index (0-3) of the correct answer
+doc_to_target: "{{'ABCD'.index(answer)}}"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.0

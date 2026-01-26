@@ -1,0 +1,3 @@
+task: indicmmlu_pro_kannada
+dataset_name: kannada
+include: _default_template_yaml

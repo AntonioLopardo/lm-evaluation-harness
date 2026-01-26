@@ -1,0 +1,27 @@
+# MMLU-ProX MC Full template for ur
+# Uses full answer text probability scoring instead of generative extraction
+dataset_path: li-lab/MMLU-ProX
+dataset_name: ur
+test_split: test
+num_fewshot: 0
+output_type: multiple_choice
+
+# Present only the question - no answer options shown in prompt
+# This follows the belebele_mc_full/hellaswag pattern
+doc_to_text: "{{question}}\nAnswer:"
+
+# Score the FULL answer text - use function to handle variable number of options
+doc_to_choice: !function utils.doc_to_choice
+
+# Target is the answer_index (0-based index of correct answer)
+doc_to_target: "{{answer_index}}"
+
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.0

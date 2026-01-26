@@ -1,0 +1,3 @@
+task: flores_nll_zho
+dataset_name: zho_Hans
+include: _default_template_yaml

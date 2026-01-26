@@ -1,0 +1,18 @@
+group: indicmmlu_pro
+task:
+  - indicmmlu_pro_urdu
+  - indicmmlu_pro_hindi
+  - indicmmlu_pro_bengali
+  - indicmmlu_pro_gujarati
+  - indicmmlu_pro_kannada
+  - indicmmlu_pro_marathi
+  - indicmmlu_pro_punjabi
+  - indicmmlu_pro_tamil
+  - indicmmlu_pro_telugu
+aggregate_metric_list:
+  - aggregation: mean
+    metric: exact_match
+    weight_by_size: true
+    filter_list: custom-extract
+metadata:
+  version: 1.0

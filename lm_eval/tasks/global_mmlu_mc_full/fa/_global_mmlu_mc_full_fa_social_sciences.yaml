@@ -1,0 +1,19 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: global_mmlu_mc_full_fa_social_sciences
+metadata:
+  version: 0.0
+task:
+- global_mmlu_mc_full_fa_econometrics
+- global_mmlu_mc_full_fa_high_school_geography
+- global_mmlu_mc_full_fa_high_school_government_and_politics
+- global_mmlu_mc_full_fa_high_school_macroeconomics
+- global_mmlu_mc_full_fa_high_school_microeconomics
+- global_mmlu_mc_full_fa_high_school_psychology
+- global_mmlu_mc_full_fa_human_sexuality
+- global_mmlu_mc_full_fa_professional_psychology
+- global_mmlu_mc_full_fa_public_relations
+- global_mmlu_mc_full_fa_security_studies
+- global_mmlu_mc_full_fa_sociology
+- global_mmlu_mc_full_fa_us_foreign_policy

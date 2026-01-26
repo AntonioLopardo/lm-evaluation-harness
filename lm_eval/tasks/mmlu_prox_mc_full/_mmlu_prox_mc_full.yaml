@@ -1,0 +1,10 @@
+group: mmlu_prox_mc_full
+task:
+  - mmlu_prox_mc_full_th
+  - mmlu_prox_mc_full_ur
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 0.0

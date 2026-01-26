@@ -1,0 +1,3 @@
+task: indicmmlu_pro_marathi
+dataset_name: marathi
+include: _default_template_yaml

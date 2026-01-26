@@ -1,0 +1,3 @@
+task: indicmmlu_pro_gujarati
+dataset_name: gujarati
+include: _default_template_yaml

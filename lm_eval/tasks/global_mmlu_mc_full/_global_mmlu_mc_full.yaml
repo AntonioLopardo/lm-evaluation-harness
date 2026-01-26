@@ -1,0 +1,11 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: global_mmlu_mc_full
+metadata:
+  version: 0.0
+task:
+- global_mmlu_mc_full_fa
+- global_mmlu_mc_full_tr
+- global_mmlu_mc_full_it
+- global_mmlu_mc_full_zh

@@ -1,7 +1,7 @@
 include: _toksuite_template.yaml
 task: toksuite_farsi_canonical
 dataset_path: toksuite/tokenizer_robustness_completion_farsi
-dataset_name: tokenizer_robustness_completion_farsi_canonical
+dataset_name: toksuite_farsi_canonical
 tag:
   - toksuite
   - toksuite_farsi

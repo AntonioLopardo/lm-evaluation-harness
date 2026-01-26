@@ -1,0 +1,17 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: global_mmlu_mc_full_it_humanities
+metadata:
+  version: 0.0
+task:
+- global_mmlu_mc_full_it_high_school_european_history
+- global_mmlu_mc_full_it_high_school_us_history
+- global_mmlu_mc_full_it_high_school_world_history
+- global_mmlu_mc_full_it_jurisprudence
+- global_mmlu_mc_full_it_logical_fallacies
+- global_mmlu_mc_full_it_moral_disputes
+- global_mmlu_mc_full_it_moral_scenarios
+- global_mmlu_mc_full_it_philosophy
+- global_mmlu_mc_full_it_prehistory
+- global_mmlu_mc_full_it_world_religions

@@ -1,7 +1,7 @@
 include: _toksuite_template.yaml
 task: toksuite_turkish_canonical
 dataset_path: toksuite/tokenizer_robustness_completion_turkish
-dataset_name: tokenizer_robustness_completion_turkish_canonical
+dataset_name: toksuite_turkish_canonical
 tag:
   - toksuite
   - toksuite_turkish

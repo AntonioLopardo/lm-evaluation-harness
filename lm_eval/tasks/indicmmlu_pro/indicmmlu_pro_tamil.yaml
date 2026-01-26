@@ -1,0 +1,3 @@
+task: indicmmlu_pro_tamil
+dataset_name: tamil
+include: _default_template_yaml

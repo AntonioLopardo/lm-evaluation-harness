@@ -1,0 +1,17 @@
+group: flores_nll
+task:
+  - flores_nll_eng
+  - flores_nll_tha
+  - flores_nll_vie
+  - flores_nll_amh
+  - flores_nll_urd
+  - flores_nll_fas
+  - flores_nll_tur
+  - flores_nll_ita
+  - flores_nll_zho
+aggregate_metric_list:
+  - aggregation: mean
+    metric: mean_nll
+    weight_by_size: true
+metadata:
+  version: 1.0

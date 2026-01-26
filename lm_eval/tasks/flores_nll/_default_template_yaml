@@ -1,0 +1,21 @@
+dataset_path: Muennighoff/flores200
+output_type: loglikelihood_rolling
+test_split: devtest
+doc_to_text: ""
+doc_to_target: "{{sentence}}"
+process_results: !function utils.process_results
+metric_list:
+  - metric: word_perplexity
+    aggregation: !function utils.weighted_perplexity
+    higher_is_better: false
+  - metric: byte_perplexity
+    aggregation: !function utils.weighted_perplexity
+    higher_is_better: false
+  - metric: bits_per_byte
+    aggregation: !function utils.bits_per_byte
+    higher_is_better: false
+  - metric: mean_nll
+    aggregation: mean
+    higher_is_better: false
+metadata:
+  version: 1.0
