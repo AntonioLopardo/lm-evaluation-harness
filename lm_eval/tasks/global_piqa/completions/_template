@@ -1,4 +1,6 @@
 dataset_path: mrlbenchmarks/global-piqa-nonparallel
+dataset_kwargs:
+  revision: c1862c45e096ad8dfec236febc9eea27e1881c8e   # SOAR: pre-2026-05-06 release the paper evaluated (see 02-evals D10)
 output_type: multiple_choice
 test_split: test
 doc_to_text: prompt

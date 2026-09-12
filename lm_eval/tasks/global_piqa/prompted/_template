@@ -1,4 +1,6 @@
 dataset_path: mrlbenchmarks/global-piqa-nonparallel
+dataset_kwargs:
+  revision: c1862c45e096ad8dfec236febc9eea27e1881c8e   # SOAR: pre-2026-05-06 release the paper evaluated (see 02-evals D10)
 output_type: generate_until
 test_split: test
 doc_to_text: "Given the following situation, which option is more likely to be correct?\n\nSituation:\n{{prompt}} ...\n\nOption A: {{solution0}}\n\nOption B: {{solution1}}\n\nYour response should end with \"The best answer is: [answer_letter]\" where [answer_letter] is one of A or B."

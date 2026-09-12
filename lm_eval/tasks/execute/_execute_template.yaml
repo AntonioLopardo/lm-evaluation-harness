@@ -1,4 +1,4 @@
-dataset_path: /home/execute_benchmark/execute_hf.py
+dataset_path: /var/tmp/soar/loaders/execute_hf.py
 dataset_kwargs:
   trust_remote_code: true
 output_type: generate_until
