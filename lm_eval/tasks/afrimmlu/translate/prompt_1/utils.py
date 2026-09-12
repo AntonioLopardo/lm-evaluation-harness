@@ -1,3 +1,4 @@
+from lm_eval.utils import weighted_f1_score  # noqa: F401  (SOAR: re-export removed upstream in a5b407dd; the yaml still references utils.weighted_f1_score)
 import ast
 
 

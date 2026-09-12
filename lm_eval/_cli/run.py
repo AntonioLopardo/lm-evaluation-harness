@@ -51,6 +51,10 @@ class Run(SubCommand):
 
         # Defaults are set in config/evaluate_config.py
         config_group = self._parser.add_argument_group("configuration")
+        config_group.add_argument(  # SOAR: pass-through to simple_evaluate; 0 skips bootstrap stderrs
+            "--bootstrap_iters", type=int, default=100000, metavar="<n>",
+            help="Bootstrap iterations for stderr estimates (0 skips them; metric values unchanged)",
+        )
         config_group.add_argument(
             "--config",
             "-C",
@@ -342,6 +346,7 @@ class Run(SubCommand):
         eval_logger = logging.getLogger(__name__)
 
         # Create and validate config (most validation now occurs in EvaluationConfig)
+        bootstrap_iters = args.__dict__.pop("bootstrap_iters", 100000)  # SOAR: not an EvaluatorConfig field
         cfg = EvaluatorConfig.from_cli(args)
 
         from lm_eval import simple_evaluate
@@ -411,6 +416,7 @@ class Run(SubCommand):
             fewshot_random_seed=cfg.seed[3] if cfg.seed else None,
             confirm_run_unsafe_code=cfg.confirm_run_unsafe_code,
             metadata=cfg.metadata,
+            bootstrap_iters=bootstrap_iters,  # SOAR
         )
 
         # Process results
