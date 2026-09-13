@@ -16,17 +16,17 @@ if is_flash_v2_installed():
         raise e
 from transformers import PreTrainedModel, PreTrainedTokenizerBase
 from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutputWithPast
-# SOAR-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
+# TMMC-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
 try:
     from transformers.models.llama.modeling_llama import LlamaDynamicNTKScalingRotaryEmbedding as HFDynamicNTKScalingRotaryEmbedding
 except ImportError:
     LlamaDynamicNTKScalingRotaryEmbedding = HFDynamicNTKScalingRotaryEmbedding = None
-# SOAR-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
+# TMMC-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
 try:
     from transformers.models.llama.modeling_llama import LlamaLinearScalingRotaryEmbedding as HFLinearScalingRotaryEmbedding
 except ImportError:
     LlamaLinearScalingRotaryEmbedding = HFLinearScalingRotaryEmbedding = None
-# SOAR-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
+# TMMC-COMPAT-ROTARY: removed in modern transformers; dead code for TIMTC (rope: False)
 try:
     from transformers.models.llama.modeling_llama import LlamaRotaryEmbedding as HFRotaryEmbedding
 except ImportError:
@@ -250,7 +250,7 @@ class MPTModel(MPTPreTrainedModel):
         return attn_bias
 
     def forward(self, input_ids: Optional[torch.LongTensor]=None, past_key_values: Optional[List[Tuple[torch.FloatTensor]]]=None, attention_mask: Optional[torch.ByteTensor]=None, prefix_mask: Optional[torch.ByteTensor]=None, sequence_id: Optional[torch.LongTensor]=None, return_dict: Optional[bool]=None, output_attentions: Optional[bool]=None, output_hidden_states: Optional[bool]=None, use_cache: Optional[bool]=None, inputs_embeds: Optional[torch.Tensor]=None) -> BaseModelOutputWithPast:
-        # SOAR-COMPAT-CACHE: MPT owns a list-of-tuples cache; modern generate() passes a DynamicCache.
+        # TMMC-COMPAT-CACHE: MPT owns a list-of-tuples cache; modern generate() passes a DynamicCache.
         if past_key_values is not None and not isinstance(past_key_values, (list, tuple)):
             try:
                 _legacy = past_key_values.to_legacy_cache()
@@ -459,7 +459,7 @@ class MPTForCausalLM(MPTPreTrainedModel):
         return isinstance(module, mod_types)
 
     def prepare_inputs_for_generation(self, input_ids: torch.Tensor, past_key_values: Optional[List[Tuple[torch.Tensor, torch.Tensor]]]=None, inputs_embeds: Optional[torch.Tensor]=None, **kwargs: Any) -> Dict[str, Any]:
-        # SOAR-COMPAT-NOCACHE: cached decoding is wrong under modern transformers; generate without the KV cache.
+        # TMMC-COMPAT-NOCACHE: cached decoding is wrong under modern transformers; generate without the KV cache.
         kwargs['use_cache'] = False
         past_key_values = None
         attention_mask = kwargs['attention_mask'].bool()

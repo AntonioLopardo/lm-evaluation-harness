@@ -1,4 +1,4 @@
-# SOAR-COMPAT-KV: explicit None check on past_key_value[0] (empty DynamicCache has non-zero len)
+# TMMC-COMPAT-KV: explicit None check on past_key_value[0] (empty DynamicCache has non-zero len)
 """Attention layers."""
 import math
 import warnings
