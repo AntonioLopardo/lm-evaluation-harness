@@ -1,6 +1,6 @@
 dataset_path: mrlbenchmarks/global-piqa-nonparallel
 dataset_kwargs:
-  revision: c1862c45e096ad8dfec236febc9eea27e1881c8e   # TMMC: pre-2026-05-06 release the paper evaluated (see 02-evals D10)
+  revision: c1862c45e096ad8dfec236febc9eea27e1881c8e   # the pre-2026-05-06 release the paper evaluated; offline, set TMMC_LOCAL_DATASETS=mrlbenchmarks/global-piqa-nonparallel=<snapshot dir>
 output_type: multiple_choice
 test_split: test
 doc_to_text: prompt

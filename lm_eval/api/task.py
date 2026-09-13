@@ -60,6 +60,32 @@ eval_logger = logging.getLogger(__name__)
 TaskConfig = TaskConfig
 
 
+
+# --- TMMC: dataset locations that do not depend on the checkout's location or on Hub state --------------------------
+_REPO_ROOT = __import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.abspath(__file__))))
+
+
+def _resolve_dataset_path(path):
+    """A relative `.py` loading script (`lm_eval/tasks/<task>/<loader>.py` in a task template) is resolved against the
+    repository root, so tasks that ship their own loader run from any working directory and any checkout."""
+    import os
+    if isinstance(path, str) and path.endswith(".py") and not os.path.isabs(path):
+        return os.path.join(_REPO_ROOT, path)
+    return path
+
+
+def _local_dataset(path, dataset_kwargs):
+    """TMMC_LOCAL_DATASETS="<hub id>=<dir>[,<hub id>=<dir>...]" points a Hub dataset at a local snapshot (a pinned revision
+    saved with its README, which `datasets` reads offline; a `revision` kwarg does not survive offline mode). Returns the
+    path and kwargs to load with."""
+    import os
+    for item in filter(None, os.environ.get("TMMC_LOCAL_DATASETS", "").split(",")):
+        hub_id, _, local_dir = item.partition("=")
+        if hub_id == path and os.path.isdir(local_dir):
+            return local_dir, {k: v for k, v in (dataset_kwargs or {}).items() if k != "revision"}
+    return path, dataset_kwargs
+
+
 class Task(abc.ABC):
     """A task represents an entire benchmark including its dataset, problems,
     answers, and evaluation methods. See BoolQ for a simple example implementation
@@ -662,7 +688,7 @@ class ConfigurableTask(Task):
             self.UNSAFE_CODE = True
 
         if self.config.dataset_path is not None:
-            self.DATASET_PATH = self.config.dataset_path
+            self.DATASET_PATH = _resolve_dataset_path(self.config.dataset_path)
 
         if self.config.dataset_name is not None:
             self.DATASET_NAME = self.config.dataset_name
@@ -861,8 +887,9 @@ class ConfigurableTask(Task):
                 **(self.config.metadata or {}), **(self.config.dataset_kwargs or {})
             )
         else:
+            path, dataset_kwargs = _local_dataset(self.DATASET_PATH, dataset_kwargs)
             self.dataset = datasets.load_dataset(
-                path=self.DATASET_PATH,
+                path=path,
                 name=self.DATASET_NAME,
                 **dataset_kwargs if dataset_kwargs is not None else {},
             )

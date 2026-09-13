@@ -1,4 +1,4 @@
-dataset_path: lm_eval/tasks/stringbench/stringbench_hf.py   # environment/build-env.sh rewrites this to the checkout's absolute path
+dataset_path: lm_eval/tasks/stringbench/stringbench_hf.py   # relative to the repository root (resolved by lm_eval.api.task)
 dataset_kwargs:
   trust_remote_code: true
 output_type: generate_until
