@@ -18,6 +18,7 @@ Usage:
         --tasks winogrande --device cuda
 """
 
+import os
 import torch
 from typing import Optional, List, Tuple, Union
 from lm_eval.api.registry import register_model
@@ -206,7 +207,8 @@ class TokSuiteTokenMonsterLM(HFLM):
             import tokenmonster
         except ImportError:
             raise ImportError("tokenmonster is required. Install with: pip install tokenmonster")
-        
+        if os.environ.get("TOKENMONSTER_DIR"):  # keep the vocabulary and server binary out of ~/_tokenmonster
+            tokenmonster.set_local_directory(os.environ["TOKENMONSTER_DIR"])
         self._tm_vocab = tokenmonster.load(vocab)
         self._tok_wrapper = TokenMonsterWrapper(self._tm_vocab)
         
