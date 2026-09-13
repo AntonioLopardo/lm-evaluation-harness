@@ -186,6 +186,20 @@ def vendored_mpt_classes(pretrained: str):
     return cfg.MPTConfig, mdl.MPTForCausalLM
 
 
+
+
+def fix_missing_decoder(tokenizer):
+    """The three TIMTC families with an HF tokenizer (bpe_merge_3, unigram_likelihood_2, wordpiece_5) pre-tokenise with
+    ByteLevel but ship no decoder, so decode() returns the byte-level alphabet and every generation task scores 0
+    (H-TMTC-8). Install the matching decoder: ByteLevel, after stripping WordPiece's continuing prefix where there is one."""
+    bt = getattr(tokenizer, "backend_tokenizer", None)
+    if bt is None or bt.decoder is not None or type(bt.pre_tokenizer).__name__ != "ByteLevel":
+        return
+    from tokenizers import decoders
+    prefix = getattr(bt.model, "continuing_subword_prefix", None)
+    bt.decoder = decoders.Sequence([decoders.WordPiece(prefix=prefix, cleanup=False), decoders.ByteLevel()]) if prefix else decoders.ByteLevel()
+
+
 @register_model("mpt_hf")
 class MPTNativeCacheHFLM(HFLM):
     """HFLM whose generate_until runs a greedy loop on the model's own list-of-tuples KV cache.
@@ -208,6 +222,10 @@ class MPTNativeCacheHFLM(HFLM):
         # vendored_mpt=false loads the repo's own remote code from the hub cache (needs the patcher's shims there)
         self._vendored = vendored_mpt_classes(pretrained) if _as_bool(vendored_mpt, True) else None
         super().__init__(pretrained=pretrained, **kwargs)
+
+    def _create_tokenizer(self, *args, **kwargs):
+        super()._create_tokenizer(*args, **kwargs)
+        fix_missing_decoder(self.tokenizer)
 
     def _get_config(self, pretrained: str, *, revision: str = "main", trust_remote_code: bool = False, **kwargs) -> None:
         if self._vendored is None:
