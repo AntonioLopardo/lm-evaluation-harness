@@ -1,5 +1,5 @@
 """
-PathPiece model wrapper for lm-evaluation-harness (SOAR fork, patched).
+PathPiece model wrapper for lm-evaluation-harness (TMMC fork, patched).
 
 Replaces lm_eval/models/pathpiece_hf.py in AntonioLopardo/lm-evaluation-harness @ 8eeb32d.
 The original was never used in any historical run; running all 45 TIMTC models through it
@@ -159,10 +159,10 @@ class PathPieceWrapper:
 
 
 # Vendored Kensho/MosaicML MPT remote code (mpt_code/<vintage>/, one package per code vintage, repos.json maps the 45
-# TIMTC repos onto them; SOAR_MPT_CODE_DIR overrides the location). The packages carry the six compatibility shims for
+# TIMTC repos onto them; TMMC_MPT_CODE_DIR overrides the location). The packages carry the six compatibility shims for
 # transformers 4.57 (01-environment/README.md) so the hub cache is never modified and trust_remote_code is not needed
 # for the model: weights and config come from the hub, the code from here.
-_MPT_CODE_DIR = os.environ.get("SOAR_MPT_CODE_DIR") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "mpt_code")
+_MPT_CODE_DIR = os.environ.get("TMMC_MPT_CODE_DIR") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "mpt_code")
 
 
 def vendored_mpt_classes(pretrained: str):
@@ -174,7 +174,7 @@ def vendored_mpt_classes(pretrained: str):
     vintage = repos.get(pretrained) or repos.get(f"luisfrentzen/{Path(pretrained).name}")
     if vintage is None:
         return None
-    pkg = f"soar_mpt_{vintage}"
+    pkg = f"tmmc_mpt_{vintage}"
     if pkg not in sys.modules:
         root = os.path.join(_MPT_CODE_DIR, vintage)
         spec = importlib.util.spec_from_file_location(pkg, os.path.join(root, "__init__.py"), submodule_search_locations=[root])

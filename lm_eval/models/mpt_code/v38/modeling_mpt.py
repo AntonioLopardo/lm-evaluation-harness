@@ -141,7 +141,7 @@ class MPTModel(MPTPreTrainedModel):
         return attn_bias
 
     def forward(self, input_ids: torch.LongTensor, past_key_values: Optional[List[Tuple[torch.FloatTensor]]]=None, attention_mask: Optional[torch.ByteTensor]=None, prefix_mask: Optional[torch.ByteTensor]=None, sequence_id: Optional[torch.LongTensor]=None, return_dict: Optional[bool]=None, output_attentions: Optional[bool]=None, output_hidden_states: Optional[bool]=None, use_cache: Optional[bool]=None):
-        # SOAR-COMPAT-CACHE: MPT owns a list-of-tuples cache; modern generate() passes a DynamicCache.
+        # TMMC-COMPAT-CACHE: MPT owns a list-of-tuples cache; modern generate() passes a DynamicCache.
         if past_key_values is not None and not isinstance(past_key_values, (list, tuple)):
             try:
                 _legacy = past_key_values.to_legacy_cache()
@@ -293,7 +293,7 @@ class MPTForCausalLM(MPTPreTrainedModel):
         return isinstance(module, MPTBlock)
 
     def prepare_inputs_for_generation(self, input_ids, past_key_values=None, inputs_embeds=None, **kwargs):
-        # SOAR-COMPAT-NOCACHE: cached decoding is wrong under modern transformers; generate without the KV cache.
+        # TMMC-COMPAT-NOCACHE: cached decoding is wrong under modern transformers; generate without the KV cache.
         kwargs['use_cache'] = False
         past_key_values = None
         if inputs_embeds is not None:

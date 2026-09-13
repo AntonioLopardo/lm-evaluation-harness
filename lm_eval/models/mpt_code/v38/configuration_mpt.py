@@ -7,7 +7,7 @@ init_config_defaults: Dict = {'name': 'kaiming_normal_', 'fan_mode': 'fan_in', '
 class MPTConfig(PretrainedConfig):
     model_type = 'mpt'
 
-    # SOAR-COMPAT-CONFIG: modern cache_utils reads num_hidden_layers / hidden_size / num_attention_heads
+    # TMMC-COMPAT-CONFIG: modern cache_utils reads num_hidden_layers / hidden_size / num_attention_heads
     attribute_map = {'num_hidden_layers': 'n_layers', 'hidden_size': 'd_model', 'num_attention_heads': 'n_heads'}
     def __init__(self, d_model: int=2048, n_heads: int=16, n_layers: int=24, expansion_ratio: int=4, max_seq_len: int=2048, vocab_size: int=50368, resid_pdrop: float=0.0, emb_pdrop: float=0.0, learned_pos_emb: bool=True, attn_config: Dict=attn_config_defaults, init_device: str='cpu', logit_scale: Optional[Union[float, str]]=None, no_bias: bool=False, verbose: int=0, embedding_fraction: float=1.0, norm_type: str='low_precision_layernorm', use_cache: bool=False, init_config: Dict=init_config_defaults, **kwargs):
         """The MPT configuration class.
