@@ -30,11 +30,7 @@ Usage:
     lm_eval --model pathpiece_hf --model_args pretrained=...,greedy=true,random_tiebreaker=false   # explicit override
 """
 
-import importlib
-import importlib.util
-import json
 import os
-import sys
 from pathlib import Path
 from typing import List, Optional, Tuple, Union
 
@@ -158,34 +154,14 @@ class PathPieceWrapper:
         raise KeyError(tokens)
 
 
-# Vendored Kensho/MosaicML MPT remote code (mpt_code/<vintage>/, one package per code vintage, repos.json maps the 45
-# TIMTC repos onto them; TMMC_MPT_CODE_DIR overrides the location). The packages carry the six compatibility shims for
-# transformers 4.57 (01-environment/README.md) so the hub cache is never modified and trust_remote_code is not needed
-# for the model: weights and config come from the hub, the code from here.
-_MPT_CODE_DIR = os.environ.get("TMMC_MPT_CODE_DIR") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "mpt_code")
-
-
-def vendored_mpt_classes(pretrained: str):
-    """(MPTConfig, MPTForCausalLM) from the vendored package for this repo, or None if the repo is not a TIMTC model."""
-    repos_file = os.path.join(_MPT_CODE_DIR, "repos.json")
-    if not os.path.exists(repos_file):
+# The TIMTC checkpoints' modeling code comes from timtc_mpt (the reproduction repository): copies of the repositories'
+# MPT code with the fixes it needs under transformers 4.57. Weights and config come from the hub, the code from there,
+# so nothing in the hub cache is executed or modified and trust_remote_code is not needed.
+try:
+    from timtc_mpt import mpt_classes as vendored_mpt_classes
+except ImportError:  # without the package, vendored_mpt=true has nothing to load and the repo's own code is used
+    def vendored_mpt_classes(pretrained: str):
         return None
-    repos = json.load(open(repos_file))
-    vintage = repos.get(pretrained) or repos.get(f"luisfrentzen/{Path(pretrained).name}")
-    if vintage is None:
-        return None
-    pkg = f"tmmc_mpt_{vintage}"
-    if pkg not in sys.modules:
-        root = os.path.join(_MPT_CODE_DIR, vintage)
-        spec = importlib.util.spec_from_file_location(pkg, os.path.join(root, "__init__.py"), submodule_search_locations=[root])
-        mod = importlib.util.module_from_spec(spec)
-        sys.modules[pkg] = mod
-        spec.loader.exec_module(mod)
-    cfg = importlib.import_module(f"{pkg}.configuration_mpt")
-    mdl = importlib.import_module(f"{pkg}.modeling_mpt")
-    return cfg.MPTConfig, mdl.MPTForCausalLM
-
-
 
 
 def fix_missing_decoder(tokenizer):
