@@ -4,7 +4,7 @@ the model's own KV cache.
 The 45 repositories ship their modeling code, which does not run under transformers 4.57 (two dead imports) and
 whose list-of-tuples KV cache the modern generate() wraps in a DynamicCache and concatenates along the wrong axis,
 so cached decoding is silently wrong. This class loads weights and config from the hub but the code from timtc_mpt
-(the reproduction repository: copies of the three versions of the code with the fixes marked TMMC-COMPAT-*), so
+(the reproduction repository: the checkpoints' own code with the fixes marked TMMC-COMPAT-*), so
 nothing in the hub cache is executed or modified and trust_remote_code is not needed; and it generates with a greedy
 loop that calls the model's forward directly, feeding its cache straight back. Decoding is greedy, per-sequence stop
 on eos or on a stop string in the decoded lookback window (as lm_eval's stop criteria), finished sequences padded
