@@ -3,6 +3,7 @@ from __future__ import annotations
 import abc
 import ast
 import logging
+import os
 import random
 import re
 from collections.abc import Callable, Iterable, Iterator, Mapping
@@ -61,24 +62,22 @@ TaskConfig = TaskConfig
 
 
 
-# --- TMMC: dataset locations that do not depend on the checkout's location or on Hub state --------------------------
-_REPO_ROOT = __import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.dirname(__import__("os").path.abspath(__file__))))
+# TMMC: dataset locations that depend neither on the working directory nor on the state of the Hub
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def _resolve_dataset_path(path):
-    """A relative `.py` loading script (`lm_eval/tasks/<task>/<loader>.py` in a task template) is resolved against the
-    repository root, so tasks that ship their own loader run from any working directory and any checkout."""
-    import os
+    """A relative `.py` loading script in a task template (`lm_eval/tasks/<task>/<loader>.py`) resolved against the
+    repository root, so a task that ships its own loader runs from any working directory and any checkout."""
     if isinstance(path, str) and path.endswith(".py") and not os.path.isabs(path):
         return os.path.join(_REPO_ROOT, path)
     return path
 
 
 def _local_dataset(path, dataset_kwargs):
-    """TMMC_LOCAL_DATASETS="<hub id>=<dir>[,<hub id>=<dir>...]" points a Hub dataset at a local snapshot (a pinned revision
-    saved with its README, which `datasets` reads offline; a `revision` kwarg does not survive offline mode). Returns the
-    path and kwargs to load with."""
-    import os
+    """TMMC_LOCAL_DATASETS="<hub id>=<dir>[,<hub id>=<dir>...]" points a Hub dataset at a local snapshot (a pinned
+    revision saved with its README, which `datasets` reads offline; a `revision` kwarg does not survive offline mode).
+    Returns the path and the kwargs to load with."""
     for item in filter(None, os.environ.get("TMMC_LOCAL_DATASETS", "").split(",")):
         hub_id, _, local_dir = item.partition("=")
         if hub_id == path and os.path.isdir(local_dir):

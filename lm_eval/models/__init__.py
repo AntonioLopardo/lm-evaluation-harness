@@ -77,6 +77,7 @@ __all__ = ["MODEL_MAPPING"]
 
 # PathPiece is optional - only import if pathpiece package is available
 try:
+    from lm_eval.models.mpt_hf import MPTNativeCacheHFLM
     from lm_eval.models.pathpiece_hf import PathPieceHFLM
 except ImportError:
     pass  # pathpiece not installed, skip this model

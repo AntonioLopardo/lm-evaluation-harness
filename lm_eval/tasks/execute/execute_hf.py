@@ -3,9 +3,8 @@
 EXECUTE: Expandable X(cross)-lingual Extension of CUTE
 Paper: https://aclanthology.org/2025.findings-acl.95/
 
-Reconstruction of the untracked `/home/execute_benchmark/execute_hf.py` that the TMMC evals
-used. Behaviour is identical; data is fetched from the public upstream repo instead of a
-hard-coded local checkout.
+The loader the paper's runs used, fetching the data from the public upstream repository (EXECUTE_DATA_DIR points
+at a local `data/tasks` directory instead).
 
 Data format (per language dir `data/tasks/<lang>/`):
   * `<task>.tsv`   — header row with `input1[, input2, ...]` and `label` columns

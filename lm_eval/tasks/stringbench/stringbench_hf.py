@@ -3,11 +3,9 @@
 StringLLM: Understanding the String Processing Capability of Large Language Models
 Paper: https://arxiv.org/abs/2410.01208 (ICLR 2025)
 
-Reconstruction of the untracked `/home/StringLLM/stringbench_hf.py` that the TMMC evals
-used. Behaviour is identical; the only change is that the data is fetched from the public
-upstream repo instead of a hard-coded local checkout. Answers are derived by executing
-each item's reference `solution` snippet, exactly as the original did (so upstream items
-whose snippet fails yield "ERROR: ..." answers, which are unscoreable).
+The loader the paper's runs used, fetching the data from the public upstream repository. Answers are derived by
+executing each item's reference `solution` snippet, so upstream items whose snippet fails yield "ERROR: ..."
+answers, which are unscoreable.
 """
 
 import datasets
