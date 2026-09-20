@@ -3,7 +3,8 @@
 of each version of the modeling code by default, on batched left-padded prompts of mixed length.
 
   tokens   the loop's output against the uncached transformers generate() path, with and without stop strings:
-           the two must be equal token for token (bf16, the run's dtype)
+           the two must be equal token for token (bf16, the run's dtype). generate() needs the repositories' own
+           code, so this check loads with vendored_mpt=false (the patched hub cache of the earlier runs)
   logits   the loop's per-step next-token logits against one plain full forward over the produced sequence, in
            bf16 and fp32: a correct cache shows about 1e-3 (bf16) and 1e-5 (fp32) differences and full argmax
            agreement in fp32; token disagreements between cached and uncached decoding in bf16 near ties are expected
@@ -38,8 +39,10 @@ def model_class(repo: str) -> str:
     return "pathpiece_hf" if any(k in repo for k in ("pathpiece", "sage", "unigram_greedy")) else "mpt_hf"
 
 
-def load(repo: str, device: str, dtype: str = "auto"):
+def load(repo: str, device: str, dtype: str = "auto", vendored: bool = True):
     args = dict(pretrained=f"luisfrentzen/{repo}", trust_remote_code=True, device=device, batch_size=8, dtype=dtype)
+    if not vendored:
+        args["vendored_mpt"] = False
     if repo.startswith("pathpiecer"):
         args["random_tiebreaker"] = False  # deterministic, so the two paths can be compared
     return get_model(model_class(repo))(**args)
@@ -60,7 +63,7 @@ def timed_generate(model, context, mask, n_new: int, stop: List[str]) -> Tuple[t
 
 def check_tokens(repo: str, device: str) -> bool:
     """The native loop against uncached generate(), token for token; prints each case and the speed-up."""
-    model = load(repo, device)
+    model = load(repo, device, vendored=False)
     context, mask = encode_prompts(model)
     all_equal = True
     for stop, n_new in TOKEN_CASES:

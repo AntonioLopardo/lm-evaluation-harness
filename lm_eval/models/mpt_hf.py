@@ -12,7 +12,9 @@ with pad_token_id, as generate() does.
 
     lm_eval --model mpt_hf --model_args pretrained=luisfrentzen/bpe_merge_3_32768 --tasks blimp
         native_cache=true       (default) the greedy loop on the native cache
-        native_cache=false      HFLM.generate(); with generate_use_cache=false uncached, exact and about 10x slower
+        native_cache=false      HFLM.generate(); with generate_use_cache=false uncached, exact and about 10x slower.
+                                Needs vendored_mpt=false: the timtc_mpt classes have no generate() under
+                                transformers 4.57 (the repositories' own code, run as remote code, still has one)
         vendored_mpt=true       (default) the code from timtc_mpt; false runs the repository's own remote code
 
 The three schemes with an HF tokenizer (bpe_merge_3, unigram_likelihood_2, wordpiece_5) run through this class;
